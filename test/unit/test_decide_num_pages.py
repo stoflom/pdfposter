@@ -22,8 +22,29 @@ __licence__ = "GNU General Public License version 3 (GPL v3)"
 
 import pytest
 
-from pdftools.pdfposter import decide_num_pages
+from pdftools.pdfposter import papersizes, decide_num_pages
 from pdftools.pdfposter.cmd import __parse_box as parse_box
+import math
+
+def Box(x, y, name):
+    return {
+        'width': x*papersizes[name][0],
+        'height': y*papersizes[name][1],
+        'offset_x': 0,
+        'offset_y': 0,
+        'unit': name,
+        'units_x': x,
+        'units_y': y,
+        }
+def Width(name): return papersizes[name][0]
+def Height(name): return papersizes[name][1]
+
+A4port = Box(1, 1, 'a4')
+A4land = Box(1, 1, 'a4')
+A4land['width'], A4land['height'] = A4land['height'], A4land['width']
+A4land['unit'] = 'a4_land'
+
+cm = papersizes['cm'][0]
 
 
 def test_without_options(tmpdir):
@@ -120,3 +141,61 @@ def test_scale_by_two(tmpdir):
     assert rows == 2
     assert scale == 2.0
     assert rotate == False
+
+#---
+
+def test_1x1_A4_on_A4():
+    for mediabox in (A4port, A4land):
+      for inbox in (A4port, A4land):
+        for posterbox in (A4port, A4land):
+            cols, rows, scale, rotate = decide_num_pages(
+                inbox, mediabox, posterbox)
+            # rotate if orientation does not match
+            assert rotate == (mediabox != inbox)
+            # output is a single page
+            assert scale == 1
+            assert rows == 1
+            assert cols == 1
+
+
+def test_1x1_A4port_to_1x2_A4port():
+    cols, rows, scale, rotate = decide_num_pages(
+        A4port, A4port, Box(1, 2, 'a4'))
+    # output is a single page
+    assert not rotate
+    assert scale == 1
+    assert rows == 1
+    assert cols == 1
+
+def test_1x1_A4port_to_2x1_A4port():
+    cols, rows, scale, rotate = decide_num_pages(
+        A4port, A4port, Box(2, 1, 'a4'))
+    # output is two pages, scaled to A3
+    assert rotate
+    assert round(abs(scale-1.4142), 2) == 0
+    assert rows == 2
+    assert cols == 1
+
+def test_1x1_A4port_to_2x99_A4port():
+    cols, rows, scale, rotate = decide_num_pages(
+        A4port, A4port, Box(2, 99, 'a4'))
+    # output is four pages, scaled by 2
+    assert not rotate
+    assert scale == 2
+    assert rows == 2
+    assert cols == 2
+
+def test_1x1_A4port_to_99x2_A4port():
+    cols, rows, scale, rotate = decide_num_pages(
+        A4port, A4port, Box(99, 2, 'a4'))
+    ## 99 portrait pages wide and 2 portrait pages high.
+    # output is four pages, scaled by ~2.8
+    # poster is not rotated, so the output will be ~2x4.1A4
+    assert not rotate
+    assert round(abs(scale-2.0*Height('a4')/Width('a4')), 7) == 0
+    assert round(abs(scale-2*1.4142), 2) == 0
+    assert rows == math.ceil(Height('a4')*scale/Height('a4'))
+    assert cols == math.ceil(Width('a4')*scale/Width('a4'))
+    assert rows == 3
+    assert cols == 3
+
