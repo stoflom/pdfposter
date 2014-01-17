@@ -27,6 +27,7 @@ __version__ = "0.6.1dev"
 from PyPdf2.pdf import PdfFileWriter, PdfFileReader, PageObject, getRectangle, \
      ArrayObject, ContentStream, NameObject, FloatObject, RectangleObject
 
+
 import logging
 from logging import log
 import math
@@ -217,7 +218,7 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
 
 def copyPage(page):
     from PyPdf2.pdf import RectangleObject, NameObject
-    newpage = PageObject(page.pdf)
+    newpage = PageObject()
     newpage.update(page)
     # Copy Rectangles to be manipulatable
     for attr in PAGE_BOXES:
@@ -226,7 +227,7 @@ def copyPage(page):
     return newpage
 
 def _clip_pdf_page(page, x, y, width, height):
-    content = ContentStream(page["/Contents"].getObject(), page.pdf)
+    content = ContentStream(page["/Contents"].getObject(), None)
     content.operations[:0] = [
         ([], 'q'), # save graphic state
         (RectangleObject((x, y, width, height)), 're'), # rectangle path
@@ -247,7 +248,7 @@ def _scale_pdf_page(outpdf, page, factor):
         box.upperRight = [float(i) * factor for i in box.upperRight]
         #print boxname, type(box), box
     # put transformation matrix in front of page content
-    content = ContentStream(page["/Contents"].getObject(), page.pdf)
+    content = ContentStream(page["/Contents"].getObject(), None)
     content.operations.insert(0, [[], '%f 0 0 %f 0 0 cm' %(factor,factor)] )
     # Add changed content as an indirect object. So the content will
     # be referenced by the other pages and not copied. The content
