@@ -250,6 +250,7 @@ def _scale_pdf_page(outpdf, page, factor):
     # put transformation matrix in front of page content
     content = ContentStream(page["/Contents"].getObject(), None)
     content.operations.insert(0, [[], '%f 0 0 %f 0 0 cm' %(factor,factor)] )
+    content = content.flateEncode()
     # Add changed content as an indirect object. So the content will
     # be referenced by the other pages and not copied. The content
     # will be in the output file only once.
