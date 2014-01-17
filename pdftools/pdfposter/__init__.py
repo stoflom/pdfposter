@@ -237,7 +237,7 @@ def _clip_pdf_page(page, x, y, width, height):
     page[NameObject('/Contents')] = content
 
 
-def _scale_pdf_page(page, factor):
+def _scale_pdf_page(outpdf, page, factor):
     for boxname in PAGE_BOXES:
         # skip if real box does not exits (avoid fallback to other boxes)
         if not page.get(boxname):
@@ -249,7 +249,10 @@ def _scale_pdf_page(page, factor):
     # put transformation matrix in front of page content
     content = ContentStream(page["/Contents"].getObject(), page.pdf)
     content.operations.insert(0, [[], '%f 0 0 %f 0 0 cm' %(factor,factor)] )
-    page[NameObject('/Contents')] = content
+    # Add changed content as an indirect object. So the content will
+    # be referenced by the other pages and not copied. The content
+    # will be in the output file only once.
+    page[NameObject('/Contents')] = outpdf._addObject(content)
 
 
 def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
@@ -268,7 +271,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     ncols, nrows, scale, rotate = decide_num_pages(inbox, mediabox,
                                                    posterbox, scale)
     mediabox = mediabox.copy()
-    _scale_pdf_page(page, scale)
+    _scale_pdf_page(outpdf, page, scale)
     if rotate:
         page.rotateClockwise(90)
         rotate_box(inbox)
