@@ -24,7 +24,7 @@ __copyright__ = "Copyright 2008-2013 by Hartmut Goebel <h.goebel@crazy-compilers
 __licence__ = "GNU General Public License version 3 (GPL v3)"
 __version__ = "0.6.1dev"
 
-from PyPdf2.pdf import PdfFileWriter, PdfFileReader, PageObject, getRectangle, \
+from PyPDF2.pdf import PdfFileWriter, PdfFileReader, PageObject, getRectangle, \
      ArrayObject, ContentStream, NameObject, FloatObject, RectangleObject
 
 
