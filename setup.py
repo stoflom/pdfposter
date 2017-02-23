@@ -14,9 +14,6 @@ For more information please refere to the manpage or visit
 the `project homepage <http://pythonhosted.org/pdftools.pdfposter/>`_.
 """
 
-import ez_setup
-ez_setup.use_setuptools()
-
 from setuptools import setup, find_packages
 
 from distutils.core import Command
