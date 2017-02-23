@@ -18,7 +18,7 @@ from setuptools import setup, find_packages
 
 from distutils.core import Command
 from distutils import log
-import os
+import os, sys
 
 class build_docs(Command):
     description = "build documentation from rst-files"
@@ -72,10 +72,9 @@ setup(
     cmdclass=cmdclass,
     name = "pdftools.pdfposter",
     version = "0.6.1dev",
-    #scripts = ['pdfposter'],
     install_requires = ['PyPDF2'],
 
-    packages=find_packages(exclude=['ez_setup']),
+    packages=['pdftools.pdfposter'],
     namespace_packages=['pdftools'],
 
     package_data = {
