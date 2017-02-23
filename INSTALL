@@ -16,9 +16,12 @@ Requirements
 
 ``Pdfposter`` requires
 
-* Python 2.x (tested with 2.5, but other versions should work, too),
+* `Python 2.7`__ or higher (tested with 2.7 and 3.4, but other
+  versions should work, too),
 * `PyPDF2 <http://mstamy2.github.io/PyPDF2/>,
 * setuptools for installation (see below).
+
+__ http://www.python.org/download/
 
 
 Installation on Windows-Systems

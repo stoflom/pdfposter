@@ -106,8 +106,9 @@ papersizes = {
     "env10" : (298, 684),
     }
 
-class DecryptionError(ValueError): pass
-    
+class DecryptionError(ValueError):
+    pass
+
 
 PAGE_BOXES = ("/MediaBox", "/CropBox", "/BleedBox", "/TrimBox", "/ArtBox")
 
@@ -124,15 +125,15 @@ def rectangle2box(pdfbox):
         }
 
 def rotate_box(box):
-    for a,b in (
-        ('width', 'height'),
-        ('offset_x', 'offset_y'),
-        ('units_x', 'units_y')):
+    for a, b in (
+            ('width', 'height'),
+            ('offset_x', 'offset_y'),
+            ('units_x', 'units_y')):
         box[a], box[b] = box[b], box[a]
 
 def rotate2portrait(box, which):
     'if box is landscape spec, rotate to portrait'
-    if (  box['width' ]-box['offset_x'] 
+    if (  box['width' ]-box['offset_x']
         > box['height']-box['offset_y']):
         rotate_box(box)
         log(18, 'Rotating %s specs to portrait format', which)
@@ -186,14 +187,14 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
     log(17, 'output dimensions: %.2f %.2f (calculated)', size_x, size_y)
 
     # num pages without rotation
-    nx0 = int(math.ceil( size_x / drawable_x))
-    ny0 = int(math.ceil( size_y / drawable_y))
+    nx0 = int(math.ceil(size_x / drawable_x))
+    ny0 = int(math.ceil(size_y / drawable_y))
     # num pages with rotation
-    nx1 = int(math.ceil( size_x / drawable_y))
-    ny1 = int(math.ceil( size_y / drawable_x))
+    nx1 = int(math.ceil(size_x / drawable_y))
+    ny1 = int(math.ceil(size_y / drawable_x))
 
-    log(17, 'Pages w/o rotation %s x %s' , nx0, ny0)
-    log(17, 'Pages w/  rotation %s x %s' , nx1, ny1)
+    log(17, 'Pages w/o rotation %s x %s', nx0, ny0)
+    log(17, 'Pages w/  rotation %s x %s', nx1, ny1)
 
     # Decide for rotation to get the minimum page count.
     # (Rotation is considered as media versus input page, which is
@@ -221,7 +222,7 @@ def copyPage(page):
     newpage.update(page)
     # Copy Rectangles to be manipulatable
     for attr in PAGE_BOXES:
-        if page.has_key(attr):
+        if attr in page:
             newpage[NameObject(attr)] = RectangleObject(list(page[attr]))
     return newpage
 
@@ -280,7 +281,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     # area to put on each page (allows for overlay of margin)
     h_step = mediabox['width']  - mediabox['offset_x']
     v_step = mediabox['height'] - mediabox['offset_y']
-    
+
     if use_ArtBox:
         trimbox = rectangle2box(page.artBox)
     else:

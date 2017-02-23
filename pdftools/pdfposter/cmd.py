@@ -52,7 +52,7 @@ def __parse_box(option, value, parser, allow_offset=False):
 
     # get meassures of unit
     unit = res['unit'].lower()
-    if not papersizes.has_key(unit):
+    if not unit in papersizes:
         unit = [name for name in papersizes.keys()
                 if name.startswith(unit)]
         if len(unit) == 0:
@@ -102,10 +102,10 @@ def run():
     group = parser.add_option_group('Define Target')
     group.add_option('-m', '--media-size',
                      default=__parse_box('-m', DEFAULT_MEDIASIZE, parser),
-                     action='callback', type='string', callback=_parse_box, 
+                     action='callback', type='string', callback=_parse_box,
                      help='Specify the size of the output media size (default: %s)' % DEFAULT_MEDIASIZE)
     group.add_option('-p', '--poster-size',
-                     action='callback', type='string', callback=_parse_box, 
+                     action='callback', type='string', callback=_parse_box,
                      help='Specify the poster size (defaults to media size). ')
     group.add_option('-s', '--scale', type=float,
                      help='Specify a linear scaling factor to produce the poster.')

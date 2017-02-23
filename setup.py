@@ -36,7 +36,8 @@ class build_docs(Command):
             log.info("creating %s page %s", writer, outfilename)
             if not self.dry_run:
                 try:
-                    rsttext = open(rstfilename).read()
+                    with open(rstfilename, "rb") as fh:
+                        rsttext = fh.read().decode('utf-8')
                 except IOError as e:
                     sys.exit(e)
                 rsttext = '\n'.join((substitutions, rsttext))
@@ -46,7 +47,8 @@ class build_docs(Command):
                                                    source_path=rstfilename,
                                                    writer_name=writer)
                 try:
-                    rsttext = open(outfilename, 'w').write(doc)
+                    with open(outfilename, 'wb') as fh:
+                        fh.write(doc) # is already encoded
                 except IOError as e:
                     sys.exit(e)
 
