@@ -18,12 +18,6 @@ import ez_setup
 ez_setup.use_setuptools()
 
 from setuptools import setup, find_packages
-additional_keywords ={}
-
-try:
-    import py2exe
-except ImportError:
-    py2exe = None
 
 from distutils.core import Command
 from distutils import log
@@ -77,17 +71,6 @@ DOCPAGES = (
     ('html', 'pdfposter.rst', 'docs/pdfposter.html'),
     )
 
-if py2exe:
-    resources = {
-        #'other_resources': [(u"VERSIONTAG",1,myrevisionstring)],
-        'icon_resources' : [(1,'projectlogo.ico')]
-        }
-    additional_keywords.update({
-        'windows': [],
-        'console': [dict(script='pdfposter', **resources)],
-        'zipfile': None,
-        })
-
 setup(
     cmdclass=cmdclass,
     name = "pdftools.pdfposter",
@@ -135,15 +118,4 @@ setup(
             "pdfposter = pdftools.pdfposter.cmd:run",
         ],
     },
-    # these are for py2exe
-    options = {
-        # bundle_files 1: bundle everything, including the Python interpreter 
-        # bundle_files 2: bundle everything but the Python interpreter
-        # bundle_files 3: don't bundle
-       "py2exe":{"optimize": 2,
-                 "bundle_files": 1,
-                 "includes": [],
-                }
-        },
-    **additional_keywords
 )
