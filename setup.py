@@ -37,7 +37,7 @@ class build_docs(Command):
             if not self.dry_run:
                 try:
                     rsttext = open(rstfilename).read()
-                except IOError, e:
+                except IOError as e:
                     sys.exit(e)
                 rsttext = '\n'.join((substitutions, rsttext))
                 # docutils.core does not offer easy reading from a
@@ -47,7 +47,7 @@ class build_docs(Command):
                                                    writer_name=writer)
                 try:
                     rsttext = open(outfilename, 'w').write(doc)
-                except IOError, e:
+                except IOError as e:
                     sys.exit(e)
 
 cmdclass = {}
@@ -103,6 +103,12 @@ setup(
     'Natural Language :: English',
     'Operating System :: OS Independent',
     'Programming Language :: Python',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.36',
     'Topic :: Printing',
     'Topic :: Utilities',
     ],

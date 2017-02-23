@@ -337,7 +337,7 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
         log(18, 'Postersize: %(units_x)sx%(units_y)s %(unit)s' % opts.poster_size)
         log(17, '            %(width).2f %(height).2f dots' % opts.poster_size)
 
-    for i in xrange(first_page-1, last_page):
+    for i in range(first_page-1, last_page):
         page = inpdf.getPage(i)
         log(19, '---- processing page %i -----', i+1)
         posterize(outpdf, page, opts.media_size, opts.poster_size, opts.scale,

@@ -19,6 +19,8 @@ pdftools.pdfposter.cmd - scale and tile PDF images/pages to print on multiple pa
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
+from __future__ import print_function
+
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2017 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __licence__ = "GNU General Public License version 3 (GPL v3)"
@@ -111,12 +113,12 @@ def run():
     opts, args = parser.parse_args()
 
     if opts.help_media_names:
-        names = papersizes.keys()
+        names = list(papersizes.keys())
         names.sort()
         parser.print_usage()
-        print parser.formatter.format_heading('Available media and distance names')
+        print(parser.formatter.format_heading('Available media and distance names'))
         parser.formatter.indent()
-        print parser.formatter.format_description(' '.join(names))
+        print(parser.formatter.format_description(' '.join(names)))
         raise SystemExit(0)
 
     if len(args) != 2:
@@ -134,7 +136,7 @@ def run():
 
     try:
         main(opts, *args)
-    except DecryptionError, e:
+    except DecryptionError as e:
         raise SystemExit(str(e))
     except PyPDF2.utils.PdfReadError:
         parser.error('The input-file is either currupt or no PDF at all.')

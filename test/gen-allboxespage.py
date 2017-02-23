@@ -26,6 +26,8 @@ all other boxes not set at all. This is useful for checking if
 clipping works as expected with and without option `--art-box`.
 """
 
+from __future__ import unicode_literals
+
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2017 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __licence__ = "GNU General Public License version 3 (GPL v3)"
@@ -72,7 +74,7 @@ def genTestFile(filename1, filename2):
     offset = 6*cm
     for x in range(5):
         for y in range(6):
-            text = u"%x%x" % (x,y)
+            text = "%x%x" % (x,y)
             if (x+y) % 2:
                 canv.setFillColor(pink)
             else:

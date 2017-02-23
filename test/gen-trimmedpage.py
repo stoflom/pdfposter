@@ -24,14 +24,16 @@ trim-boxes and content drawn outside the trim-box. The pages are
 useful for checking if clipping works as expected.
 """
 
+from __future__ import print_funtion, unicode_literals
+
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2017 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __licence__ = "GNU General Public License version 3 (GPL v3)"
 
 try:
-    import cStringIO as StringIO
+    import io as StringIO
 except ImportError:
-    import StringIO
+    import io
 
 from reportlab.lib.units import mm, cm
 from reportlab.lib.colors import black, white, pink, lightblue, blue
@@ -87,7 +89,7 @@ def genTestFile(filename):
         offset = 6*cm
         for x in range(3):
             for y in range(3):
-                text = u"%x%x" % (x,y)
+                text = "%x%x" % (x,y)
                 if (x+y) % 2:
                     canv.setFillColor(pink)
                 else:
@@ -122,20 +124,20 @@ def genTestFile(filename):
                 set_trimbox, set_bleedbox, set_artbox,
                 title, artRect):
         page = reader.getPage(pageNum)
-        print 'Page', i, size
+        print(('Page', i, size))
         if set_bleedbox:
             page.bleedBox = RectangleObject(
                 (cutmargin, cutmargin,
                  size[0]-cutmargin, size[1]-cutmargin))
-            print ' bleed:', page.bleedBox
+            print((' bleed:', page.bleedBox))
         if set_trimbox:
             page.trimBox = RectangleObject(
                 (trimmargin, trimmargin,
                  size[0]-trimmargin, size[1]-trimmargin))
-            print ' trim:', page.trimBox
+            print((' trim:', page.trimBox))
         if set_artbox:
             page.artBox = RectangleObject(artRect)
-            print ' art:', page.artBox
+            print((' art:', page.artBox))
         writer.addPage(page)
 
     #----------- generate the first PDF w/o boxes defined -----------
@@ -156,7 +158,7 @@ def genTestFile(filename):
     pdfdata = canv.getpdfdata()
     
     #----------- generate the second PDF w/ trimbox, bleedbox, artbox set
-    infile = StringIO.StringIO(pdfdata)
+    infile = io.StringIO(pdfdata)
     reader = PdfFileReader(infile)
     writer = PdfFileWriter()
     for i, args in enumerate(CASES):
