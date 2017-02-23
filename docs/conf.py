@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'pdftools.PDFposter'
-copyright = u'2008-2013, Hartmut Goebel'
+copyright = u'2008-2017, Hartmut Goebel'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
