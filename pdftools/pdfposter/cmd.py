@@ -28,6 +28,7 @@ __licence__ = "GNU General Public License version 3 (GPL v3)"
 from . import main, __version__, DEFAULT_MEDIASIZE, papersizes, DecryptionError
 import re
 import PyPDF2.utils
+import argparse
 
 # pattern for parsing user textual box spec
 pat_box = re.compile(r'''
@@ -40,13 +41,13 @@ pat_box = re.compile(r'''
      (?P<unit> [a-z][a-z0-9\-\\_]*)                # unit
      ''', re.X+re.I)
 
-def __parse_box(option, value, parser, allow_offset=False):
+def __parse_box(value, allow_offset=False):
     m = pat_box.match(value)
     if not m:
-        raise parser.error("I don't understand your box specification %r for %s" % (value, option))
+        raise argparse.ArgumentTypeError("I don't understand your box specification %r" % value)
     res = m.groupdict()
     if not allow_offset and res['offset'] is not None:
-        raise parser.error('Offset not allowed in box definition for %s' % option)
+        raise argparse.ArgumentTypeError('Offset not allowed in box definition')
     # res['offset'] is only used for error checking, remove it
     del res['offset']
 
@@ -56,9 +57,9 @@ def __parse_box(option, value, parser, allow_offset=False):
         unit = [name for name in papersizes.keys()
                 if name.startswith(unit)]
         if len(unit) == 0:
-            parser.error("I don't understand your papersize name %r for %s." % (res['unit'], option))
+            raise argparse.ArgumentTypeError("I don't understand your papersize name %r" % res['unit'])
         elif len(unit) != 1:
-            parser.error('Your papersize name %r for %s is not unique, give more chars.' % (res['unit'], option))
+            raise argparse.ArgumentTypeError('Your papersize name %r is not unique, give more chars.' % res['unit'])
         unit = unit[0]
     unit_x, unit_y = papersizes[unit]
     res2 = {
@@ -72,70 +73,72 @@ def __parse_box(option, value, parser, allow_offset=False):
         }
     return res2
 
-def _parse_box(option, opt, value, parser, allow_offset=False):
-    res = __parse_box(option, value, parser, allow_offset=False)
-    setattr(parser.values, option.dest, res)
+
+class HelpMediaNames(argparse.Action):
+    def __call__(*args, **kw):
+        import textwrap
+        print('Available media and distance names:')
+        names = list(papersizes.keys())
+        names.sort()
+        for l in textwrap.wrap(' '.join(names), width=65):
+            print(' ', l)
+        raise SystemExit(0)
+
 
 def run():
-    import optparse
-    parser = optparse.OptionParser('%prog [options] InputFile OutputFile',
-                                   version=__version__)
-    parser.add_option('--help-media-names', action='store_true',
-                      help='List available media and distance names')
-    parser.add_option('-v', '--verbose', action='count', default=0,
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--version', action='version',
+                        version="%(prog)s " + __version__)
+    parser.add_argument('--help-media-names', action=HelpMediaNames,
+                        nargs=0,
+                        help='List available media and distance names')
+    parser.add_argument('-v', '--verbose', action='count', default=0,
                       help='Be verbose. Tell about scaling, rotation and number of pages. Can be used more than once to increase the verbosity. ')
-    parser.add_option('-n', '--dry-run', action='store_true',
+    parser.add_argument('-n', '--dry-run', action='store_true',
                       help='Show what would have been done, but do not generate files.')
 
-    group = parser.add_option_group('Define Input')
-    group.add_option('-f', '--first', type=int, dest='first_page',
+    group = parser.add_argument_group('Define Input')
+    group.add_argument('-f', '--first', type=int, dest='first_page',
                      metavar='INTEGER',
                      help='First page to convert (default: first page)')
-    group.add_option('-l', '--last', type=int, dest='last_page',
+    group.add_argument('-l', '--last', type=int, dest='last_page',
                      metavar='INTEGER',
                      help='Last page to convert (default: last page)')
-    group.add_option('-A', '--art-box',
+    group.add_argument('-A', '--art-box',
                      action='store_true', dest='use_ArtBox',
                      help='Use the content area defined by the ArtBox '
                      '(default: use the area defined by the TrimBox)')
 
-    group = parser.add_option_group('Define Target')
-    group.add_option('-m', '--media-size',
-                     default=__parse_box('-m', DEFAULT_MEDIASIZE, parser),
-                     action='callback', type='string', callback=_parse_box,
+    group = parser.add_argument_group('Define Target')
+    group.add_argument('-m', '--media-size',
+                     default=__parse_box(DEFAULT_MEDIASIZE),
+                     type=__parse_box,
                      help='Specify the size of the output media size (default: %s)' % DEFAULT_MEDIASIZE)
-    group.add_option('-p', '--poster-size',
-                     action='callback', type='string', callback=_parse_box,
+    group.add_argument('-p', '--poster-size',
+                     type=__parse_box,
                      help='Specify the poster size (defaults to media size). ')
-    group.add_option('-s', '--scale', type=float,
+    group.add_argument('-s', '--scale', type=float,
                      help='Specify a linear scaling factor to produce the poster.')
 
-    opts, args = parser.parse_args()
+    parser.add_argument('infilename', metavar='InputFile')
+    parser.add_argument('outfilename', metavar='OutputFile')
 
-    if opts.help_media_names:
-        names = list(papersizes.keys())
-        names.sort()
-        parser.print_usage()
-        print(parser.formatter.format_heading('Available media and distance names'))
-        parser.formatter.indent()
-        print(parser.formatter.format_description(' '.join(names)))
-        raise SystemExit(0)
+    args = parser.parse_args()
 
-    if len(args) != 2:
-        parser.error('requires both input and output filename')
-    if opts.scale is not None and opts.poster_size is not None:
+    if args.scale is not None and args.poster_size is not None:
         parser.error('Only one of -p/--poster-size and -s/--scale may be given at a time.')
-    if not opts.poster_size:
-        opts.poster_size = opts.media_size.copy()
-    if opts.scale is not None:
-        opts.poster_size = None
-        if opts.scale < 0.01:
-            parser.error("Scale value is much to small: %s" % opts.scale)
-        elif opts.scale > 1.0e6:
-            parser.error("Scale value is much to big: %s" % opts.scale)
+    if not args.poster_size:
+        args.poster_size = args.media_size.copy()
+    if args.scale is not None:
+        args.poster_size = None
+        if args.scale < 0.01:
+            parser.error("Scale value is much to small: %s" % args.scale)
+        elif args.scale > 1.0e6:
+            parser.error("Scale value is much to big: %s" % args.scale)
 
     try:
-        main(opts, *args)
+        main(args, infilename=args.infilename, outfilename=args.outfilename)
     except DecryptionError as e:
         raise SystemExit(str(e))
     except PyPDF2.utils.PdfReadError:

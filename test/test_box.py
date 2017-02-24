@@ -21,18 +21,15 @@ __copyright__ = "Copyright 2012-2017 by Hartmut Goebel <h.goebel@crazy-compilers
 __licence__ = "GNU General Public License version 3 (GPL v3)"
 
 import unittest
+import argparse
 from pdftools.pdfposter.cmd import __parse_box as parse_box
 
-class ArgParserError(Exception): pass
-
-class PseudoParser:
-    def error(self, msg):
-        raise ArgParserError(msg)
+ArgParserError = argparse.ArgumentTypeError
 
 class TextBoxes(unittest.TestCase):
 
     def _parse_box(self, value, allow_offset=False):
-        return parse_box('--poster', value, PseudoParser(), allow_offset)
+        return parse_box(value, allow_offset)
 
     def assertBoxValue(self, box, k, v):
         self.assertEqual(box[k], v, 'box[%r] == %r != %r' % (k, box[k], v))
