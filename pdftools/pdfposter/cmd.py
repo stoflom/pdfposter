@@ -85,7 +85,7 @@ class HelpMediaNames(argparse.Action):
         raise SystemExit(0)
 
 
-def run():
+def run(args=None):
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', action='version',
@@ -124,7 +124,7 @@ def run():
     parser.add_argument('infilename', metavar='InputFile')
     parser.add_argument('outfilename', metavar='OutputFile')
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     if args.scale is not None and args.poster_size is not None:
         parser.error('Only one of -p/--poster-size and -s/--scale may be given at a time.')
