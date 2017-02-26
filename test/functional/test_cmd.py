@@ -18,8 +18,12 @@
 import pytest
 import os, sys
 
+import argparse
+
 import pdftools.pdfposter
 from pdftools.pdfposter import cmd, __version__
+
+ArgParserError = argparse.ArgumentTypeError
 
 
 def test_help(capsys):
@@ -98,7 +102,6 @@ def test_postersize_defaults_to_mediasize(monkeypatch):
     monkeypatch.setattr(cmd, 'main', mockmain)
     cmd.run(['in.pdf', '-m3x4a5', 'out.pdf'])
 
-
 def test_postersize_and_mediasize_given(monkeypatch):
 
     def mockmain(opts, infilename, outfilename, password_hook=None):
@@ -116,3 +119,22 @@ def test_postersize_and_mediasize_given(monkeypatch):
     # 'main' is imported into `cmd`, need to monkeypath there
     monkeypatch.setattr(cmd, 'main', mockmain)
     cmd.run(['in.pdf', '-m3x4a5', '-p23x42dinla', 'out.pdf'])
+
+def test_scale_and_postersize_given(capsys):
+    # these are mutal exclusive
+    with pytest.raises(SystemExit) as excinfo:
+        cmd.run(['in.pdf', '--scale=1.5', '-p23x42dinla', 'out.pdf'])
+    out, err = capsys.readouterr()
+    assert "Only one of" in err
+
+def test_scale_to_small(capsys):
+    with pytest.raises(SystemExit) as excinfo:
+        cmd.run(['in.pdf', '--scale=0.0001', 'out.pdf'])
+    out, err = capsys.readouterr()
+    assert "Scale value is much to small" in err
+
+def test_scale_to_big(capsys):
+    with pytest.raises(SystemExit) as excinfo:
+        cmd.run(['in.pdf', '--scale=100000000000', 'out.pdf'])
+    out, err = capsys.readouterr()
+    assert "Scale value is much to big" in err
