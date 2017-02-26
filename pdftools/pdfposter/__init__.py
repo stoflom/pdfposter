@@ -69,8 +69,9 @@ papersizes = {
     "a9" : (105, 147),
     "a10": (74, 105),
 
-    "dinlang"   : (281, 595), # 1/3 a4
-    "envdinlang": (312, 624), # envelobe for din-lang
+    # DIN lang is considered to be a landscape format
+    "dinlang"   : (595, 281), # 1/3 a4
+    "envdinlang": (624, 312), # envelope for Din lang
 
     "b0" : (2835, 4008),
     "b1" : (2004, 2835),
@@ -101,9 +102,10 @@ papersizes = {
     "jb9" : (128, 181),
     "jb10": (91, 128),
 
-    "comm10": (298, 684),
-    "com10" : (298, 684),
-    "env10" : (298, 684),
+    # Envelope No. 10 is considered to be a landscape format
+    "comm10": (684, 298),
+    "com10" : (684, 298),
+    "env10" : (684, 298),
     }
 
 class DecryptionError(ValueError):
