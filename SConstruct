@@ -32,7 +32,7 @@
 import os
 
 ENV = {
-    'PYTHONPATH': os.environ['PYTHONPATH'],
+    'PYTHONPATH': os.environ.get('PYTHONPATH'),
     'PATH': os.environ['PATH'],
     }
 
