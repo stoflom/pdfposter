@@ -40,3 +40,6 @@ linters:
     # For now only check the readme
     - tox -e readme
     #- tox -e linters
+
+# As of 2017-02 not available in yml file.
+#coverage: /^TOTAL\s+.*\s+(\d+\%)/

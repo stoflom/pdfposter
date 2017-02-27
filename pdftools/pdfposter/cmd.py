@@ -145,5 +145,5 @@ def run(args=None):
         parser.error('The input-file is either currupt or no PDF at all.')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__': # pragma: no cover
     run()

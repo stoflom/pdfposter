@@ -9,6 +9,7 @@
 /.sconsign.dblite
 /.cache
 /.tox
+/.coverage
 
 /bin
 /projectlogo.ico
