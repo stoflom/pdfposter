@@ -20,131 +20,123 @@ __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2012-2017 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __licence__ = "GNU General Public License version 3 (GPL v3)"
 
-import unittest
+import pytest
+import re
 import argparse
 from pdftools.pdfposter.cmd import __parse_box as parse_box
 
 ArgParserError = argparse.ArgumentTypeError
 
-class TextBoxes(unittest.TestCase):
+def test_papersize_abbreviation():
+    box = parse_box('1x1let')
+    assert box['unit'] == 'letter'
+    box = parse_box('1x1envdin')
+    assert box['unit'] == 'envdinlang'
 
-    def _parse_box(self, value, allow_offset=False):
-        return parse_box(value, allow_offset)
+def test_ambiguous_papersize_abbreviation_raises():
+    with pytest.raises(ArgParserError) as excinfo:
+        parse_box('1x1a')
+    assert re.search("papersize name .* is not unique", excinfo.value.args[0])
 
-    def assertBoxValue(self, box, k, v):
-        self.assertEqual(box[k], v, 'box[%r] == %r != %r' % (k, box[k], v))
+def test_unknown_papersize_raises():
+    with pytest.raises(ArgParserError) as excinfo:
+        parse_box('1x2yyy')
+    assert "I don't understand your papersize name" in excinfo.value.args[0]
+    with pytest.raises(ArgParserError) as excinfo:
+        parse_box('1x2xxx')
+    assert "I don't understand your papersize name" in excinfo.value.args[0]
 
-    def test_papersize_abbreviation(self):
-        box = self._parse_box('1x1let')
-        self.assertBoxValue(box, 'unit', 'letter')
-        box = self._parse_box('1x1envdin')
-        self.assertBoxValue(box, 'unit', 'envdinlang')
+def test_wrong_box_definition_raises():
+    with pytest.raises(ArgParserError) as excinfo:
+        parse_box('2yyy')
+    assert "I don't understand your box specification" in excinfo.value.args[0]
+    with pytest.raises(ArgParserError) as excinfo:
+        parse_box('2xxx')
+    assert "I don't understand your box specification" in excinfo.value.args[0]
 
-    def test_ambiguous_papersize_abbreviation_raises(self):
-        self.assertRaisesRegexp(
-            ArgParserError, "papersize name .* is not unique",
-            self._parse_box, '1x1a')
+def test_disallowed_offset_raises():
+    with pytest.raises(ArgParserError) as excinfo:
+        parse_box('1x1+10,10a4')
+    assert "Offset not allowed in box definition" in excinfo.value.args[0]
+    # not even if zero
+    with pytest.raises(ArgParserError) as excinfo:
+        parse_box('1x1+0,0a4')
+    assert "Offset not allowed in box definition" in excinfo.value.args[0]
 
-    def test_unknown_papersize_raises(self):
-        self.assertRaisesRegexp(
-            ArgParserError, "I don't understand your papersize name",
-            self._parse_box, '1x2yyy')
-        self.assertRaisesRegexp(
-            ArgParserError, "I don't understand your papersize name",
-            self._parse_box, '1x2xxx')
+def test_missing_offset_raises():
+    with pytest.raises(ArgParserError) as excinfo:
+        parse_box('1x1+a4')
+    assert "I don't understand your box specification" in excinfo.value.args[0]
 
-    def test_wrong_box_definition_raises(self):
-        self.assertRaisesRegexp(
-            ArgParserError, "I don't understand your box specification",
-            self._parse_box, '2yyy')
-        self.assertRaisesRegexp(
-            ArgParserError, "I don't understand your box specification",
-            self._parse_box, '2xxx')
+def test_allowed_offset_does_not_raise():
+    parse_box('1x1+10,10a4', allow_offset=True)
+    parse_box('1x1+0,0a4', allow_offset=True)
 
-    def test_disallowed_offset_raises(self):
-        self.assertRaisesRegexp(
-            ArgParserError, "Offset not allowed in box definition",
-            self._parse_box, '1x1+10,10a4')
-        # not even if zero
-        self.assertRaisesRegexp(
-            ArgParserError, "Offset not allowed in box definition",
-            self._parse_box, '1x1+0,0a4')
+def test_some_standard_papersizes():
+    box = parse_box('1x1a4')
+    for k, v in (
+        ('width', 595),
+        ('height', 842),
+        ('offset_x', 0),
+        ('offset_y', 0),
+        ('unit', 'a4'),
+        ('units_x', 1),
+        ('units_y', 1)):
+        assert box[k] == v
 
-    def test_missing_offset_raises(self):
-        self.assertRaisesRegexp(
-            ArgParserError, "I don't understand your box specification",
-            self._parse_box, '1x1+a4')
+    box = parse_box('a4')
+    for k, v in (
+        ('width', 595),
+        ('height', 842),
+        ('offset_x', 0),
+        ('offset_y', 0),
+        ('unit', 'a4'),
+        ('units_x', 1),
+        ('units_y', 1)):
+        assert box[k] == v
 
-    def test_allowed_offset_does_not_raise(self):
-        self._parse_box('1x1+10,10a4', allow_offset=True)
-        self._parse_box('1x1+0,0a4', allow_offset=True)
+    box = parse_box('1x1tabloid')
+    for k, v in (
+        ('width', 792),
+        ('height', 1224),
+        ('offset_x', 0),
+        ('offset_y', 0),
+        ('unit', 'tabloid'),
+        ('units_x', 1),
+        ('units_y', 1)):
+        assert box[k] == v
 
-    def test_some_standard_papersizes(self):
-        box = self._parse_box('1x1a4')
-        for k, v in (
-            ('width', 595),
-            ('height', 842),
-            ('offset_x', 0),
-            ('offset_y', 0),
-            ('unit', 'a4'),
-            ('units_x', 1),
-            ('units_y', 1)):
-            self.assertBoxValue(box, k, v)
-        box = self._parse_box('a4')
-        for k, v in (
-            ('width', 595),
-            ('height', 842),
-            ('offset_x', 0),
-            ('offset_y', 0),
-            ('unit', 'a4'),
-            ('units_x', 1),
-            ('units_y', 1)):
-            self.assertBoxValue(box, k, v)
-        box = self._parse_box('1x1tabloid')
-        for k, v in (
-            ('width', 792),
-            ('height', 1224),
-            ('offset_x', 0),
-            ('offset_y', 0),
-            ('unit', 'tabloid'),
-            ('units_x', 1),
-            ('units_y', 1)):
-            self.assertBoxValue(box, k, v)
+def test_multiplier():
+    box = parse_box('2x2a4')
+    for k, v in (
+        ('width', 2 * 595),
+        ('height', 2 * 842),
+        ('offset_x', 0),
+        ('offset_y', 0),
+        ('unit', 'a4'),
+        ('units_x', 2),
+        ('units_y', 2)):
+        assert box[k] == v
 
-    def test_multiplier(self):
-        box = self._parse_box('2x2a4')
-        for k, v in (
-            ('width', 2 * 595),
-            ('height', 2 * 842),
-            ('offset_x', 0),
-            ('offset_y', 0),
-            ('unit', 'a4'),
-            ('units_x', 2),
-            ('units_y', 2)):
-            self.assertBoxValue(box, k, v)
-        box = self._parse_box('7.2x3.5a4')
-        for k, v in (
-            ('width', 7.2 * 595),
-            ('height', 3.5 * 842),
-            ('offset_x', 0),
-            ('offset_y', 0),
-            ('unit', 'a4'),
-            ('units_x', 7.2),
-            ('units_y', 3.5)):
-            self.assertBoxValue(box, k, v)
+    box = parse_box('7.2x3.5a4')
+    for k, v in (
+        ('width', 7.2 * 595),
+        ('height', 3.5 * 842),
+        ('offset_x', 0),
+        ('offset_y', 0),
+        ('unit', 'a4'),
+        ('units_x', 7.2),
+        ('units_y', 3.5)):
+        assert box[k] == v
 
-    def test_complex_box_specification(self):
-        box = self._parse_box('7.2x3.5+1.5,0.3a4', allow_offset=True)
-        for k, v in (
-            ('width', 7.2 * 595),
-            ('height', 3.5 * 842),
-            ('offset_x', 1.5 * 595),
-            ('offset_y', 0.3 * 842),
-            ('unit', 'a4'),
-            ('units_x', 7.2),
-            ('units_y', 3.5)):
-            self.assertBoxValue(box, k, v)
-
-
-if __name__ == '__main__':
-    unittest.main()
+def test_complex_box_specification():
+    box = parse_box('7.2x3.5+1.5,0.3a4', allow_offset=True)
+    for k, v in (
+        ('width', 7.2 * 595),
+        ('height', 3.5 * 842),
+        ('offset_x', 1.5 * 595),
+        ('offset_y', 0.3 * 842),
+        ('unit', 'a4'),
+        ('units_x', 7.2),
+        ('units_y', 3.5)):
+        assert box[k] == v
