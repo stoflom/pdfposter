@@ -1,5 +1,3 @@
-.. -*- mode: rst ; ispell-local-dictionary: "american" -*-
-
 Examples
 ===============================
 

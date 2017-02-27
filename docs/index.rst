@@ -1,5 +1,3 @@
-.. -*- mode: rst ; ispell-local-dictionary: "american" -*-
-
 Welcome to pdftools.PDFposter's documentation!
 ==============================================
 

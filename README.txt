@@ -1,5 +1,3 @@
-.. -*- mode: rst ; ispell-local-dictionary: "american" -*-
-
 ==========================
 pdfposter
 ==========================
@@ -136,3 +134,8 @@ to the `Custom Installation Locations Instructions`__ before
 installing ``pdfposter``.
 
 __ http://peak.telecommunity.com/DevCenter/EasyInstall#custom-installation-locations>
+
+.. Emacs config:
+ Local Variables:
+ mode: rst
+ End:
