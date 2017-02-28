@@ -27,7 +27,7 @@ from pdftools.pdfposter.cmd import __parse_box as parse_box
 import math
 
 def Box(x, y, name):
-    return {
+    box = {
         'width': x*papersizes[name][0],
         'height': y*papersizes[name][1],
         'offset_x': 0,
@@ -36,6 +36,12 @@ def Box(x, y, name):
         'units_x': x,
         'units_y': y,
         }
+    if box['width'] > box['height']:
+        box['orientation'] = 'landscape'
+    else:
+        box['orientation'] = 'portrait'
+    return box
+
 def Width(name): return papersizes[name][0]
 def Height(name): return papersizes[name][1]
 
@@ -43,6 +49,9 @@ A4port = Box(1, 1, 'a4')
 A4land = Box(1, 1, 'a4')
 A4land['width'], A4land['height'] = A4land['height'], A4land['width']
 A4land['unit'] = 'a4_land'
+A4land['orientation'] = 'landscape'
+ten_fiveteen = Box(10, 15, 'cm') # portrait
+fiveteen_ten = Box(15, 10, 'cm') # landsscape
 
 cm = papersizes['cm'][0]
 
@@ -199,3 +208,83 @@ def test_1x1_A4port_to_99x2_A4port():
     assert rows == 3
     assert cols == 3
 
+def test_10x15cm_to_one_A4():
+    for mediabox in (A4port, A4land):
+      for inbox in (ten_fiveteen, fiveteen_ten):
+        for posterbox in (A4port, A4land):
+            cols, rows, scale, rotate = decide_num_pages(
+                inbox, mediabox, posterbox)
+            # rotate if orientation does not match
+            assert rotate == (mediabox['orientation'] != inbox['orientation'])
+            assert round(abs(scale-1.98), 2) == 0
+            # output is a single page
+            assert rows == 1
+            assert cols == 1
+
+def _check_results(inbox, mediabox, posterbox, scale,
+                   cols, rows, rotate):
+    cols_, rows_, scale_, rotate_ = decide_num_pages(
+        inbox, mediabox, posterbox)
+    assert round(abs(scale_-scale), 2) == 0
+    assert rotate_ == rotate
+    assert cols_ == cols
+    assert rows_ == rows
+
+def test_10x15cm_to_some_A4_portait_1():
+    posterbox = Box(2, 99, 'a4')
+    # Resulting poster will be approx. 42 x 63 cm
+    # rotate if orientation does not match
+    _check_results(ten_fiveteen, A4port, posterbox, 4.2, 2, 3, False)
+    _check_results(fiveteen_ten, A4port, posterbox, 4.2, 3, 2, True)
+    # for A4land both rows/cols and rotate are reversed
+    _check_results(ten_fiveteen, A4land, posterbox, 4.2, 2, 3, False)
+    _check_results(fiveteen_ten, A4land, posterbox, 4.2, 3, 2, True)
+
+def test_10x15cm_to_some_A4_portait_2():
+    posterbox = Box(3, 99, 'a4')
+    # Resulting poster will be approx. 42 x 63 cm
+    # rotate if orientation does not match
+    _check_results(ten_fiveteen, A4port, posterbox, 6.297, 3, 4, False)
+    _check_results(fiveteen_ten, A4port, posterbox, 6.297, 4, 3, True)
+    # for A4land only rotate are reversed
+    _check_results(ten_fiveteen, A4land, posterbox, 6.297, 3, 4, True)
+    _check_results(fiveteen_ten, A4land, posterbox, 6.297, 4, 3, False)
+
+def test_10x15cm_to_some_A4_landscape_1():
+    posterbox = Box(99, 2, 'a4')
+    # Resulting poster will be approx. 59.4 x 89.1 cm
+    # Indeed, this will be printed on 3x3 instead of 2x5
+    _check_results(ten_fiveteen, A4port, posterbox, 5.94, 3, 3, False)
+    _check_results(fiveteen_ten, A4port, posterbox, 5.94, 3, 3, True)
+    # for A4land only rotate is reversed
+    _check_results(ten_fiveteen, A4land, posterbox, 5.94, 3, 3, True)
+    _check_results(fiveteen_ten, A4land, posterbox, 5.94, 3, 3, False)
+
+def test_10x15cm_to_some_A4_landscape_2():
+    posterbox = Box(99, 3, 'a4')
+    # Resulting poster will be approx. 89.1 x 133.7 cm
+    _check_results(ten_fiveteen, A4port, posterbox, 8.91, 3, 7, True)
+    _check_results(fiveteen_ten, A4port, posterbox, 8.91, 7, 3, False)
+    # for A4land only rotate is reversed
+    _check_results(ten_fiveteen, A4land, posterbox, 8.91, 3, 7, False)
+    _check_results(fiveteen_ten, A4land, posterbox, 8.91, 7, 3, True)
+
+def test_10x100cm_landscape_to_99x2_A4port():
+    cols, rows, scale, rotate = decide_num_pages(
+        Box(10, 100, 'cm'), A4port, Box(99, 2, 'a4'))
+    ## 99 portrait pages wide and 2 portrait pages high.
+    # poster is rotated, so the output will be 2xA4 high
+    assert rotate
+    assert cols == 2
+    assert round(abs(scale-5.9), 1) == 0
+    assert rows == 29
+
+def test_10x100cm_landscape_to_2x99_A4port():
+    cols, rows, scale, rotate = decide_num_pages(
+        Box(10, 100, 'cm'), A4port, Box(2, 99, 'a4'))
+    ## 2 portrait pages wide and 99 portrait pages high.
+    # poster is not rotated, so the output will be 2xA4 wide
+    assert not rotate
+    assert cols == 2
+    assert round(abs(scale-4.2), 1) == 0
+    assert rows == 15
