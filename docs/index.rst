@@ -21,6 +21,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   Installation
    Examples
    Frequently Asked Questions
    Development
