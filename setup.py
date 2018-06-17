@@ -40,7 +40,7 @@ class build_docs(Command):
                         rsttext = fh.read().decode('utf-8')
                 except IOError as e:
                     sys.exit(e)
-                rsttext = '\n'.join((substitutions, rsttext))
+                rsttext = '\n'.join((substitutions, '', rsttext))
                 # docutils.core does not offer easy reading from a
                 # string into a file, so we need to do it ourself :-(
                 doc = docutils.core.publish_string(source=rsttext,

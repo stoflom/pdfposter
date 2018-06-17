@@ -1,9 +1,11 @@
 ==========================
 pdfposter
 ==========================
+
 -------------------------------------------------------------
 Scale and tile PDF images/pages to print on multiple pages.
 -------------------------------------------------------------
+
 :Author:    Hartmut Goebel <h.goebel@crazy-compilers.com>
 :Version:   Version |VERSION|
 :Copyright: 2008-2017 by Hartmut Goebel
