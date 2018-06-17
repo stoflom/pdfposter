@@ -40,3 +40,6 @@ Frequently Asked Questions
   * `pdfnup <http://pypi.python.org/pypi/pdfnup/>`_
   * `pdfsplit <http://pypi.python.org/pypi/pdfsplit/>`_
   * `pdfgrid <http://pypi.python.org/pypi/pdfgrid/>`_
+
+
+.. include:: _common_definitions.txt

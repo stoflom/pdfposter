@@ -2,7 +2,7 @@ Development
 ===============================
 
 
-The source of `pdfposter` and its siblings is maintained at
+The source of |pdfposter| and its siblings is maintained at
 `GitLab <https://gitlab.com>`_. Patches and pull-requests
 are hearty welcome.
 
@@ -17,6 +17,9 @@ are hearty welcome.
 * Please submit bugs and enhancements to the Issue Tracker at
   <https://gitlab.com/pdftools/pdfjoin/issues>.
 
-**Historical Note:** `pdfposter` was hosted at origo.ethz.ch, but this
-site closed at 2012-05-31. Then `pdfposter` was hosted gitorious.org,
+**Historical Note:** |pdfposter| was hosted at origo.ethz.ch, but this
+site closed at 2012-05-31. Then |pdfposter| was hosted gitorious.org,
 which was closed May 2015.
+
+
+.. include:: _common_definitions.txt

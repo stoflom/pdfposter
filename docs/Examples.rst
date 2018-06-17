@@ -23,7 +23,7 @@ For these examples we use two input pages:
 
 
 These are intentionally uncommon formats so the effects of running
-`pdfposter` will be more demonstrative.
+|pdfposter| will be more demonstrative.
 
 Working With Portrait Images
 -------------------------------------
@@ -78,3 +78,6 @@ This are two a4 pages put together at the small side: One portrait page wide and
 .. image:: /images/poster-wide-1x2a4.png
   :scale: 33%
   :alt: Wide test-page as poster: One portrait page wide and two portrait pages high.
+
+
+.. include:: _common_definitions.txt
