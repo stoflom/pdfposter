@@ -23,6 +23,7 @@ Contents:
    :maxdepth: 2
 
    Installation
+   Usage
    Examples
    Frequently Asked Questions
    Development
