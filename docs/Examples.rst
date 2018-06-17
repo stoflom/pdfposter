@@ -3,6 +3,9 @@ Examples
 
 These are some examples showing how to get a poster as you want.
 
+.. include:: _examples1.txt
+.. include:: _examples2.txt
+
 For these examples we use two input pages:
 
 .. figure:: _images/testpage-tall.preview.png
