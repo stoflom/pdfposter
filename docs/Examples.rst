@@ -5,7 +5,7 @@ These are some examples showing how to get a poster as you want.
 
 For these examples we use two input pages:
 
-.. figure:: /images/testpage-tall.preview.png
+.. figure:: _images/testpage-tall.preview.png
   :align: center
   :alt: ..
   :scale: 33%
@@ -13,7 +13,7 @@ For these examples we use two input pages:
 
   The *tall* example input page (5.0 cm x 27.9 cm)
 
-.. figure:: /images/testpage-wide.preview.png
+.. figure:: _images/testpage-wide.preview.png
   :align: center
   :alt: ..
   :scale: 33%
@@ -37,7 +37,7 @@ Example 1::
 This are two a4 pages put together at the *long* side: Two portrait
 pages wide and one portrait page high.
 
-.. image:: /images/poster-tall-2x1a4.png
+.. image:: _images/poster-tall-2x1a4.png
   :scale: 33%
   :alt: Tall test-page as poster: Two portrait pages wide and one portrait page high.
 
@@ -48,7 +48,7 @@ Example 2::
 This are two a4 pages put together at the *small* side: One portrait
 page wide and two portrait pages high.
 
-.. image:: /images/poster-tall-1x2a4.png
+.. image:: _images/poster-tall-1x2a4.png
   :scale: 33%
   :alt: Tall test-page as poster: One portrait page wide and two portrait pages high.
 
@@ -64,7 +64,7 @@ Example 1::
 
 This are two a4 pages put together at the long side: Two portrait pages wide and one portrait page high.
 
-.. image:: /images/poster-wide-2x1a4.png
+.. image:: _images/poster-wide-2x1a4.png
   :scale: 33%
   :alt: Wide test-page as poster: Two portrait pages wide and one portrait page high.
 
@@ -75,7 +75,7 @@ Example 2::
 This are two a4 pages put together at the small side: One portrait page wide and two portrait pages high.
 
 
-.. image:: /images/poster-wide-1x2a4.png
+.. image:: _images/poster-wide-1x2a4.png
   :scale: 33%
   :alt: Wide test-page as poster: One portrait page wide and two portrait pages high.
 
