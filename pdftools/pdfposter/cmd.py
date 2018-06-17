@@ -74,6 +74,43 @@ def __parse_box(value, allow_offset=False):
     return res2
 
 
+BoxDefinitionsHelp = """\
+A `BOX` to be passed to `--media-size` and `--poster-size` is a specification
+of horizontal and vertical size. The syntax is as follows (with multipier
+being specified optionally):
+
+  *box* = [ *multiplier* ] *unit*
+
+  *multiplier* = *number* "x" *number*
+
+  *unit* = *medianame* or *distancename*
+
+Please see `--help-media-size` for a list of media and distance names
+supported.
+
+Medias are typically not quadratic but rectangular, which means width
+and hight differ. Thus using medianames is a bit tricky:
+
+:10x20cm: obviuos: 10 cm x 20 cm (portrait)
+:20x10cm: same as 10x20cm, since all boxes are rotated to portrait
+          format
+
+Now when using media names it gets tricky:
+
+:1x1a4: same as approx. 21x29cm (21 cm x 29 cm, portrait)
+
+:1x2a4: same as approx. 21x58cm (21 cm x 58 cm, portrait)
+
+        This are two a4 pages put together at the *small* side: One
+        portrait page wide and two portrait pages high.
+
+:2x1a4: same as approx. 42x29cm, which is rotated to portrait and is
+         (approx.) the same as 29x42cm (29 cm x 42 cm)
+
+        This are two a4 pages put together at the *long* side: Two
+        portrait pages wide and one portrait page high.
+"""
+
 class HelpMediaNames(argparse.Action):
     def __call__(*args, **kw):
         import textwrap
@@ -84,15 +121,25 @@ class HelpMediaNames(argparse.Action):
             print(' ', l)
         raise SystemExit(0)
 
+class HelpBoxDefinitions(argparse.Action):
+    def __call__(*args, **kw):
+        import textwrap
+        print(textwrap.dedent(BoxDefinitionsHelp))
+        raise SystemExit(0)
+
 
 def run(args=None):
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--version', action='version',
-                        version="%(prog)s " + __version__)
     parser.add_argument('--help-media-names', action=HelpMediaNames,
                         nargs=0,
                         help='List available media and distance names')
+    parser.add_argument('--help-box-definitions', action=HelpBoxDefinitions,
+                        nargs=0,
+                        help='Show help about specifying BOX for '
+                             '`--media-size` and `--poster-size` and exit')
+    parser.add_argument('--version', action='version',
+                        version="%(prog)s " + __version__)
     parser.add_argument('-v', '--verbose', action='count', default=0,
                       help='Be verbose. Tell about scaling, rotation and number of pages. Can be used more than once to increase the verbosity. ')
     parser.add_argument('-n', '--dry-run', action='store_true',
@@ -113,10 +160,10 @@ def run(args=None):
     group = parser.add_argument_group('Define Target')
     group.add_argument('-m', '--media-size',
                      default=__parse_box(DEFAULT_MEDIASIZE),
-                     type=__parse_box,
+                     type=__parse_box, metavar="BOX",
                      help='Specify the page size of the output media (default: %s)' % DEFAULT_MEDIASIZE)
     group.add_argument('-p', '--poster-size',
-                     type=__parse_box,
+                     type=__parse_box, metavar="BOX",
                      help='Specify the poster size (defaults to media size). ')
     group.add_argument('-s', '--scale', type=float,
                      help='Specify a linear scaling factor to produce the poster.')

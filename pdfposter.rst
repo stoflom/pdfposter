@@ -60,9 +60,12 @@ OPTIONS
 General Options
 --------------------
 
---version             Show program's version number and exit
 -h, --help            Show help message and exit
 --help-media-names    List available media and distance names and exit
+--help-box-definitions
+                      Show help about specifying BOX for `--media-size`
+                      and `--poster-size` and exit
+--version             Show program's version number and exit
 -v, --verbose         Be verbose. Tell about scaling, rotation and number of
                       pages. Can be used more than once to increase the
                       verbosity.
