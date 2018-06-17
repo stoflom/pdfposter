@@ -38,7 +38,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'pdftools.PDFposter'
+project = 'pdfposter'
 copyright = '2008-2017, Hartmut Goebel'
 author = 'Hartmut Goebel'
 
@@ -78,18 +78,38 @@ html_theme = 'alabaster'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+    'logo_name': True,
+    'logo_text_align': 'center',
+    'description': 'Scale and Tile PDF Pages',
+    'github_button': False,
+    'fixed_sidebar': True,
+    'show_related': False,
+    'extra_nav_links': {
+        'Source': 'https://gitlab.com/pdftools/pdfposter',
+        'Bug Reports': 'https://gitlab.com/pdftools/pdfposter/issues',
+        }
+}
+html_sidebars = {
+    '**': [
+        'about.html',
+        'globaltoc.html',
+        #'navigation.html',
+        'searchbox.html',
+        'donate.html',
+    ]
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
 
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-#html_short_title = None
+html_short_title = "pdfposter"
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+html_logo = '../projectlogo.svg'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -163,7 +183,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'pdftoolspdfposter', 'pdftools.PDFposter Documentation',
+    ('index', 'pdftoolspdfposter', 'pdfposter Documentation',
      ['Hartmut Goebel'], 1)
 ]
 
@@ -177,8 +197,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'pdftoolsPDFposter', 'pdftools.PDFposter Documentation',
-   'Hartmut Goebel', 'pdftoolsPDFposter', 'One line description of project.',
+  ('index', 'pdfposter', 'pdfposter Documentation',
+   'Hartmut Goebel', 'pdfposter', 'One line description of project.',
    'Miscellaneous'),
 ]
 
