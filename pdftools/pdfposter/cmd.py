@@ -114,7 +114,7 @@ def run(args=None):
     group.add_argument('-m', '--media-size',
                      default=__parse_box(DEFAULT_MEDIASIZE),
                      type=__parse_box,
-                     help='Specify the size of the output media size (default: %s)' % DEFAULT_MEDIASIZE)
+                     help='Specify the page size of the output media (default: %s)' % DEFAULT_MEDIASIZE)
     group.add_argument('-p', '--poster-size',
                      type=__parse_box,
                      help='Specify the poster size (defaults to media size). ')
