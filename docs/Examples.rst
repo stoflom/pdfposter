@@ -33,6 +33,11 @@ Working With Portrait Images
 
 Portrait images are higher than wide.
 
+.. image:: _images/poster-tall-2x1a4.png
+   :scale: 50%
+   :align: right
+   :alt: Tall test-page as poster: Two portrait pages wide and one portrait page high.
+
 Example 1::
 
     pdfposter -p 2x1a4 testpage-tall.pdf out.pdf
@@ -40,9 +45,11 @@ Example 1::
 This are two a4 pages put together at the *long* side: Two portrait
 pages wide and one portrait page high.
 
-.. image:: _images/poster-tall-2x1a4.png
-  :scale: 33%
-  :alt: Tall test-page as poster: Two portrait pages wide and one portrait page high.
+
+.. image:: _images/poster-tall-1x2a4.png
+   :scale: 50%
+   :align: right
+   :alt: Tall test-page as poster: One portrait page wide and two portrait pages high.
 
 Example 2::
 
@@ -51,15 +58,16 @@ Example 2::
 This are two a4 pages put together at the *small* side: One portrait
 page wide and two portrait pages high.
 
-.. image:: _images/poster-tall-1x2a4.png
-  :scale: 33%
-  :alt: Tall test-page as poster: One portrait page wide and two portrait pages high.
-
 
 Working With Landscape Images
 ------------------------------------
 
 Landscape images are wider than hight.
+
+.. image:: _images/poster-wide-2x1a4.png
+   :scale: 50%
+   :align: right
+   :alt: Wide test-page as poster: Two portrait pages wide and one portrait page high.
 
 Example 1::
 
@@ -67,9 +75,11 @@ Example 1::
 
 This are two a4 pages put together at the long side: Two portrait pages wide and one portrait page high.
 
-.. image:: _images/poster-wide-2x1a4.png
-  :scale: 33%
-  :alt: Wide test-page as poster: Two portrait pages wide and one portrait page high.
+
+.. image:: _images/poster-wide-1x2a4.png
+   :scale: 50%
+   :align: right
+   :alt: Wide test-page as poster: One portrait page wide and two portrait pages high.
 
 Example 2::
 
@@ -77,10 +87,6 @@ Example 2::
 
 This are two a4 pages put together at the small side: One portrait page wide and two portrait pages high.
 
-
-.. image:: _images/poster-wide-1x2a4.png
-  :scale: 33%
-  :alt: Wide test-page as poster: One portrait page wide and two portrait pages high.
 
 
 .. include:: _common_definitions.txt
