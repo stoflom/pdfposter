@@ -94,7 +94,7 @@ setup(
     license = "GPL 3.0",
     keywords = "pdf poster",
     url          = "https://pdfposter.readthedocs.io/",
-    download_url = "http://pypi.python.org/pypi/pdftools.pdfposter/",
+    download_url = "https://pypi.org/project/pdftools.pdfposter/",
     classifiers = [
     'Development Status :: 5 - Production/Stable',
     'Environment :: Console',

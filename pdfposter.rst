@@ -52,8 +52,8 @@ SEE ALSO
 =============
 
 ``poster``\(1),
-``pdfnup``\(1) http://pypi.python.org/pypi/pdfnup/,
-``pdfsplit``\(1) http://pypi.python.org/pypi/pdfsplit/,
-``pdfgrid``\(1) http://pypi.python.org/pypi/pdfgrid/
+``pdfnup``\(1) https://pypi.org/project/pdfnup/,
+``pdfsplit``\(1) https://pypi.org/project/pdfsplit/,
+``pdfgrid``\(1) https://pypi.org/project/pdfgrid/
 
 Project Homepage https://pdfposter.readthedocs.io/

@@ -37,9 +37,9 @@ Frequently Asked Questions
 * Are there other Python tools for manipulating PDF?
 
   Yes, there are:
-  * `pdfnup <http://pypi.python.org/pypi/pdfnup/>`_
-  * `pdfsplit <http://pypi.python.org/pypi/pdfsplit/>`_
-  * `pdfgrid <http://pypi.python.org/pypi/pdfgrid/>`_
+  * `pdfnup <https://pypi.org/project/pdfnup/>`_
+  * `pdfsplit <https://pypi.org/project/pdfsplit/>`_
+  * `pdfgrid <https://pypi.org/project/pdfgrid/>`_
 
 
 .. include:: _common_definitions.txt
