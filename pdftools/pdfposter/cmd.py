@@ -188,8 +188,9 @@ def run(args=None):
         main(args, infilename=args.infilename, outfilename=args.outfilename)
     except DecryptionError as e:
         raise SystemExit(str(e))
-    except PyPDF2.utils.PdfReadError:
-        parser.error('The input-file is either currupt or no PDF at all.')
+    except PyPDF2.utils.PdfReadError as e:
+        parser.error('The input-file is either currupt or no PDF at all: %s'
+                     % e)
 
 
 if __name__ == '__main__': # pragma: no cover
