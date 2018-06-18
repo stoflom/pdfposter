@@ -62,7 +62,7 @@ page wide and two portrait pages high.
 Working With Landscape Images
 ------------------------------------
 
-Landscape images are wider than hight.
+Landscape images are wider than height.
 
 .. image:: _images/poster-wide-2x1a4.png
    :scale: 50%

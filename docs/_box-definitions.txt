@@ -3,7 +3,7 @@ Box Definition
 -----------------
 
 The *BOX* mentioned above is a specification of horizontal and
-vertical size. The syntax is as follows (with multipier being
+vertical size. The syntax is as follows (with multiplier being
 specified optionally):
 
   *box* = [ *multiplier* ] *unit*
@@ -25,9 +25,9 @@ long as unique. For instance 'A0', 'Let'. Distance names are like
 'cm', 'inch', 'ft'.
 
 Medias are typically not quadratic but rectangular, which means width
-and hight differ. Thus using media names is a bit tricky:
+and height differ. Thus using media names is a bit tricky:
 
-:10x20cm: obviuos: 10 cm x 20 cm (portrait)
+:10x20cm: obvious: 10 cm x 20 cm (portrait)
 :20x10cm: same as 10x20cm, since all boxes are rotated to portrait
           format
 

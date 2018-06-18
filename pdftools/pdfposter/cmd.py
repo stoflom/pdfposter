@@ -76,7 +76,7 @@ def __parse_box(value, allow_offset=False):
 
 BoxDefinitionsHelp = """\
 A `BOX` to be passed to `--media-size` and `--poster-size` is a specification
-of horizontal and vertical size. The syntax is as follows (with multipier
+of horizontal and vertical size. The syntax is as follows (with multiplier
 being specified optionally):
 
   *box* = [ *multiplier* ] *unit*
@@ -89,9 +89,9 @@ Please see `--help-media-size` for a list of media and distance names
 supported.
 
 Medias are typically not quadratic but rectangular, which means width
-and hight differ. Thus using medianames is a bit tricky:
+and height differ. Thus using medianames is a bit tricky:
 
-:10x20cm: obviuos: 10 cm x 20 cm (portrait)
+:10x20cm: obvious: 10 cm x 20 cm (portrait)
 :20x10cm: same as 10x20cm, since all boxes are rotated to portrait
           format
 
