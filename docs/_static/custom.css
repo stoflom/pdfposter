@@ -3,3 +3,8 @@ div#examples.section table.docutils.field-list .field-body {
 	padding-bottom: 1em;
 	padding-left: 2em;
 }
+
+#id1.figure { float: left }
+#id2.figure { float: right }
+#id2.figure img { padding: 66pt 0; }
+#id2.figure + * { clear: left }
