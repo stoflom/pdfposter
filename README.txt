@@ -33,11 +33,12 @@ Requirements and Installation
 ``Pdfposter`` requires
 
 * `Python`__  (tested 2.7 and 3.4—3.6, but newer versions should work, too),
-* `setuptools`__ for installation, and
+* `setuptools`__ or `pip`__ for installation, and
 * `PyPDF2`__.
 
-__ http://www.python.org/download/
-__ http://pypi.python.org/pypi/setuptools
+__ https://www.python.org/download/
+__ https://pypi.org/project/setuptools
+__ https://pypi.org/project/pip
 __ http://mstamy2.github.io/PyPDF2/
 
 
