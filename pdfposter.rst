@@ -43,7 +43,7 @@ EXAMPLES
 .. include:: docs/_examples1.txt
 
 More examples including sample pictures can be found at
-http://pythonhosted.org/pdftools.pdfposter/examples
+https://pdfposter.readthedocs.io/en/latest/Examples.html
 
 .. include:: docs/_examples2.txt
 
@@ -56,4 +56,4 @@ SEE ALSO
 ``pdfsplit``\(1) http://pypi.python.org/pypi/pdfsplit/,
 ``pdfgrid``\(1) http://pypi.python.org/pypi/pdfgrid/
 
-Project Homepage http://pythonhosted.org/pdftools.pdfposter/
+Project Homepage https://pdfposter.readthedocs.io/

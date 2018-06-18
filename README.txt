@@ -10,7 +10,7 @@ Scale and tile PDF images/pages to print on multiple pages.
 :Version:   Version 0.6.1dev
 :Copyright: 2008-2018 by Hartmut Goebel
 :Licence:   GNU Public Licence v3 (GPLv3)
-:Homepage:  http://pythonhosted.org/pdftools.pdfposter/
+:Homepage:  https://pdfposter.readthedocs.io/
 
 ``Pdfposter`` can be used to create a large poster by building it from
 multiple pages and/or printing it on large media. It expects as input a
@@ -24,7 +24,7 @@ with PDF. Since sometimes poster does not like your files converted
 from PDF. :-) Indeed ``pdfposter`` was inspired by ``poster``.
 
 For more information please refer to the manpage or visit
-the `project homepage <http://pythonhosted.org/pdftools.pdfposter/>`_.
+the `project homepage <https://pdfposter.readthedocs.io/>`_.
 
 
 Requirements and Installation

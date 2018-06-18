@@ -11,7 +11,7 @@ with PDF. Since sometimes poster does not like your files converted
 from PDF. :-) Indeed ``pdfposter`` was inspired by ``poster``.
 
 For more information please refere to the manpage or visit
-the `project homepage <http://pythonhosted.org/pdftools.pdfposter/>`_.
+the `project homepage <https://pdfposter.readthedocs.io/>`_.
 """
 
 from setuptools import setup, find_packages
@@ -93,7 +93,7 @@ setup(
     long_description = __doc__,
     license = "GPL 3.0",
     keywords = "pdf poster",
-    url          = "http://pythonhosted.org/pdftools.pdfposter/",
+    url          = "https://pdfposter.readthedocs.io/",
     download_url = "http://pypi.python.org/pypi/pdftools.pdfposter/",
     classifiers = [
     'Development Status :: 5 - Production/Stable',
