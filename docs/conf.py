@@ -85,10 +85,6 @@ html_theme_options = {
     'github_button': False,
     'fixed_sidebar': True,
     'show_related': False,
-    'extra_nav_links': {
-        'Source': 'https://gitlab.com/pdftools/pdfposter',
-        'Bug Reports': 'https://gitlab.com/pdftools/pdfposter/issues',
-        }
 }
 html_sidebars = {
     '**': [
