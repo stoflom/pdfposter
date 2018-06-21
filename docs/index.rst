@@ -28,12 +28,4 @@ Contents:
    Frequently Asked Questions
    Development
 
-
-Other tools for manipulating PDF
-------------------------------------
-
-* `pdfnup <https://pypi.org/project/pdfnup/>`_
-* `pdfsplit <https://pypi.org/project/pdfsplit/>`_
-* `pdfgrid <https://pypi.org/project/pdfgrid/>`_
-
 .. include:: _common_definitions.txt
