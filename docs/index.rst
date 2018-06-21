@@ -19,8 +19,7 @@ files converted from PDF. :-) Indeed |pdfposter| was inspired by `poster`.
 
 
 .. toctree::
-   :maxdepth: 2
-   :hidden:
+   :maxdepth: 1
 
    Installation
    Usage
