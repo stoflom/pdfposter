@@ -8,3 +8,19 @@ div#examples.section table.docutils.field-list .field-body {
 #id2.figure { float: right }
 #id2.figure img { padding: 66pt 0; }
 #id2.figure + * { clear: left }
+
+
+div.sphinxsidebar li.toctree-l1 ~ li.toctree-l1 {
+    border-top: dotted thin #AAA;
+	margin-top: 0.3em;
+	padding-top: 0.3em;
+}
+div.sphinxsidebar a {
+    text-decortation: none;
+    border-bottom: none;
+}
+
+/* make refs, which are links, visible as being links */
+a.reference.internal code span.pre {
+    border-bottom: dotted 1px #004B6B; /* same as for "a.reference" */
+}
