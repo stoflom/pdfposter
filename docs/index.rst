@@ -17,10 +17,10 @@ This is much like the well-known tool `poster` does for Postscript
 files, but working with PDF. Since sometimes poster does not like your
 files converted from PDF. :-) Indeed |pdfposter| was inspired by `poster`.
 
-Contents:
 
 .. toctree::
    :maxdepth: 2
+   :hidden:
 
    Installation
    Usage

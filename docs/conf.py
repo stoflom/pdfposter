@@ -93,8 +93,8 @@ html_theme_options = {
 html_sidebars = {
     '**': [
         'about.html',
-        'globaltoc.html',
-        #'navigation.html',
+        #'globaltoc.html',
+        'navigation.html',
         'searchbox.html',
         'donate.html',
     ]
