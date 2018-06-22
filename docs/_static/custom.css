@@ -4,10 +4,10 @@ div#examples.section table.docutils.field-list .field-body {
 	padding-left: 2em;
 }
 
-#id1.figure { float: left }
-#id2.figure { float: right }
-#id2.figure img { padding: 66pt 0; }
-#id2.figure + * { clear: left }
+div#examples.section #id1.figure { float: left }
+div#examples.section #id2.figure { float: right }
+div#examples.section #id2.figure img { padding: 66pt 0; }
+div#examples.section #id2.figure + * { clear: left }
 
 
 div.sphinxsidebar li.toctree-l1 ~ li.toctree-l1 {
