@@ -24,6 +24,7 @@ files converted from PDF. :-) Indeed |pdfposter| was inspired by `poster`.
    Installation
    Usage
    Examples
+   Donate <Donate>
    Frequently Asked Questions
    Development
 
