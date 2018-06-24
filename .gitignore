@@ -7,7 +7,9 @@
 /dist
 /*.egg-info
 /.sconsign.dblite
-
+/.cache
+/.tox
+/.coverage
 
 /bin
 /projectlogo.ico

@@ -1,6 +1,6 @@
 """
 ``Pdfposter`` can be used to create a large poster by building it from
-multple pages and/or printing it on large media. It expects as input a
+multiple pages and/or printing it on large media. It expects as input a
 PDF file, normally printing on a single page. The output is again a
 PDF file, maybe containing multiple pages together building the
 poster.
@@ -11,23 +11,14 @@ with PDF. Since sometimes poster does not like your files converted
 from PDF. :-) Indeed ``pdfposter`` was inspired by ``poster``.
 
 For more information please refere to the manpage or visit
-the `project homepage <http://pythonhosted.org/pdftools.pdfposter/>`_.
+the `project homepage <https://pdfposter.readthedocs.io/>`_.
 """
 
-import ez_setup
-ez_setup.use_setuptools()
-
 from setuptools import setup, find_packages
-additional_keywords ={}
-
-try:
-    import py2exe
-except ImportError:
-    py2exe = None
 
 from distutils.core import Command
 from distutils import log
-import os
+import os, sys
 
 class build_docs(Command):
     description = "build documentation from rst-files"
@@ -45,18 +36,20 @@ class build_docs(Command):
             log.info("creating %s page %s", writer, outfilename)
             if not self.dry_run:
                 try:
-                    rsttext = open(rstfilename).read()
-                except IOError, e:
+                    with open(rstfilename, "rb") as fh:
+                        rsttext = fh.read().decode('utf-8')
+                except IOError as e:
                     sys.exit(e)
-                rsttext = '\n'.join((substitutions, rsttext))
+                rsttext = '\n'.join((substitutions, '', rsttext))
                 # docutils.core does not offer easy reading from a
                 # string into a file, so we need to do it ourself :-(
                 doc = docutils.core.publish_string(source=rsttext,
                                                    source_path=rstfilename,
                                                    writer_name=writer)
                 try:
-                    rsttext = open(outfilename, 'w').write(doc)
-                except IOError, e:
+                    with open(outfilename, 'wb') as fh:
+                        fh.write(doc) # is already encoded
+                except IOError as e:
                     sys.exit(e)
 
 cmdclass = {}
@@ -77,25 +70,13 @@ DOCPAGES = (
     ('html', 'pdfposter.rst', 'docs/pdfposter.html'),
     )
 
-if py2exe:
-    resources = {
-        #'other_resources': [(u"VERSIONTAG",1,myrevisionstring)],
-        'icon_resources' : [(1,'projectlogo.ico')]
-        }
-    additional_keywords.update({
-        'windows': [],
-        'console': [dict(script='pdfposter', **resources)],
-        'zipfile': None,
-        })
-
 setup(
     cmdclass=cmdclass,
     name = "pdftools.pdfposter",
-    version = "0.6.0",
-    #scripts = ['pdfposter'],
-    install_requires = ['pyPdf>1.10'],
+    version='0.7',
+    install_requires = ['PyPDF2'],
 
-    packages=find_packages(exclude=['ez_setup']),
+    packages=['pdftools.pdfposter'],
     namespace_packages=['pdftools'],
 
     package_data = {
@@ -112,8 +93,8 @@ setup(
     long_description = __doc__,
     license = "GPL 3.0",
     keywords = "pdf poster",
-    url          = "http://pythonhosted.org/pdftools.pdfposter/",
-    download_url = "http://pypi.python.org/pypi/pdftools.pdfposter/",
+    url          = "https://pdfposter.readthedocs.io/",
+    download_url = "https://pypi.org/project/pdftools.pdfposter/",
     classifiers = [
     'Development Status :: 5 - Production/Stable',
     'Environment :: Console',
@@ -124,6 +105,12 @@ setup(
     'Natural Language :: English',
     'Operating System :: OS Independent',
     'Programming Language :: Python',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
     'Topic :: Printing',
     'Topic :: Utilities',
     ],
@@ -135,15 +122,4 @@ setup(
             "pdfposter = pdftools.pdfposter.cmd:run",
         ],
     },
-    # these are for py2exe
-    options = {
-        # bundle_files 1: bundle everything, including the Python interpreter 
-        # bundle_files 2: bundle everything but the Python interpreter
-        # bundle_files 3: don't bundle
-       "py2exe":{"optimize": 2,
-                 "bundle_files": 1,
-                 "includes": [],
-                }
-        },
-    **additional_keywords
 )

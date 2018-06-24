@@ -3,7 +3,7 @@
 pdftools.pdfposter - scale and tile PDF images/pages to print on multiple pages.
 """
 #
-# Copyright 2008-2013 by Hartmut Goebel <h.goebel@crazy-compilers.com>
+# Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,17 +20,13 @@ pdftools.pdfposter - scale and tile PDF images/pages to print on multiple pages.
 #
 
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__copyright__ = "Copyright 2008-2013 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
+__copyright__ = "Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __licence__ = "GNU General Public License version 3 (GPL v3)"
-__version__ = "0.6.0"
+__version__ = "0.7"
 
-# ignore some warnings for pyPDF < 1.13
-import warnings
-warnings.filterwarnings('ignore', "the sets module is deprecated")
-warnings.filterwarnings('ignore', "the md5 module is deprecated")
-
-from pyPdf.pdf import PdfFileWriter, PdfFileReader, PageObject, getRectangle, \
+from PyPDF2.pdf import PdfFileWriter, PdfFileReader, PageObject, getRectangle, \
      ArrayObject, ContentStream, NameObject, FloatObject, RectangleObject
+
 
 import logging
 from logging import log
@@ -73,8 +69,9 @@ papersizes = {
     "a9" : (105, 147),
     "a10": (74, 105),
 
-    "dinlang"   : (281, 595), # 1/3 a4
-    "envdinlang": (312, 624), # envelobe for din-lang
+    # DIN lang is considered to be a landscape format
+    "dinlang"   : (595, 281), # 1/3 a4
+    "envdinlang": (624, 312), # envelope for Din lang
 
     "b0" : (2835, 4008),
     "b1" : (2004, 2835),
@@ -105,13 +102,15 @@ papersizes = {
     "jb9" : (128, 181),
     "jb10": (91, 128),
 
-    "comm10": (298, 684),
-    "com10" : (298, 684),
-    "env10" : (298, 684),
+    # Envelope No. 10 is considered to be a landscape format
+    "comm10": (684, 298),
+    "com10" : (684, 298),
+    "env10" : (684, 298),
     }
 
-class DecryptionError(ValueError): pass
-    
+class DecryptionError(ValueError):
+    pass
+
 
 PAGE_BOXES = ("/MediaBox", "/CropBox", "/BleedBox", "/TrimBox", "/ArtBox")
 
@@ -128,15 +127,15 @@ def rectangle2box(pdfbox):
         }
 
 def rotate_box(box):
-    for a,b in (
-        ('width', 'height'),
-        ('offset_x', 'offset_y'),
-        ('units_x', 'units_y')):
+    for a, b in (
+            ('width', 'height'),
+            ('offset_x', 'offset_y'),
+            ('units_x', 'units_y')):
         box[a], box[b] = box[b], box[a]
 
 def rotate2portrait(box, which):
     'if box is landscape spec, rotate to portrait'
-    if (  box['width' ]-box['offset_x'] 
+    if (  box['width' ]-box['offset_x']
         > box['height']-box['offset_y']):
         rotate_box(box)
         log(18, 'Rotating %s specs to portrait format', which)
@@ -190,14 +189,14 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
     log(17, 'output dimensions: %.2f %.2f (calculated)', size_x, size_y)
 
     # num pages without rotation
-    nx0 = int(math.ceil( size_x / drawable_x))
-    ny0 = int(math.ceil( size_y / drawable_y))
+    nx0 = int(math.ceil(size_x / drawable_x))
+    ny0 = int(math.ceil(size_y / drawable_y))
     # num pages with rotation
-    nx1 = int(math.ceil( size_x / drawable_y))
-    ny1 = int(math.ceil( size_y / drawable_x))
+    nx1 = int(math.ceil(size_x / drawable_y))
+    ny1 = int(math.ceil(size_y / drawable_x))
 
-    log(17, 'Pages w/o rotation %s x %s' , nx0, ny0)
-    log(17, 'Pages w/  rotation %s x %s' , nx1, ny1)
+    log(17, 'Pages w/o rotation %s x %s', nx0, ny0)
+    log(17, 'Pages w/  rotation %s x %s', nx1, ny1)
 
     # Decide for rotation to get the minimum page count.
     # (Rotation is considered as media versus input page, which is
@@ -221,28 +220,27 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
 
 
 def copyPage(page):
-    from pyPdf.pdf import RectangleObject, NameObject
-    newpage = PageObject(page.pdf)
+    newpage = PageObject()
     newpage.update(page)
     # Copy Rectangles to be manipulatable
     for attr in PAGE_BOXES:
-        if page.has_key(attr):
+        if attr in page:
             newpage[NameObject(attr)] = RectangleObject(list(page[attr]))
     return newpage
 
 def _clip_pdf_page(page, x, y, width, height):
-    content = ContentStream(page["/Contents"].getObject(), page.pdf)
+    content = ContentStream(page["/Contents"].getObject(), None)
     content.operations[:0] = [
         ([], 'q'), # save graphic state
-        ([], 'n'), # cancel path w/ filling or stroking
         (RectangleObject((x, y, width, height)), 're'), # rectangle path
         ([], 'W*'), # clip
+        ([], 'n'), # cancel path w/ filling or stroking
         ]
     content.operations.append([[], "Q"]) # restore graphic state
     page[NameObject('/Contents')] = content
 
 
-def _scale_pdf_page(page, factor):
+def _scale_pdf_page(outpdf, page, factor):
     for boxname in PAGE_BOXES:
         # skip if real box does not exits (avoid fallback to other boxes)
         if not page.get(boxname):
@@ -252,9 +250,13 @@ def _scale_pdf_page(page, factor):
         box.upperRight = [float(i) * factor for i in box.upperRight]
         #print boxname, type(box), box
     # put transformation matrix in front of page content
-    content = ContentStream(page["/Contents"].getObject(), page.pdf)
+    content = ContentStream(page["/Contents"].getObject(), None)
     content.operations.insert(0, [[], '%f 0 0 %f 0 0 cm' %(factor,factor)] )
-    page[NameObject('/Contents')] = content
+    content = content.flateEncode()
+    # Add changed content as an indirect object. So the content will
+    # be referenced by the other pages and not copied. The content
+    # will be in the output file only once.
+    page[NameObject('/Contents')] = outpdf._addObject(content)
 
 
 def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
@@ -273,7 +275,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     ncols, nrows, scale, rotate = decide_num_pages(inbox, mediabox,
                                                    posterbox, scale)
     mediabox = mediabox.copy()
-    _scale_pdf_page(page, scale)
+    _scale_pdf_page(outpdf, page, scale)
     if rotate:
         page.rotateClockwise(90)
         rotate_box(inbox)
@@ -281,7 +283,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     # area to put on each page (allows for overlay of margin)
     h_step = mediabox['width']  - mediabox['offset_x']
     v_step = mediabox['height'] - mediabox['offset_y']
-    
+
     if use_ArtBox:
         trimbox = rectangle2box(page.artBox)
     else:
@@ -323,6 +325,13 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
             if not inpdf.decrypt(password_hook()):
                 raise DecryptionError("Can't decrypt PDF. Wrong Password?")
 
+    first_page = 1
+    last_page = inpdf.numPages
+    if opts.first_page is not None:
+        first_page = max(1, opts.first_page)
+    if opts.last_page is not None:
+        last_page = min(last_page, opts.last_page)
+
     log(18, 'Mediasize : %(units_x)sx%(units_y)s %(unit)s' % opts.media_size)
     log(17, '            %(width).2f %(height).2f dots' % opts.media_size)
     if opts.scale:
@@ -331,9 +340,11 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
         log(18, 'Postersize: %(units_x)sx%(units_y)s %(unit)s' % opts.poster_size)
         log(17, '            %(width).2f %(height).2f dots' % opts.poster_size)
 
-    for i, page in enumerate(inpdf.pages):
+    for i in range(first_page-1, last_page):
+        page = inpdf.getPage(i)
         log(19, '---- processing page %i -----', i+1)
         posterize(outpdf, page, opts.media_size, opts.poster_size, opts.scale,
                   opts.use_ArtBox)
+
     if not opts.dry_run:
         outpdf.write(open(outfilename, 'wb'))

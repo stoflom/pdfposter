@@ -1,0 +1,9 @@
+pip
+setuptools
+wheel
+
+PyPDF2
+
+# for testing
+reportlab
+tox

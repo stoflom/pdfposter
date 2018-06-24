@@ -1,6 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 #
-# Copyright 2008-2013 by Hartmut Goebel <h.goebel@crazy-compilers.com>
+# Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
 import os
 
 ENV = {
-    'PYTHONPATH': os.environ['PYTHONPATH'],
+    'PYTHONPATH': os.environ.get('PYTHONPATH'),
     'PATH': os.environ['PATH'],
     }
 

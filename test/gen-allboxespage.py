@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 by Hartmut Goebel <h.goebel@crazy-compilers.com>
+# Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,11 +17,19 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 """
-Generate test PDF documents for pdfposter
+Generate test PDF documents for pdfposter with all boxes drawn and set.
+
+The first page will be a DIN A4 with some content and all the standard
+PDF boxes (media, bleed, trim, art) drawn and set. The second file
+will have the same content, except that only the media-box is set and
+all other boxes not set at all. This is useful for checking if
+clipping works as expected with and without option `--art-box`.
 """
 
+from __future__ import unicode_literals
+
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__copyright__ = "Copyright 2008-2013 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
+__copyright__ = "Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __licence__ = "GNU General Public License version 3 (GPL v3)"
 
 from reportlab.lib.units import mm, cm
@@ -29,8 +37,8 @@ from reportlab.lib.colors import black, white, pink, lightblue, blue
 from reportlab.lib.pagesizes import A4, legal, landscape
 from reportlab.pdfgen.canvas import Canvas
 
-from pyPdf import PdfFileWriter, PdfFileReader
-from pyPdf.generic import RectangleObject
+from PyPDF2 import PdfFileWriter, PdfFileReader
+from PyPDF2.generic import RectangleObject
 
 def draw_box(canvas, color, x,y, width,height, text=None):
     canvas.setStrokeColorRGB(*color)
@@ -66,7 +74,7 @@ def genTestFile(filename1, filename2):
     offset = 6*cm
     for x in range(5):
         for y in range(6):
-            text = u"%x%x" % (x,y)
+            text = "%x%x" % (x,y)
             if (x+y) % 2:
                 canv.setFillColor(pink)
             else:

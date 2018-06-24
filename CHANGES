@@ -1,0 +1,71 @@
+
+0.7 (2018-06-24)
+----------------
+
+* Incompatible change: `DIN lang` and `Envelope No. 10` are now defined as
+  landscape formats.
+
+* New options ``-f``/``--first`` and ``-l``/``--last`` for specifying the
+  first resp. last page to convert
+
+* Reduce the size of the output file a lot. Now the output file is
+  nearly the same size as the input file. While this behaviour was
+  intended from the beginning, it was not yet implemented for two
+  reasons: The content was a) copied for each print-page and b) not
+  compressed.
+
+* Make the content of each page appear only once in the output file.
+  This vastly reduces the size of the output file. 
+
+* Compress page content. Now the output file is nearly the same size
+  as the input file in much more cases. I thought, the underlying
+  library will do this automatically, but it does not.
+
+* Fix bug in PDF code used for clipping the page content. Many thanks
+  to Johannes Brödel for reporting this bug.
+
+* Add support for Python 3.
+
+* Use `PyPFDF2` instead of the unmaintained `pyPDF`.
+
+
+0.6.0 (2013-05-21)
+-----------------------------
+
+* New option ``-A``/``--art-box`` to use the content area defined by the
+  ArtBox instead of the TrimBox.
+
+* The page is now clipped to the TrimBox resp. ArtBox to ensure
+  nothing outside of this box gets printed.
+
+* No longer set the CropBox, as this is interpreted quite differently
+  by different renderers (even if the PDF 1.7 standard defines its
+  behaviour).
+
+* Pages are now ordered top to bottom. This is a more natural for
+  humans used to starting at the upper left. Thanks to Robert Schroll
+  for the patch.
+
+* Smaller enhancements, e.g. more precise error massages, better error
+  handling, etc.
+
+
+0.5.0 (2009-04-20)
+-----------------------------
+
+* Fix source-distribution package: The Python source-files have been
+  missing.
+
+
+0.4.6 (2009-01-04)
+-----------------------------
+
+* Open PDF files in binary mode.
+* Fixes to the SConscript file.
+
+
+...
+  Local Variables:
+  mode: rst
+  ispell-local-dictionary: "american"
+  End:

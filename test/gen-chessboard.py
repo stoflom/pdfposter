@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright 2008-2013 by Hartmut Goebel <h.goebel@crazy-compilers.com>
+# Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,11 +17,16 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 """
-Generate test PDF documents for pdfcrop.
+Generate a test PDF document for pdfposter with a chessboard drawn on.
+
+The page will be DIN A4 with a chessboard drawn on. It is useful for
+checking number of pages and orientation.
 """
 
+from __future__ import unicode_literals
+
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__copyright__ = "Copyright 2008-2013 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
+__copyright__ = "Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __licence__ = "GNU General Public License version 3 (GPL v3)"
 
 from reportlab.lib.units import mm, cm
@@ -43,7 +48,7 @@ def genTestFile(path, numPages):
         canv.setStrokeColor(black)
         for x in range(int(size[0] / stepSize)):
             for y in range(int(size[1] / stepSize)):
-                text = u"%x%x" % (x,y)
+                text = "%x%x" % (x,y)
                 if (x+y) % 2 == 1:
                     canv.setFillColor(pink)
                 else:
