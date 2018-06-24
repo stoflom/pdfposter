@@ -11,8 +11,8 @@ Instructions for Windows Users
    During installation, make sure to check "Include into PATH".
 
 2. If you already have Python installed, please check that your Python
-   directory (normally :file:`C:\Python36` for python 3.6) and the Python
-   Scripts directory (normally :file`C:\Python36\Scripts`) are in the system
+   directory (normally :file:`C:\\Python36` for python 3.6) and the Python
+   Scripts directory (normally :file:`C:\\Python36\\Scripts`) are in the system
    path. If not, just add them in :menuselection:`My Computer --> Properties
    --> Advanced --> Environment Variables` to the :envvar:`Path` system
    variable.
