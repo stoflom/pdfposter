@@ -7,7 +7,7 @@ Scale and tile PDF images/pages to print on multiple pages.
 -------------------------------------------------------------
 
 :Author:    Hartmut Goebel <h.goebel@crazy-compilers.com>
-:Version:   Version 0.7
+:Version:   Version 0.8.dev0
 :Copyright: 2008-2018 by Hartmut Goebel
 :Licence:   GNU Public Licence v3 (GPLv3)
 :Homepage:  https://pdfposter.readthedocs.io/
