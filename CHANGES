@@ -1,3 +1,8 @@
+0.7.post1 (2018-07-03)
+----------------------
+
+* Fix packaging: documentaion was missing in source tarball.
+
 
 0.7 (2018-06-24)
 ----------------

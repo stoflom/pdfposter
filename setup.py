@@ -73,7 +73,7 @@ DOCPAGES = (
 setup(
     cmdclass=cmdclass,
     name = "pdftools.pdfposter",
-    version='0.7',
+    version='0.7.post1',
     install_requires = ['PyPDF2'],
 
     packages=['pdftools.pdfposter'],
