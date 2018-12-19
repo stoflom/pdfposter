@@ -85,7 +85,7 @@ being specified optionally):
 
   *unit* = *medianame* or *distancename*
 
-Please see `--help-media-size` for a list of media and distance names
+Please see `--help-media-names` for a list of media and distance names
 supported.
 
 Medias are typically not quadratic but rectangular, which means width
