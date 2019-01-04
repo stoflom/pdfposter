@@ -166,7 +166,11 @@ def run(args=None):
                      type=__parse_box, metavar="BOX",
                      help='Specify the poster size (defaults to media size). ')
     group.add_argument('-s', '--scale', type=float,
-                     help='Specify a linear scaling factor to produce the poster.')
+                       help='Specify a linear scaling factor to produce the poster.'
+                       'The scaling factor is applied to the width and height '
+                       'of the input image size. Thus, a scaling factor of 2 '
+                       'results in a poster 4 times the area compared to the '
+                       'original.')
 
     parser.add_argument('infilename', metavar='InputFile')
     parser.add_argument('outfilename', metavar='OutputFile')

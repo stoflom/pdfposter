@@ -35,13 +35,18 @@ Defining Output
          pdfposter will autonomously choose scaling and rotation to
          best fit the input onto the poster (see EXAMPLES below).
 
-	 If you give neither the *-s* nor the *-p* option, the default
+         If you give neither the *-s* nor the *-p* option, the default
          poster size is identical to the media size.
 
 -s NUMBER   Specify a linear scaling factor to produce the poster.
-          Together with the input image size and optional margins,
-          this induces an output poster size. So don't specify both *-s*
-          and *-p*.
+            Together with the input image size and optional margins,
+            this induces an output poster size. So don't specify both *-s*
+            and *-p*.
 
-	  Default is deriving the scale factor to fit a given poster
-          size.
+            The scaling factor is applied to the width and height
+            of the input image size. Thus, a scaling factor of 2
+            results in a poster 4 times the area compared to the
+            original.
+
+            Default is deriving the scale factor to fit a given poster
+            size.
