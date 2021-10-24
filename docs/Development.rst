@@ -7,7 +7,7 @@ The source of |pdfposter| and its siblings is maintained at
 are hearty welcome.
 
 * Please submit bugs and enhancements to the `Issue Tracker
-  <https://gitlab.com/pdftools/pdfjoin/issues>`_.
+  <https://gitlab.com/pdftools/pdfposter/issues>`_.
 
 * You may browse the code at the
   `Repository Browser
