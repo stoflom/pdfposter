@@ -316,7 +316,7 @@ def password_hook():
 def main(opts, infilename, outfilename, password_hook=password_hook):
     logging.basicConfig(level=20-opts.verbose, format="%(message)s")
     outpdf = PdfFileWriter()
-    inpdf = PdfFileReader(open(infilename, 'rb'))
+    inpdf = PdfFileReader(open(infilename, 'rb'), strict=False)
 
     if inpdf.isEncrypted:
         log(16, 'File is encrypted')

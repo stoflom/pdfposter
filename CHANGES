@@ -2,7 +2,7 @@
 0.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Be less strict when reading PDF files.
 
 
 0.7 (2018-06-24)
