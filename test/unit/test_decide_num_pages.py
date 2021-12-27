@@ -18,7 +18,7 @@
 
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2012-2021 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__licence__ = "GNU General Public License version 3 (GPL v3)"
+__license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
 
 import pytest
 

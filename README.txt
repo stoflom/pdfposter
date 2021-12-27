@@ -9,7 +9,7 @@ Scale and tile PDF images/pages to print on multiple pages.
 :Author:    Hartmut Goebel <h.goebel@crazy-compilers.com>
 :Version:   Version 0.8.dev0
 :Copyright: 2008-2021 by Hartmut Goebel
-:Licence:   GNU Public Licence v3 (GPLv3)
+:License:   GNU Public License v3 or later (GPL-3.0-or-later)
 :Homepage:  https://pdfposter.readthedocs.io/
 
 ``Pdfposter`` can be used to create a large poster by building it from
