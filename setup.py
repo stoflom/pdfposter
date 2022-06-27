@@ -1,20 +1,5 @@
-"""
-``Pdfposter`` can be used to create a large poster by building it from
-multiple pages and/or printing it on large media. It expects as input a
-PDF file, normally printing on a single page. The output is again a
-PDF file, maybe containing multiple pages together building the
-poster.
-The input page will be scaled to obtain the desired size.
 
-This is much like ``poster`` does for Postscript files, but working
-with PDF. Since sometimes poster does not like your files converted
-from PDF. :-) Indeed ``pdfposter`` was inspired by ``poster``.
-
-For more information please refere to the manpage or visit
-the `project homepage <https://pdfposter.readthedocs.io/>`_.
-"""
-
-from setuptools import setup, find_packages
+from setuptools import setup
 
 from distutils.core import Command
 from distutils import log
@@ -70,58 +55,4 @@ DOCPAGES = (
     ('html', 'pdfposter.rst', 'docs/pdfposter.html'),
     )
 
-setup(
-    cmdclass=cmdclass,
-    name = "pdftools.pdfposter",
-    version='0.8.dev0',
-    install_requires = ['PyPDF2'],
-
-    packages=['pdftools.pdfposter'],
-    namespace_packages=['pdftools'],
-
-    package_data = {
-        # If any package contains *.txt or *.rst files, include them:
-        '': ['*.txt', '*.rst'],
-        # And include any *.msg files found in the 'hello' package, too:
-        'hello': ['*.msg'],
-        },
-
-    # metadata for upload to PyPI
-    author = "Hartmut Goebel",
-    author_email = "h.goebel@crazy-compilers.com",
-    description = "Scale and tile PDF images/pages to print on multiple pages.",
-    long_description = __doc__,
-    license = "GPL-3.0-or-later",
-    keywords = "pdf poster",
-    url          = "https://pdfposter.readthedocs.io/",
-    download_url = "https://pypi.org/project/pdftools.pdfposter/",
-    classifiers = [
-    'Development Status :: 5 - Production/Stable',
-    'Environment :: Console',
-    'Intended Audience :: Developers',
-    'Intended Audience :: End Users/Desktop',
-    'Intended Audience :: System Administrators',
-    'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
-    'Natural Language :: English',
-    'Operating System :: OS Independent',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 2',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: 3.10',
-    'Topic :: Printing',
-    'Topic :: Utilities',
-    ],
-
-    # these are for easy_install (used by bdist_*)
-    zip_safe = True,
-    entry_points = {
-        "console_scripts": [
-            "pdfposter = pdftools.pdfposter.cmd:run",
-        ],
-    },
-)
+setup(cmdclass=cmdclass)
