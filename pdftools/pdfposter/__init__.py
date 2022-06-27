@@ -24,9 +24,9 @@ __copyright__ = "Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers
 __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
 __version__ = "0.8.dev0"
 
-from PyPDF2.pdf import PdfFileWriter, PdfFileReader, PageObject, getRectangle, \
-     ArrayObject, ContentStream, NameObject, FloatObject, RectangleObject
-
+from PyPDF2 import PdfWriter, PdfReader, PageObject
+from PyPDF2.types import NameObject
+from PyPDF2.generic import ContentStream, RectangleObject, IndirectObject
 
 import logging
 from logging import log
@@ -114,12 +114,13 @@ class DecryptionError(ValueError):
 
 PAGE_BOXES = ("/MediaBox", "/CropBox", "/BleedBox", "/TrimBox", "/ArtBox")
 
+
 def rectangle2box(pdfbox):
     return {
-        'width'   : pdfbox.getUpperRight_x()-pdfbox.getLowerLeft_x(),
-        'height'  : pdfbox.getUpperRight_y()-pdfbox.getLowerLeft_y(),
-        'offset_x': pdfbox.getLowerLeft_x(),
-        'offset_y': pdfbox.getLowerLeft_y(),
+        'width'   : pdfbox.right - pdfbox.left,
+        'height'  : pdfbox.top - pdfbox.bottom,
+        'offset_x': pdfbox.left,
+        'offset_y': pdfbox.bottom,
         # the following are unused, but need to be set to make
         # `rotate_box()` work
         'units_x' : None,
@@ -223,13 +224,14 @@ def copyPage(page):
     newpage = PageObject()
     newpage.update(page)
     # Copy Rectangles to be manipulatable
-    for attr in PAGE_BOXES:
-        if attr in page:
-            newpage[NameObject(attr)] = RectangleObject(list(page[attr]))
+    for boxname in PAGE_BOXES:
+        if boxname in page:
+            newpage[NameObject(boxname)] = \
+                RectangleObject(list(page[boxname]))
     return newpage
 
 def _clip_pdf_page(page, x, y, width, height):
-    content = ContentStream(page["/Contents"].getObject(), None)
+    content = ContentStream(page["/Contents"].get_object(), None)
     content.operations[:0] = [
         ([], 'q'), # save graphic state
         (RectangleObject((x, y, width, height)), 're'), # rectangle path
@@ -242,21 +244,24 @@ def _clip_pdf_page(page, x, y, width, height):
 
 def _scale_pdf_page(outpdf, page, factor):
     for boxname in PAGE_BOXES:
+        box = page.get(boxname)
         # skip if real box does not exits (avoid fallback to other boxes)
-        if not page.get(boxname):
+        if not box:
             continue
-        box = getRectangle(page, boxname, None)
-        box.lowerLeft  = [float(i) * factor for i in box.lowerLeft ]
-        box.upperRight = [float(i) * factor for i in box.upperRight]
+        if isinstance(box, IndirectObject):
+            retval = page.pdf.get_object(box)
+        box = RectangleObject(box)
+        box.lower_left  = [float(i) * factor for i in box.lower_left ]
+        box.upper_right = [float(i) * factor for i in box.upper_right]
         #print boxname, type(box), box
     # put transformation matrix in front of page content
-    content = ContentStream(page["/Contents"].getObject(), None)
+    content = ContentStream(page["/Contents"].get_object(), None)
     content.operations.insert(0, [[], '%f 0 0 %f 0 0 cm' %(factor,factor)] )
-    content = content.flateEncode()
+    content = content.flate_encode()
     # Add changed content as an indirect object. So the content will
     # be referenced by the other pages and not copied. The content
     # will be in the output file only once.
-    page[NameObject('/Contents')] = outpdf._addObject(content)
+    page[NameObject('/Contents')] = outpdf._add_object(content)
 
 
 def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
@@ -269,7 +274,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     if use_ArtBox:
         inbox = rectangle2box(page.artBox)
     else:
-        inbox = rectangle2box(page.trimBox)
+        inbox = rectangle2box(page.trimbox)
     _clip_pdf_page(page, inbox['offset_x'], inbox['offset_y'],
                    inbox['width'], inbox['height'])
     ncols, nrows, scale, rotate = decide_num_pages(inbox, mediabox,
@@ -277,7 +282,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     mediabox = mediabox.copy()
     _scale_pdf_page(outpdf, page, scale)
     if rotate:
-        page.rotateClockwise(90)
+        page.rotate(90)
         rotate_box(inbox)
         rotate_box(mediabox)
     # area to put on each page (allows for overlay of margin)
@@ -285,9 +290,9 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     v_step = mediabox['height'] - mediabox['offset_y']
 
     if use_ArtBox:
-        trimbox = rectangle2box(page.artBox)
+        trimbox = rectangle2box(page.artbox)
     else:
-        trimbox = rectangle2box(page.trimBox)
+        trimbox = rectangle2box(page.trimbox)
     h_pos = float(trimbox['offset_x'])
     h_max, v_max = float(trimbox['width']), float(trimbox['height'])
     for col in range(ncols):
@@ -295,17 +300,17 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
         for row in range(nrows):
             log(17, 'Creating page with offset: %.2f %.2f' % (h_pos, v_pos))
             newpage = copyPage(page)
-            # todo: if remaining area is smaller than mediaBox, add a
+            # todo: if remaining area is smaller than mediabox, add a
             # transparent fill box behind, so the real content is in
             # the lower left corner
-            newpage.mediaBox = RectangleObject((h_pos, v_pos,
+            newpage.mediabox = RectangleObject((h_pos, v_pos,
                                                 h_pos + h_step,
                                                 v_pos + v_step))
-            newpage.trimBox = RectangleObject((h_pos, v_pos,
+            newpage.trimbox = RectangleObject((h_pos, v_pos,
                                                min(h_max, h_pos + h_step),
                                                min(v_max, v_pos + v_step)))
-            newpage.artBox = newpage.trimBox
-            outpdf.addPage(newpage)
+            newpage.artbox = newpage.trimbox
+            outpdf.add_page(newpage)
             v_pos -= v_step
         h_pos += h_step
 
@@ -315,10 +320,10 @@ def password_hook():
 
 def main(opts, infilename, outfilename, password_hook=password_hook):
     logging.basicConfig(level=20-opts.verbose, format="%(message)s")
-    outpdf = PdfFileWriter()
-    inpdf = PdfFileReader(open(infilename, 'rb'), strict=False)
+    outpdf = PdfWriter()
+    inpdf = PdfReader(open(infilename, 'rb'), strict=False)
 
-    if inpdf.isEncrypted:
+    if inpdf.is_encrypted:
         log(16, 'File is encrypted')
         # try empty password first
         if not inpdf.decrypt(''):
@@ -326,7 +331,7 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
                 raise DecryptionError("Can't decrypt PDF. Wrong Password?")
 
     first_page = 1
-    last_page = inpdf.numPages
+    last_page = len(inpdf.pages)
     if opts.first_page is not None:
         first_page = max(1, opts.first_page)
     if opts.last_page is not None:
@@ -341,7 +346,7 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
         log(17, '            %(width).2f %(height).2f dots' % opts.poster_size)
 
     for i in range(first_page-1, last_page):
-        page = inpdf.getPage(i)
+        page = inpdf.pages[i]
         log(19, '---- processing page %i -----', i+1)
         posterize(outpdf, page, opts.media_size, opts.poster_size, opts.scale,
                   opts.use_ArtBox)

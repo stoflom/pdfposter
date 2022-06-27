@@ -27,7 +27,7 @@ __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
 
 from . import main, __version__, DEFAULT_MEDIASIZE, papersizes, DecryptionError
 import re
-import PyPDF2.utils
+import PyPDF2.errors
 import argparse
 
 # pattern for parsing user textual box spec
@@ -192,7 +192,7 @@ def run(args=None):
         main(args, infilename=args.infilename, outfilename=args.outfilename)
     except DecryptionError as e:
         raise SystemExit(str(e))
-    except PyPDF2.utils.PdfReadError as e:
+    except PyPDF2.errors.PdfReadError as e:
         parser.error('The input-file is either currupt or no PDF at all: %s'
                      % e)
 
