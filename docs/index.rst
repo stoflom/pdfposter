@@ -26,6 +26,7 @@ files converted from PDF. :-) Indeed |pdfposter| was inspired by `poster`.
    Examples
    Donate <Donate>
    Frequently Asked Questions
+   Changes
    Development
 
 .. include:: _common_definitions.txt

@@ -7,3 +7,6 @@ PyPDF2
 # for testing
 reportlab
 tox
+
+# for building the documentation
+sphinx

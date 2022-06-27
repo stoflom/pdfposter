@@ -1,20 +1,21 @@
-"""
-``Pdfposter`` can be used to create a large poster by building it from
-multiple pages and/or printing it on large media. It expects as input a
-PDF file, normally printing on a single page. The output is again a
-PDF file, maybe containing multiple pages together building the
-poster.
-The input page will be scaled to obtain the desired size.
+#
+# Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
 
-This is much like ``poster`` does for Postscript files, but working
-with PDF. Since sometimes poster does not like your files converted
-from PDF. :-) Indeed ``pdfposter`` was inspired by ``poster``.
-
-For more information please refere to the manpage or visit
-the `project homepage <https://pdfposter.readthedocs.io/>`_.
-"""
-
-from setuptools import setup, find_packages
+from setuptools import setup
 
 from distutils.core import Command
 from distutils import log
@@ -70,56 +71,4 @@ DOCPAGES = (
     ('html', 'pdfposter.rst', 'docs/pdfposter.html'),
     )
 
-setup(
-    cmdclass=cmdclass,
-    name = "pdftools.pdfposter",
-    version='0.7.post1',
-    install_requires = ['PyPDF2'],
-
-    packages=['pdftools.pdfposter'],
-    namespace_packages=['pdftools'],
-
-    package_data = {
-        # If any package contains *.txt or *.rst files, include them:
-        '': ['*.txt', '*.rst'],
-        # And include any *.msg files found in the 'hello' package, too:
-        'hello': ['*.msg'],
-        },
-
-    # metadata for upload to PyPI
-    author = "Hartmut Goebel",
-    author_email = "h.goebel@crazy-compilers.com",
-    description = "Scale and tile PDF images/pages to print on multiple pages.",
-    long_description = __doc__,
-    license = "GPL 3.0",
-    keywords = "pdf poster",
-    url          = "https://pdfposter.readthedocs.io/",
-    download_url = "https://pypi.org/project/pdftools.pdfposter/",
-    classifiers = [
-    'Development Status :: 5 - Production/Stable',
-    'Environment :: Console',
-    'Intended Audience :: Developers',
-    'Intended Audience :: End Users/Desktop',
-    'Intended Audience :: System Administrators',
-    'License :: OSI Approved :: GNU General Public License (GPL)',
-    'Natural Language :: English',
-    'Operating System :: OS Independent',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 2',
-    'Programming Language :: Python :: 2.7',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.4',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
-    'Topic :: Printing',
-    'Topic :: Utilities',
-    ],
-
-    # these are for easy_install (used by bdist_*)
-    zip_safe = True,
-    entry_points = {
-        "console_scripts": [
-            "pdfposter = pdftools.pdfposter.cmd:run",
-        ],
-    },
-)
+setup(cmdclass=cmdclass)

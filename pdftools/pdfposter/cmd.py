@@ -3,7 +3,7 @@
 pdftools.pdfposter.cmd - scale and tile PDF images/pages to print on multiple pages.
 """
 #
-# Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>
+# Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,12 +22,12 @@ pdftools.pdfposter.cmd - scale and tile PDF images/pages to print on multiple pa
 from __future__ import print_function
 
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__copyright__ = "Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__licence__ = "GNU General Public License version 3 (GPL v3)"
+__copyright__ = "Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
+__license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
 
 from . import main, __version__, DEFAULT_MEDIASIZE, papersizes, DecryptionError
 import re
-import PyPDF2.utils
+import PyPDF2.errors
 import argparse
 
 # pattern for parsing user textual box spec
@@ -85,7 +85,7 @@ being specified optionally):
 
   *unit* = *medianame* or *distancename*
 
-Please see `--help-media-size` for a list of media and distance names
+Please see `--help-media-names` for a list of media and distance names
 supported.
 
 Medias are typically not quadratic but rectangular, which means width
@@ -166,7 +166,11 @@ def run(args=None):
                      type=__parse_box, metavar="BOX",
                      help='Specify the poster size (defaults to media size). ')
     group.add_argument('-s', '--scale', type=float,
-                     help='Specify a linear scaling factor to produce the poster.')
+                       help='Specify a linear scaling factor to produce the poster.'
+                       'The scaling factor is applied to the width and height '
+                       'of the input image size. Thus, a scaling factor of 2 '
+                       'results in a poster 4 times the area compared to the '
+                       'original.')
 
     parser.add_argument('infilename', metavar='InputFile')
     parser.add_argument('outfilename', metavar='OutputFile')
@@ -188,7 +192,7 @@ def run(args=None):
         main(args, infilename=args.infilename, outfilename=args.outfilename)
     except DecryptionError as e:
         raise SystemExit(str(e))
-    except PyPDF2.utils.PdfReadError as e:
+    except PyPDF2.errors.PdfReadError as e:
         parser.error('The input-file is either currupt or no PDF at all: %s'
                      % e)
 

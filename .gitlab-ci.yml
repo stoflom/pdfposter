@@ -14,28 +14,33 @@ before_script:
   # Generate test input-file (using Scons for this is overhead)
   - python test/gen-chessboard.py test/chessboard.pdf
 
-python2.7:
-  image: python:2.7
-  script:
-    - tox -e py27
-
-python3.4:
-  image: python:3.4
-  script:
-    - tox -e py34
-
-python3.5:
-  image: python:3.5
-  script:
-    - tox -e py35
-
 python3.6:
   image: python:3.6
   script:
     - tox -e py36
 
+python3.7:
+  image: python:3.7
+  script:
+    - tox -e py37
+
+python3.9:
+  image: python:3.8
+  script:
+    - tox -e py38
+
+python3.9:
+  image: python:3.9
+  script:
+    - tox -e py39
+
+python3.10:
+  image: python:3.10
+  script:
+    - tox -e py310
+
 linters:
-  image: python:3.5
+  image: python:3.9
   script:
     # For now only check the readme
     - tox -e readme

@@ -1,5 +1,5 @@
 #
-# Copyright 2008-2018 by Hartmut Goebel <h.goebel@crazy-compilers.com>
+# Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,8 +25,8 @@ CHESSBOARD = os.path.join(os.path.dirname(__file__), '..', 'chessboard.pdf')
 
 def get_num_pages(filename):
     with open(filename, 'rb') as fh:
-        reader = PyPDF2.PdfFileReader(fh)
-        return reader.getNumPages()
+        reader = PyPDF2.PdfReader(fh)
+        return len(reader.pages)
 
 def test_without_options(tmpdir):
     outname = str(tmpdir.join('out.pdf'))

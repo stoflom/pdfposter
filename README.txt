@@ -7,9 +7,9 @@ Scale and tile PDF images/pages to print on multiple pages.
 -------------------------------------------------------------
 
 :Author:    Hartmut Goebel <h.goebel@crazy-compilers.com>
-:Version:   Version 0.7.post1
-:Copyright: 2008-2018 by Hartmut Goebel
-:Licence:   GNU Public Licence v3 (GPLv3)
+:Version:   Version 0.8.dev0
+:Copyright: 2008-2022 by Hartmut Goebel
+:License:   GNU Public License v3 or later (GPL-3.0-or-later)
 :Homepage:  https://pdfposter.readthedocs.io/
 
 ``Pdfposter`` can be used to create a large poster by building it from
@@ -32,9 +32,9 @@ Requirements and Installation
 
 ``Pdfposter`` requires
 
-* `Python`__  (tested 2.7 and 3.4—3.6, but newer versions should work, too),
+* `Python`__  (3.6—3.10, but newer versions should work, too),
 * `setuptools`__ or `pip`__ for installation, and
-* `PyPDF2`__.
+* `PyPDF2`__ (2.1.1 or newer).
 
 __ https://www.python.org/download/
 __ https://pypi.org/project/setuptools

@@ -1,7 +1,18 @@
-0.7.post1 (2018-07-03)
-----------------------
 
-* Fix packaging: documentaion was missing in source tarball.
+0.8 (2022-06-27)
+----------------
+
+* Be less strict when reading PDF files.
+
+* Enhance some help messages.
+
+* Drop support for Python 2 and Python <= 3.5. Minimum supported versions are
+  now 3.6 to 3.10.
+
+* Internal changes:
+
+  - Update required version of `PyPDF` to 2.1.1.
+  - Enhance code quality.
 
 
 0.7 (2018-06-24)

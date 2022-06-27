@@ -8,8 +8,8 @@ Scale and tile PDF images/pages to print on multiple pages.
 
 :Author:    Hartmut Goebel <h.goebel@crazy-compilers.com>
 :Version:   Version |VERSION|
-:Copyright: 2008-2018 by Hartmut Goebel
-:Licence:   GNU Public Licence v3 (GPLv3)
+:Copyright: 2008-2021 by Hartmut Goebel
+:License:   GNU Public License v3 or later (GPL-3.0-or-later)
 :Manual section: 1
 
 .. raw:: manpage
