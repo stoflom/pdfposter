@@ -14,11 +14,6 @@ before_script:
   # Generate test input-file (using Scons for this is overhead)
   - python test/gen-chessboard.py test/chessboard.pdf
 
-python2.7:
-  image: python:2.7
-  script:
-    - tox -e py27
-
 python3.6:
   image: python:3.6
   script:
