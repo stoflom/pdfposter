@@ -39,7 +39,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'pdfposter'
-copyright = '2008-2021, Hartmut Goebel'
+copyright = '2008-2022, Hartmut Goebel'
 author = 'Hartmut Goebel'
 
 # The version info for the project you're documenting, acts as replacement for
