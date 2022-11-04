@@ -2,7 +2,10 @@
 0.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+* Fix box-scaling which was totally buggy in release 0.8
+  (and I wonder why nobody noticed).
+
+* Fix plural forms in info messages.
 
 
 0.8 (2022-06-27)
