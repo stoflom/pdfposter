@@ -22,7 +22,7 @@ pdftools.pdfposter - scale and tile PDF images/pages to print on multiple pages.
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
-__version__ = "0.8"
+__version__ = "0.8.1"
 
 from PyPDF2 import PdfWriter, PdfReader, PageObject
 from PyPDF2.types import NameObject
@@ -214,8 +214,8 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
         nrows = ny0
 
     log(19, "Deciding for %d column%s and %d row%s of %s pages.",
-            ncols, (ncols==1) and "s" or "",
-            nrows, (nrows==1) and "s" or "",
+            ncols, "s" if ncols > 1 else "",
+            nrows, "s" if nrows > 1 else "",
             rotate and "landscape" or "portrait")
     return ncols, nrows, scale, rotate
 
@@ -249,10 +249,9 @@ def _scale_pdf_page(outpdf, page, factor):
         if not box:
             continue
         if isinstance(box, IndirectObject):
-            retval = page.pdf.get_object(box)
-        box = RectangleObject(box)
-        box.lower_left  = [float(i) * factor for i in box.lower_left ]
-        box.upper_right = [float(i) * factor for i in box.upper_right]
+            box = page.pdf.get_object(box)
+        for i, v in enumerate(box):
+            box[i] = float(v) * factor
         #print boxname, type(box), box
     # put transformation matrix in front of page content
     content = ContentStream(page["/Contents"].get_object(), None)
