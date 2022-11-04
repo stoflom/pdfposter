@@ -214,8 +214,8 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
         nrows = ny0
 
     log(19, "Deciding for %d column%s and %d row%s of %s pages.",
-            ncols, (ncols==1) and "s" or "",
-            nrows, (nrows==1) and "s" or "",
+            ncols, "s" if ncols > 1 else "",
+            nrows, "s" if nrows > 1 else "",
             rotate and "landscape" or "portrait")
     return ncols, nrows, scale, rotate
 
