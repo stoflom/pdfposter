@@ -249,10 +249,9 @@ def _scale_pdf_page(outpdf, page, factor):
         if not box:
             continue
         if isinstance(box, IndirectObject):
-            retval = page.pdf.get_object(box)
-        box = RectangleObject(box)
-        box.lower_left  = [float(i) * factor for i in box.lower_left ]
-        box.upper_right = [float(i) * factor for i in box.upper_right]
+            box = page.pdf.get_object(box)
+        for i, v in enumerate(box):
+            box[i] = float(v) * factor
         #print boxname, type(box), box
     # put transformation matrix in front of page content
     content = ContentStream(page["/Contents"].get_object(), None)
