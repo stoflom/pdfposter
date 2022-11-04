@@ -10,3 +10,6 @@ tox
 
 # for building the documentation
 sphinx
+
+# for releasing
+zest.releaser[recommended]
