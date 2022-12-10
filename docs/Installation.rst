@@ -19,7 +19,7 @@ Instructions for Windows Users
 
 3. Install |pdfposter| by running ::
 
-     pip install pdftools.pdfposter
+     pip install pdfposter
 
    Then run the console command ``pdfposter --help`` to get detailed help.
 
@@ -67,26 +67,26 @@ Installing |pdfposter| using :command:`pip`
 
 After installing `Python` (and optionally `PyPDF2`), just run::
 
-  sudo pip install pdftools.pdfposter
+  sudo pip install pdfposter
 
 to install |pdfposter| for all users.
 For installing |pdfposter| for yourself only, run::
 
-  pip install --user pdftools.pdfposter
+  pip install --user pdfposter
 
 If your system does not have network access
   
-- download |pdfposter| from https://pypi.org/project/pdftools.pdfposter/,
+- download |pdfposter| from https://pypi.org/project/pdfposter/,
 
 - downlaod `PyPDF2` from https://pypi.org/project/PyPDF2/, and
 
 - run ::
 
-    sudo pip install pdftools.pdfposter-*.tar.gz PyPDF2-*.tar.gz
+    sudo pip install pdfposter-*.tar.gz PyPDF2-*.tar.gz
 
   respective ::
 
-    pip install --user pdftools.pdfposter-*.tar.gz PyPDF2-*.tar.gz
+    pip install --user pdfposter-*.tar.gz PyPDF2-*.tar.gz
 
 
 .. include:: _common_definitions.txt

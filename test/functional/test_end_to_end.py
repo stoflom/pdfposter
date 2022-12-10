@@ -18,7 +18,7 @@
 import pytest
 import os, sys
 
-from pdftools.pdfposter import cmd
+from pdfposter import cmd
 import PyPDF2
 
 CHESSBOARD = os.path.join(os.path.dirname(__file__), '..', 'chessboard.pdf')

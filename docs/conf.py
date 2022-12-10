@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# pdftools.PDFposter documentation build configuration file, created by
+# PDFposter documentation build configuration file, created by
 # sphinx-quickstart on Tue May 21 16:21:39 2013.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -49,7 +49,7 @@ author = 'Hartmut Goebel'
 # built documents.
 #
 # The full version, including alpha/beta/rc tags.
-release = metadata.version('pdftools.pdfposter')
+release = metadata.version('pdfposter')
 # The short X.Y version.
 version = ''.join(release.split('.', 2)[:2])
 

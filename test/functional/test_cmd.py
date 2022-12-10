@@ -20,8 +20,8 @@ import os, sys
 
 import argparse
 
-import pdftools.pdfposter
-from pdftools.pdfposter import cmd, __version__
+import pdfposter
+from pdfposter import cmd, __version__
 
 ArgParserError = argparse.ArgumentTypeError
 

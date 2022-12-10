@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-pdftools.pdfposter - scale and tile PDF images/pages to print on multiple pages.
+pdfposter - scale and tile PDF images/pages to print on multiple pages.
 """
 #
 # Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers.com>

@@ -23,7 +23,7 @@ __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
 import pytest
 import re
 import argparse
-from pdftools.pdfposter.cmd import __parse_box as parse_box
+from pdfposter.cmd import __parse_box as parse_box
 
 ArgParserError = argparse.ArgumentTypeError
 

@@ -22,8 +22,8 @@ __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
 
 import pytest
 
-from pdftools.pdfposter import papersizes, decide_num_pages
-from pdftools.pdfposter.cmd import __parse_box as parse_box
+from pdfposter import papersizes, decide_num_pages
+from pdfposter.cmd import __parse_box as parse_box
 import math
 
 def Box(x, y, name):
