@@ -16,29 +16,31 @@
 #
 
 from setuptools import setup
-
 from distutils.core import Command
 from distutils import log
 import os, sys
 
+
 class build_docs(Command):
     description = "build documentation from rst-files"
-    user_options=[]
+    user_options = []
 
-    def initialize_options (self): pass
-    def finalize_options (self):
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
         self.docpages = DOCPAGES
-        
+
     def run(self):
-        substitutions = ('.. |VERSION| replace:: '
-                         + self.distribution.get_version())
+        substitutions = ('.. |VERSION| replace:: ' +
+                         self.distribution.get_version())
         for writer, rstfilename, outfilename in self.docpages:
             distutils.dir_util.mkpath(os.path.dirname(outfilename))
             log.info("creating %s page %s", writer, outfilename)
             if not self.dry_run:
                 try:
-                    with open(rstfilename, "rb") as fh:
-                        rsttext = fh.read().decode('utf-8')
+                    with open(rstfilename, encoding='utf-8') as fh:
+                        rsttext = fh.read()
                 except IOError as e:
                     sys.exit(e)
                 rsttext = '\n'.join((substitutions, '', rsttext))
@@ -49,9 +51,10 @@ class build_docs(Command):
                                                    writer_name=writer)
                 try:
                     with open(outfilename, 'wb') as fh:
-                        fh.write(doc) # is already encoded
+                        fh.write(doc)  # is already encoded
                 except IOError as e:
                     sys.exit(e)
+
 
 cmdclass = {}
 
