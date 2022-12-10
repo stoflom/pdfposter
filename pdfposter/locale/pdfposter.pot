@@ -1,0 +1,421 @@
+# Translations template for pdfposter.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the pdfposter project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pdfposter 0.9.dev0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-09-20 12:04+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: pdfposter/__init__.py:144
+#, python-format
+msgid "Rotating %s specs to portrait format"
+msgstr ""
+
+#: pdfposter/__init__.py:163
+#, python-format
+msgid "input  dimensions: %.2f %.2f (trimbox of input page)"
+msgstr ""
+
+#: pdfposter/__init__.py:169
+#, python-format
+msgid "output dimensions: %.2f %.2f (poster size)"
+msgstr ""
+
+#: pdfposter/__init__.py:179
+msgid "Rotating poster specs since input page is landscape"
+msgstr ""
+
+#: pdfposter/__init__.py:182
+#, python-format
+msgid "rotated output dimensions: %.2f %.2f (poster size)"
+msgstr ""
+
+#: pdfposter/__init__.py:187
+#, python-format
+msgid "Calculated page scaling factor: %f"
+msgstr ""
+
+#: pdfposter/__init__.py:192
+#, python-format
+msgid "output dimensions: %.2f %.2f (calculated)"
+msgstr ""
+
+#: pdfposter/__init__.py:201
+#, python-format
+msgid "Pages w/o rotation %s x %s"
+msgstr ""
+
+#: pdfposter/__init__.py:202
+#, python-format
+msgid "Pages w/  rotation %s x %s"
+msgstr ""
+
+#: pdfposter/__init__.py:209
+#, python-format
+msgid "Decided for rotation: %s"
+msgstr ""
+
+#: pdfposter/__init__.py:209
+msgid "yes"
+msgstr ""
+
+#: pdfposter/__init__.py:209
+msgid "no"
+msgstr ""
+
+#: pdfposter/__init__.py:302
+#, python-format
+msgid "Creating page with offset: %.2f %.2f"
+msgstr ""
+
+#: pdfposter/__init__.py:328
+msgid "File is encrypted"
+msgstr ""
+
+#: pdfposter/__init__.py:332
+msgid "Can't decrypt PDF. Wrong Password?"
+msgstr ""
+
+#: pdfposter/__init__.py:341
+#, python-format
+msgid "Mediasize : %(units_x)sx%(units_y)s %(unit)s"
+msgstr ""
+
+#: pdfposter/__init__.py:342 pdfposter/__init__.py:347
+#, python-format
+msgid "            %(width).2f %(height).2f dots"
+msgstr ""
+
+#: pdfposter/__init__.py:344
+#, python-format
+msgid "Scaling by: %f"
+msgstr ""
+
+#: pdfposter/__init__.py:346
+#, python-format
+msgid "Postersize: %(units_x)sx%(units_y)s %(unit)s"
+msgstr ""
+
+#: pdfposter/__init__.py:351
+#, python-format
+msgid "---- processing page %i -----"
+msgstr ""
+
+#: pdfposter/cmd.py:49
+#, python-format
+msgid "I don't understand your box specification %r"
+msgstr ""
+
+#: pdfposter/cmd.py:53
+msgid "Offset not allowed in box definition"
+msgstr ""
+
+#: pdfposter/cmd.py:64
+#, python-format
+msgid "I don't understand your papersize name %r."
+msgstr ""
+
+#: pdfposter/cmd.py:67
+#, python-format
+msgid "Your papersize name %r is not unique, give more chars."
+msgstr ""
+
+#: pdfposter/cmd.py:83
+msgid ""
+"A `BOX` to be passed to `--media-size` and `--poster-size` is a "
+"specification\n"
+"of horizontal and vertical size. The syntax is as follows (with "
+"multiplier\n"
+"being specified optionally):\n"
+"\n"
+"  *box* = [ *multiplier* ] *unit*\n"
+"\n"
+"  *multiplier* = *number* \"x\" *number*\n"
+"\n"
+"  *unit* = *medianame* or *distancename*\n"
+"\n"
+"Please see `--help-media-names` for a list of media and distance names\n"
+"supported.\n"
+"\n"
+"Medias are typically not quadratic but rectangular, which means width\n"
+"and height differ. Thus using medianames is a bit tricky:\n"
+"\n"
+":10x20cm: obvious: 10 cm x 20 cm (portrait)\n"
+"\n"
+":20x10cm: same as 10x20cm, since all boxes are rotated to portrait\n"
+"          format\n"
+"\n"
+"Now when using media names it gets tricky:\n"
+"\n"
+":1x1a4: same as 210x297mm (21 cm x 29.7 cm, portrait)\n"
+"\n"
+":1x2a4: same as 21x594mm (21 cm x 59.4 cm, portrait)\n"
+"\n"
+"        This are two a4 pages put together at the *small* side: One\n"
+"        portrait page wide and two portrait pages high.\n"
+"\n"
+":2x1a4: same as 420x297mm (landscape), which is rotated to portrait and "
+"is\n"
+"        the same as 297x420mm (29.7 cm x 42 cm)\n"
+"\n"
+"        This are two a4 pages put together at the *long* side: Two\n"
+"        portrait pages wide and one portrait page high.\n"
+msgstr ""
+
+#: pdfposter/cmd.py:124
+msgid "Available media and distance names:"
+msgstr ""
+
+#: pdfposter/cmd.py:143
+msgid "List available media and distance names"
+msgstr ""
+
+#: pdfposter/cmd.py:146
+msgid ""
+"Show help about specifying BOX for `--media-size` and `--poster-size` and"
+" exit"
+msgstr ""
+
+#: pdfposter/cmd.py:151
+msgid ""
+"Be verbose. Tell about scaling, rotation and number of pages. Can be used"
+" more than once to increase the verbosity"
+msgstr ""
+
+#: pdfposter/cmd.py:155
+msgid "Show what would have been done, but do not generate files"
+msgstr ""
+
+#: pdfposter/cmd.py:160 pdfposter/cmd.py:163
+msgid "INTEGER"
+msgstr ""
+
+#: pdfposter/cmd.py:161
+msgid "First page to convert (default: first page)"
+msgstr ""
+
+#: pdfposter/cmd.py:164
+msgid "Last page to convert (default: last page)"
+msgstr ""
+
+#: pdfposter/cmd.py:167
+msgid ""
+"Use the content area defined by the ArtBox (default: use the area defined"
+" by the TrimBox)"
+msgstr ""
+
+#: pdfposter/cmd.py:173 pdfposter/cmd.py:177
+msgid "BOX"
+msgstr ""
+
+#: pdfposter/cmd.py:174
+#, python-format
+msgid "Specify the page size of the output media (default: %s)"
+msgstr ""
+
+#: pdfposter/cmd.py:178
+msgid "Specify the poster size (defaults to media size)"
+msgstr ""
+
+#: pdfposter/cmd.py:179
+msgid "SCALE"
+msgstr ""
+
+#: pdfposter/cmd.py:180
+msgid ""
+"Specify a linear scaling factor to produce the poster. The scaling factor"
+" is applied to the width and height of the input image size. Thus, a "
+"scaling factor of 2 results in a poster 4 times the area compared to the "
+"original"
+msgstr ""
+
+#: pdfposter/cmd.py:186
+msgid "InputFile"
+msgstr ""
+
+#: pdfposter/cmd.py:187
+msgid "OutputFile"
+msgstr ""
+
+#: pdfposter/cmd.py:192
+msgid "Only one of -p/--poster-size and -s/--scale may be given at a time."
+msgstr ""
+
+#: pdfposter/cmd.py:199
+#, python-format
+msgid "Scale value is much to small: %s"
+msgstr ""
+
+#: pdfposter/cmd.py:201
+#, python-format
+msgid "Scale value is much to big: %s"
+msgstr ""
+
+#: pdfposter/cmd.py:208
+#, python-format
+msgid "The input-file is either currupt or no PDF at all: %s"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:295
+msgid "usage: "
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:846
+msgid ".__call__() not defined"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1149
+#, python-format
+msgid "unknown parser %(parser_name)r (choices: %(choices)s)"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1209
+#, python-format
+msgid "argument \"-\" with mode %r"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1218
+#, python-format
+msgid "can't open '%(filename)s': %(error)s"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1427
+#, python-format
+msgid "cannot merge actions - two groups are named %r"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1465
+msgid "'required' is an invalid argument for positionals"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1487
+#, python-format
+msgid ""
+"invalid option string %(option)r: must start with a character "
+"%(prefix_chars)r"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1507
+#, python-format
+msgid "dest= is required for options like %r"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1524
+#, python-format
+msgid "invalid conflict_resolution value: %r"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1544
+#, python-format
+msgid "conflicting option string: %s"
+msgid_plural "conflicting option strings: %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1608
+msgid "mutually exclusive arguments must be optional"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1671
+msgid "positional arguments"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1672
+msgid "optional arguments"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1687
+msgid "show this help message and exit"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1718
+msgid "cannot have multiple subparser arguments"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1770
+#: ../../usr/lib64/python3.8/argparse.py:2277
+#, python-format
+msgid "unrecognized arguments: %s"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1867
+#, python-format
+msgid "not allowed with argument %s"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:1913
+#: ../../usr/lib64/python3.8/argparse.py:1927
+#, python-format
+msgid "ignored explicit argument %r"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2034
+#, python-format
+msgid "the following arguments are required: %s"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2049
+#, python-format
+msgid "one of the arguments %s is required"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2092
+msgid "expected one argument"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2093
+msgid "expected at most one argument"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2094
+msgid "expected at least one argument"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2098
+#, python-format
+msgid "expected %s argument"
+msgid_plural "expected %s arguments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2156
+#, python-format
+msgid "ambiguous option: %(option)s could match %(matches)s"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2220
+#, python-format
+msgid "unexpected option string: %s"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2417
+#, python-format
+msgid "%r is not callable"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2434
+#, python-format
+msgid "invalid %(type)s value: %(value)r"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2445
+#, python-format
+msgid "invalid choice: %(value)r (choose from %(choices)s)"
+msgstr ""
+
+#: ../../usr/lib64/python3.8/argparse.py:2521
+#, python-format
+msgid "%(prog)s: error: %(message)s\n"
+msgstr ""
+
