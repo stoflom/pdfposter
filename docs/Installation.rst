@@ -51,11 +51,11 @@ If this is not provided, please refer to the
 `pip homepage <https://pip.pypa.io/en/stable/installing/>`_ for help.
 
 
-Optionally you might want to install `PyPDF2`
+Optionally you might want to install `pypdf`
 - which is a requirement for |pdfposter| -
 provided by your distribution or vendor
 so at least this package will be maintained by your distribution.
-Check for a package named ``python-pypdf2`` or that like.
+Check for a package named ``python3-pypdf`` or that like.
 
 Then continue with :ref:`installing pdfposter` below.
 
@@ -65,7 +65,7 @@ Then continue with :ref:`installing pdfposter` below.
 Installing |pdfposter| using :command:`pip`
 ---------------------------------------------
 
-After installing `Python` (and optionally `PyPDF2`), just run::
+After installing `Python` (and optionally `pypdf`), just run::
 
   sudo pip install pdfposter
 
@@ -78,15 +78,15 @@ If your system does not have network access
   
 - download |pdfposter| from https://pypi.org/project/pdfposter/,
 
-- downlaod `PyPDF2` from https://pypi.org/project/PyPDF2/, and
+- download `pypdf` from https://pypi.org/project/pypdf/, and
 
 - run ::
 
-    sudo pip install pdfposter-*.tar.gz PyPDF2-*.tar.gz
+    sudo pip install pdfposter-*.tar.gz pypdf-*.tar.gz
 
   respective ::
 
-    pip install --user pdfposter-*.tar.gz PyPDF2-*.tar.gz
+    pip install --user pdfposter-*.tar.gz pypdf-*.tar.gz
 
 
 .. include:: _common_definitions.txt

@@ -19,13 +19,13 @@ import pytest
 import os, sys
 
 from pdfposter import cmd
-import PyPDF2
+import pypdf
 
 CHESSBOARD = os.path.join(os.path.dirname(__file__), '..', 'chessboard.pdf')
 
 def get_num_pages(filename):
     with open(filename, 'rb') as fh:
-        reader = PyPDF2.PdfReader(fh)
+        reader = pypdf.PdfReader(fh)
         return len(reader.pages)
 
 def test_without_options(tmpdir):

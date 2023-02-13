@@ -34,12 +34,12 @@ Requirements and Installation
 
 * `Python`__  (3.6—3.12, but newer versions should work, too),
 * `setuptools`__ or `pip`__ for installation, and
-* `PyPDF2`__ (>= 2.1.1, < 3.0).
+* `pypdf`__ (3.0—4.999, version 5.x is currently not working)
 
 __ https://www.python.org/download/
 __ https://pypi.org/project/setuptools
 __ https://pypi.org/project/pip
-__ https://pypi.org/project/PyPDF2
+__ https://pypi.org/project/pypdf
 
 
 .. Emacs config:

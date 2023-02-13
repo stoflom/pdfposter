@@ -24,9 +24,9 @@ __copyright__ = "Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers
 __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
 __version__ = "0.9.dev0"
 
-from PyPDF2 import PdfWriter, PdfReader, PageObject
-from PyPDF2.types import NameObject
-from PyPDF2.generic import ContentStream, RectangleObject, IndirectObject
+from pypdf import PdfWriter, PdfReader, PageObject
+from pypdf.types import NameObject
+from pypdf.generic import ContentStream, RectangleObject, IndirectObject
 
 import logging
 from logging import log
