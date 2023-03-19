@@ -39,7 +39,7 @@ Requirements and Installation
 __ https://www.python.org/download/
 __ https://pypi.org/project/setuptools
 __ https://pypi.org/project/pip
-__ http://mstamy2.github.io/PyPDF2/
+__ https://pypi.org/project/PyPDF2
 
 
 .. Emacs config:
