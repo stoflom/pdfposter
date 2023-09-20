@@ -28,6 +28,22 @@ For these examples we use two input pages:
 These are intentionally uncommon formats so the effects of running
 |pdfposter| will be more demonstrative.
 
+
+Scaling Down a Large Format PDF
+-------------------------------------
+
+  A large format PDFs can be scaled down as well.
+  This example creates an A3 poster on two A4 pages
+  from an original A1 file::
+
+    pdfposter -p a3 -m a4 placard-a1.pdf poster-on-two-a4.pdf
+
+  You can even scale down the file to a single page
+  by using the same size for both the poster and the medium::
+
+  pdfposter -p a4 -m a4 placard-a1.pdf single-a4-page.pdf
+
+
 Working With Portrait Images
 -------------------------------------
 
