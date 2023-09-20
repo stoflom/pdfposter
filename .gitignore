@@ -1,17 +1,37 @@
-*.py[co]
+# crazy-compiler standard excludes
+/projectlogo.png
+/projectlogo.ico
+/docs/_build/
+*.[1-9]
+.direnv
+
+/*/locale/*/*/*.mo
+
+# editor artefacts
 *~
 .#*
-\#*\#
+\#*#
+.*.swp
 
-/venv
-/build
-/dist
-/*.egg-info
-/.sconsign.dblite
+#  build artefacts
+/.sconf_temp
+/.sconsign.*
+
+# Python build artefacts
+/build/
+/dist/
+/pip-selfcheck.json
+/pyvenv.cfg
+*.py[cod]
+*.egg
+*.egg-info
+*.egg-link
+/.eggs/
+
 /.cache
 /.tox
 /.coverage
-.direnv
+/.direnv
 
 /bin
 /projectlogo.ico
@@ -31,3 +51,11 @@
 # /test/
 /test/chessboard.pdf
 /test/*.ps
+
+# OS generated files
+*.DS_[sS]Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+*.pid
+._.**~
