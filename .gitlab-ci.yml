@@ -15,14 +15,14 @@ before_script:
   - python test/gen-chessboard.py test/chessboard.pdf
 
 test:
-  image: python:${PYTHON_VERSION}
+  image: python:${PYTHON_VERSION}-slim
   script: tox -e "py${PYTHON_VERSION/./}"
   parallel:
     matrix:
       - PYTHON_VERSION: ["3.6", "3.7", "3.8", "3.9", "3.10", "3.11"]
 
 linters:
-  image: python:3.9
+  image: python:3.9-slim
   script:
     # For now only check the readme
     - tox -e readme
