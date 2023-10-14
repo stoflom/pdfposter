@@ -8,11 +8,7 @@
 
 
 before_script:
-  - python --version
-  - pip install -U pip setuptools wheel
-  - pip install -r dev-requirements.txt
-  # Generate test input-file (using Scons for this is overhead)
-  - python test/gen-chessboard.py test/chessboard.pdf
+  - pip install tox
 
 test:
   image: python:${PYTHON_VERSION}-slim
