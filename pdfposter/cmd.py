@@ -205,7 +205,7 @@ def run(args=None):
     except DecryptionError as e:
         raise SystemExit(str(e))
     except PyPDF2.errors.PdfReadError as e:
-        parser.error(_("The input-file is either currupt or no PDF at all: %s")
+        parser.error(_("The input-file is either corrupt or no PDF at all: %s")
                      % e)
 
 
