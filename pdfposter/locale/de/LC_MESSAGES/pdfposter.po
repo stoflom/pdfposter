@@ -3,22 +3,22 @@
 # This file is distributed under the same license as the pdftools.pdfposter
 # project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
-#
+# Hartmut Goebel <h.goebel@crazy-compilers.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: pdftools.pdfposter 0.9.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-20 12:04+0200\n"
-"PO-Revision-Date: 2023-09-20 10:40+0000\n"
-"Last-Translator: htgoebel <h.goebel@crazy-compilers.com>\n"
+"POT-Creation-Date: 2023-10-15 13:52+0200\n"
+"PO-Revision-Date: 2023-10-16 12:53+0000\n"
+"Last-Translator: Hartmut Goebel <h.goebel@crazy-compilers.com>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/pdftools/"
 "pdfposter/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.1\n"
+"X-Generator: Weblate 5.0.2\n"
 "Generated-By: Babel 2.12.1\n"
 
 #: pdfposter/__init__.py:144
@@ -99,7 +99,7 @@ msgstr "Mediengröße: %(units_x)sx%(units_y)s %(unit)s"
 #: pdfposter/__init__.py:342 pdfposter/__init__.py:347
 #, python-format
 msgid "            %(width).2f %(height).2f dots"
-msgstr "            %(width).2f %(height).2f dots"
+msgstr "            %(width).2f %(height).2f Rasterpunkte"
 
 #: pdfposter/__init__.py:344
 #, python-format
@@ -140,8 +140,7 @@ msgstr ""
 msgid ""
 "A `BOX` to be passed to `--media-size` and `--poster-size` is a "
 "specification\n"
-"of horizontal and vertical size. The syntax is as follows (with "
-"multiplier\n"
+"of horizontal and vertical size. The syntax is as follows (with multiplier\n"
 "being specified optionally):\n"
 "\n"
 "  *box* = [ *multiplier* ] *unit*\n"
@@ -170,8 +169,7 @@ msgid ""
 "        This are two a4 pages put together at the *small* side: One\n"
 "        portrait page wide and two portrait pages high.\n"
 "\n"
-":2x1a4: same as 420x297mm (landscape), which is rotated to portrait and "
-"is\n"
+":2x1a4: same as 420x297mm (landscape), which is rotated to portrait and is\n"
 "        the same as 297x420mm (29.7 cm x 42 cm)\n"
 "\n"
 "        This are two a4 pages put together at the *long* side: Two\n"
@@ -225,20 +223,19 @@ msgstr "Zeige die verfügbaren Papier- und Längennamen"
 
 #: pdfposter/cmd.py:146
 msgid ""
-"Show help about specifying BOX for `--media-size` and `--poster-size` and"
-" exit"
+"Show help about specifying BOX for `--media-size` and `--poster-size` and "
+"exit"
 msgstr ""
 "Hilfe zum Spezifizieren von BOX für `--media-size` und `--poster-size`zeigen "
 "und beenden"
 
 #: pdfposter/cmd.py:151
 msgid ""
-"Be verbose. Tell about scaling, rotation and number of pages. Can be used"
-" more than once to increase the verbosity"
+"Be verbose. Tell about scaling, rotation and number of pages. Can be used "
+"more than once to increase the verbosity"
 msgstr ""
-"Ausführlich sein. Informiert über Skalierung, Drehung und Anzahl der "
-"Seiten. Kann mehrals einmal verwendet werden, um die Ausführlichkeit zu "
-"erhöhen"
+"Ausführlich sein. Informiert über Skalierung, Drehung und Anzahl der Seiten. "
+"Kann mehrals einmal verwendet werden, um die Ausführlichkeit zu erhöhen"
 
 #: pdfposter/cmd.py:155
 msgid "Show what would have been done, but do not generate files"
@@ -258,8 +255,8 @@ msgstr "Letzte zu konvertierende Seite (Standard: letzte Seite)"
 
 #: pdfposter/cmd.py:167
 msgid ""
-"Use the content area defined by the ArtBox (default: use the area defined"
-" by the TrimBox)"
+"Use the content area defined by the ArtBox (default: use the area defined by "
+"the TrimBox)"
 msgstr ""
 "Den durch die ArtBox definierten Inhaltsbereich verwenden (Standard: den "
 "durch die TrimBox definierten Bereich verwenden)"
@@ -283,15 +280,14 @@ msgstr "FAKTOR"
 
 #: pdfposter/cmd.py:180
 msgid ""
-"Specify a linear scaling factor to produce the poster. The scaling factor"
-" is applied to the width and height of the input image size. Thus, a "
-"scaling factor of 2 results in a poster 4 times the area compared to the "
-"original"
+"Specify a linear scaling factor to produce the poster. The scaling factor is "
+"applied to the width and height of the input image size. Thus, a scaling "
+"factor of 2 results in a poster 4 times the area compared to the original"
 msgstr ""
-"Geben Sie einen linearen Skalierungsfaktor für die Erstellung des Posters"
-" an. Der Skalierungsfaktor wird auf die Breite und Höhe des Eingabebildes"
-" angewendet. Ein Skalierungsfaktor von 2 führt also zu einem Poster mit "
-"der 4-fachen Fläche im Vergleich zum Original<"
+"Geben Sie einen linearen Skalierungsfaktor für die Erstellung des Posters "
+"an. Der Skalierungsfaktor wird auf die Breite und Höhe des Eingabebildes "
+"angewendet. Ein Skalierungsfaktor von 2 führt also zu einem Poster mit der 4-"
+"fachen Fläche im Vergleich zum Original<"
 
 #: pdfposter/cmd.py:186
 msgid "InputFile"
@@ -319,159 +315,163 @@ msgstr "Vergrößerungsfaktor ist viel zu groß: %s"
 
 #: pdfposter/cmd.py:208
 #, python-format
-msgid "The input-file is either currupt or no PDF at all: %s"
+msgid "The input-file is either corrupt or no PDF at all: %s"
 msgstr "Die Eingabedatei ist entweder beschädigt oder überhaupt kein PDF: %s"
 
-#: ../../usr/lib64/python3.8/argparse.py:295
+#: ../../../../../../usr/lib64/python3.10/argparse.py:296
 msgid "usage: "
 msgstr "Aufruf: "
 
-#: ../../usr/lib64/python3.8/argparse.py:846
+#: ../../../../../../usr/lib64/python3.10/argparse.py:868
 msgid ".__call__() not defined"
 msgstr ".__call__() ist nicht definiert"
 
-#: ../../usr/lib64/python3.8/argparse.py:1149
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1211
 #, python-format
 msgid "unknown parser %(parser_name)r (choices: %(choices)s)"
 msgstr "unbekannter Parser %(parser_name)r (Auswahl: %(choices)s)"
 
-#: ../../usr/lib64/python3.8/argparse.py:1209
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1271
 #, python-format
 msgid "argument \"-\" with mode %r"
 msgstr "Argument \"-\" mit Modus %r"
 
-#: ../../usr/lib64/python3.8/argparse.py:1218
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1280
 #, python-format
 msgid "can't open '%(filename)s': %(error)s"
 msgstr "kann Datei '%(filename)s' nicht öffnen: %(error)s"
 
-#: ../../usr/lib64/python3.8/argparse.py:1427
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1489
 #, python-format
 msgid "cannot merge actions - two groups are named %r"
-msgstr "Aktionen können nicht zusammengeführt werden - zwei Gruppen mit Namen %r"
+msgstr ""
+"Aktionen können nicht zusammengeführt werden - zwei Gruppen mit Namen %r"
 
-#: ../../usr/lib64/python3.8/argparse.py:1465
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1527
 msgid "'required' is an invalid argument for positionals"
 msgstr "'required' ist nicht erlaubt für positionale Argumente"
 
-#: ../../usr/lib64/python3.8/argparse.py:1487
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1549
 #, python-format
 msgid ""
 "invalid option string %(option)r: must start with a character "
 "%(prefix_chars)r"
 msgstr ""
-"ungültiger Optionsstring %(option)r: muss mit einem Zeichen "
-"%(prefix_chars)r beginnen"
+"ungültiger Optionsstring %(option)r: muss mit einem Zeichen %(prefix_chars)r "
+"beginnen"
 
-#: ../../usr/lib64/python3.8/argparse.py:1507
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1567
 #, python-format
 msgid "dest= is required for options like %r"
 msgstr "dest= ist erforderlich für Optionen wie %r"
 
-#: ../../usr/lib64/python3.8/argparse.py:1524
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1584
 #, python-format
 msgid "invalid conflict_resolution value: %r"
 msgstr "ungültiger Konfliktlösungswert: %r"
 
-#: ../../usr/lib64/python3.8/argparse.py:1544
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1604
 #, python-format
 msgid "conflicting option string: %s"
 msgid_plural "conflicting option strings: %s"
 msgstr[0] "widersprüchliche Optionszeichenfolge: %s"
 msgstr[1] "widersprüchliche Optionszeichenfolgen: %s"
 
-#: ../../usr/lib64/python3.8/argparse.py:1608
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1668
 msgid "mutually exclusive arguments must be optional"
 msgstr "sich gegenseitig ausschließende Argumente müssen optional sein"
 
-#: ../../usr/lib64/python3.8/argparse.py:1671
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1736
 msgid "positional arguments"
 msgstr "positionale Argumente"
 
-#: ../../usr/lib64/python3.8/argparse.py:1672
-msgid "optional arguments"
-msgstr "optionale Argumente"
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1737
+msgid "options"
+msgstr "Optionen"
 
-#: ../../usr/lib64/python3.8/argparse.py:1687
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1752
 msgid "show this help message and exit"
 msgstr "diese Hilfemeldung anzeigen und beenden"
 
-#: ../../usr/lib64/python3.8/argparse.py:1718
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1783
 msgid "cannot have multiple subparser arguments"
 msgstr "kann nicht mehrere Subparser-Argumente haben"
 
-#: ../../usr/lib64/python3.8/argparse.py:1770
-#: ../../usr/lib64/python3.8/argparse.py:2277
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1835
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2350
 #, python-format
 msgid "unrecognized arguments: %s"
 msgstr "nicht erkannte Argumente: %s"
 
-#: ../../usr/lib64/python3.8/argparse.py:1867
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1936
 #, python-format
 msgid "not allowed with argument %s"
 msgstr "nicht erlaubt mit Argument %s"
 
-#: ../../usr/lib64/python3.8/argparse.py:1913
-#: ../../usr/lib64/python3.8/argparse.py:1927
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1986
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2000
 #, python-format
 msgid "ignored explicit argument %r"
 msgstr "ignoriertes explizites Argument %r"
 
-#: ../../usr/lib64/python3.8/argparse.py:2034
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2107
 #, python-format
 msgid "the following arguments are required: %s"
 msgstr "die folgenden Argumente sind erforderlich: %s"
 
-#: ../../usr/lib64/python3.8/argparse.py:2049
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2122
 #, python-format
 msgid "one of the arguments %s is required"
 msgstr "eines der Argumente %s ist erforderlich"
 
-#: ../../usr/lib64/python3.8/argparse.py:2092
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2165
 msgid "expected one argument"
 msgstr "ein Argument erwartet"
 
-#: ../../usr/lib64/python3.8/argparse.py:2093
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2166
 msgid "expected at most one argument"
 msgstr "höchstens ein Argument erwartet"
 
-#: ../../usr/lib64/python3.8/argparse.py:2094
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2167
 msgid "expected at least one argument"
 msgstr "mindestens ein Argument erwartet"
 
-#: ../../usr/lib64/python3.8/argparse.py:2098
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2171
 #, python-format
 msgid "expected %s argument"
 msgid_plural "expected %s arguments"
 msgstr[0] "%s Argument erwartet"
 msgstr[1] "%s Argumente erwartet"
 
-#: ../../usr/lib64/python3.8/argparse.py:2156
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2229
 #, python-format
 msgid "ambiguous option: %(option)s could match %(matches)s"
 msgstr "mehrdeutige Option: %(option)s könnte %(matches)s entsprechen"
 
-#: ../../usr/lib64/python3.8/argparse.py:2220
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2293
 #, python-format
 msgid "unexpected option string: %s"
 msgstr "unerwartete Optionszeichenfolge: %s"
 
-#: ../../usr/lib64/python3.8/argparse.py:2417
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2490
 #, python-format
 msgid "%r is not callable"
 msgstr "%r ist nicht aufrufbar"
 
-#: ../../usr/lib64/python3.8/argparse.py:2434
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2507
 #, python-format
 msgid "invalid %(type)s value: %(value)r"
 msgstr "ungültiger Wert für %(type)s: %(value)r"
 
-#: ../../usr/lib64/python3.8/argparse.py:2445
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2518
 #, python-format
 msgid "invalid choice: %(value)r (choose from %(choices)s)"
 msgstr "ungültige Auswahl: %(value)r (wählen Sie aus %(choices)s)"
 
-#: ../../usr/lib64/python3.8/argparse.py:2521
+#: ../../../../../../usr/lib64/python3.10/argparse.py:2594
 #, python-format
 msgid "%(prog)s: error: %(message)s\n"
 msgstr "%(prog)s: Fehler: %(message)s\n"
+
+#~ msgid "optional arguments"
+#~ msgstr "optionale Argumente"
