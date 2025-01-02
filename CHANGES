@@ -2,7 +2,22 @@
 0.9 (unreleased)
 ----------------
 
-* Port to Python library pypdf version 3.
+* Rename the package and module to just `pdfposter`, which was the original
+  name.
+
+* Add support for localization.  Languages currently supported are: German,
+  French (thanks to LS-Localicows), Spanish and Swedish (thanks to
+  Stefan2255).
+
+  Contributions for more languages are welcome. Please check out
+  https://translate.codeberg.org/projects/pdftools/.
+
+* Improve documentation.
+
+* Add support for Python 3.11, 3.12 and 3.13.
+  Drop support for Python 3.6.
+
+* Port to version 3 of the `pypdf` library (thanks to psykose).
 
 
 
