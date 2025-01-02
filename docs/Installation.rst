@@ -6,13 +6,13 @@ Instructions for Windows Users
 -----------------------------------
 
 1. |pdfposter| requires Python. If you don't have Python installed already,
-   download and install Python 3.6 from https://python.org/download/3.6/
+   download and install Python 3.13 from https://python.org/download/3.13/
 
    During installation, make sure to check "Include into PATH".
 
 2. If you already have Python installed, please check that your Python
-   directory (normally :file:`C:\\Python36` for python 3.6) and the Python
-   Scripts directory (normally :file:`C:\\Python36\\Scripts`) are in the system
+   directory (normally :file:`C:\\Python313` for python 3.13) and the Python
+   Scripts directory (normally :file:`C:\\Python313\\Scripts`) are in the system
    path. If not, just add them in :menuselection:`My Computer --> Properties
    --> Advanced --> Environment Variables` to the :envvar:`Path` system
    variable.
@@ -40,7 +40,7 @@ If your distribution or vendor does not provide a current version of
 |pdfposter| please read on.
 
 If your vendor does not provide :command:`python`
-please download Python 3.6 from https://www.python.org/download/ and
+please download Python 3.13 from https://www.python.org/download/ and
 follow the installation instructions there.
 
 If you distribution or vendor missed providing :command:`pip`,

@@ -32,7 +32,7 @@ Requirements and Installation
 
 ``Pdfposter`` requires
 
-* `Python`__  (3.6—3.12, but newer versions should work, too),
+* `Python`__  (3.7—3.13, but newer versions should work, too),
 * `setuptools`__ or `pip`__ for installation, and
 * `pypdf`__ (3.0—4.999, version 5.x is currently not working)
 
