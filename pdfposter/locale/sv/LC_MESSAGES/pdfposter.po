@@ -2,13 +2,13 @@
 # Copyright (C) 2023 ORGANIZATION
 # This file is distributed under the same license as the pdfposter project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
-# Stefan2255 <stefan2255@users.noreply.translate.codeberg.org>, 2024.
+# Stefan2255 <stefan2255@users.noreply.translate.codeberg.org>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: pdfposter 0.9.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-15 13:52+0200\n"
-"PO-Revision-Date: 2024-12-31 00:08+0000\n"
+"PO-Revision-Date: 2025-02-16 07:21+0000\n"
 "Last-Translator: Stefan2255 <stefan2255@users.noreply.translate.codeberg.org>"
 "\n"
 "Language-Team: Swedish <https://translate.codeberg.org/projects/pdftools/"
@@ -68,7 +68,7 @@ msgstr "Sidor med rotation %s x %s"
 #: pdfposter/__init__.py:209
 #, python-format
 msgid "Decided for rotation: %s"
-msgstr ""
+msgstr "Beslutad för rotation: %s"
 
 #: pdfposter/__init__.py:209
 msgid "yes"
@@ -99,7 +99,7 @@ msgstr "Mediastorlek: %(units_x)sx%(units_y)s %(unit)s"
 #: pdfposter/__init__.py:342 pdfposter/__init__.py:347
 #, python-format
 msgid "            %(width).2f %(height).2f dots"
-msgstr ""
+msgstr "            %(width).2f %(height).2f punkter"
 
 #: pdfposter/__init__.py:344
 #, python-format
@@ -235,6 +235,8 @@ msgid ""
 "Be verbose. Tell about scaling, rotation and number of pages. Can be used"
 " more than once to increase the verbosity"
 msgstr ""
+"Var talrik. Berätta om skalning, rotation och antal sidor. Kan användas mer "
+"än en gång för att öka innehållet"
 
 #: pdfposter/cmd.py:155
 msgid "Show what would have been done, but do not generate files"
