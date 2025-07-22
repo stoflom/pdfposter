@@ -235,12 +235,12 @@ def copyPage(page):
 def _clip_pdf_page(page, x, y, width, height):
     content = ContentStream(page["/Contents"].get_object(), None)
     content.operations[:0] = [
-        ([], 'q'), # save graphic state
-        (RectangleObject((x, y, width, height)), 're'), # rectangle path
-        ([], 'W*'), # clip
-        ([], 'n'), # cancel path w/ filling or stroking
+        ([], b'q'), # save graphic state
+        (RectangleObject((x, y, width, height)), b're'), # rectangle path
+        ([], b'W*'), # clip
+        ([], b'n'), # cancel path w/ filling or stroking
         ]
-    content.operations.append([[], "Q"]) # restore graphic state
+    content.operations.append([[], b'Q']) # restore graphic state
     page[NameObject('/Contents')] = content
 
 
@@ -257,7 +257,7 @@ def _scale_pdf_page(outpdf, page, factor):
         #print boxname, type(box), box
     # put transformation matrix in front of page content
     content = ContentStream(page["/Contents"].get_object(), None)
-    content.operations.insert(0, [[], '%f 0 0 %f 0 0 cm' %(factor,factor)] )
+    content.operations.insert(0, [[], b'%f 0 0 %f 0 0 cm' %(factor,factor)] )
     content = content.flate_encode()
     # Add changed content as an indirect object. So the content will
     # be referenced by the other pages and not copied. The content
