@@ -14,7 +14,7 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 """
 Generate a test PDF document for pdfposter with a chessboard drawn on.
@@ -35,6 +35,10 @@ from reportlab.lib.pagesizes import A4, legal, landscape
 from reportlab.pdfgen.canvas import Canvas
 
 
+def dummyDateFormatter(*args, **kw):
+    return "D:20220101141516-00'00'"
+
+
 def genTestFile(path, numPages):
     """Generate a PDF doc with a chess-board laout numbers on each page.
     Usefull for debugging cropped pages."""
@@ -43,6 +47,7 @@ def genTestFile(path, numPages):
     size = A4
     #size = (size[0] + lm + rm, size[1] + tm +bm)
     canv = Canvas(path, pagesize=size)
+    canv.setDateFormatter(dummyDateFormatter)
     for i in range(numPages):
         canv.setFont("Helvetica", 7*mm)
         canv.setStrokeColor(black)

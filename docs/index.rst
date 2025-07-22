@@ -1,5 +1,5 @@
 ==============================================
-pdftools.pdfposter
+pdfposter
 ==============================================
 
 .. container:: admonition topic

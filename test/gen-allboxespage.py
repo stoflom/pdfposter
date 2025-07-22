@@ -14,7 +14,7 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 """
 Generate test PDF documents for pdfposter with all boxes drawn and set.
@@ -37,8 +37,8 @@ from reportlab.lib.colors import black, white, pink, lightblue, blue
 from reportlab.lib.pagesizes import A4, legal, landscape
 from reportlab.pdfgen.canvas import Canvas
 
-from PyPDF2 import PdfFileWriter, PdfFileReader
-from PyPDF2.generic import RectangleObject
+from pypdf import PdfFileWriter, PdfFileReader
+from pypdf.generic import RectangleObject
 
 def draw_box(canvas, color, x,y, width,height, text=None):
     canvas.setStrokeColorRGB(*color)

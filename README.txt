@@ -7,7 +7,7 @@ Scale and tile PDF images/pages to print on multiple pages.
 -------------------------------------------------------------
 
 :Author:    Hartmut Goebel <h.goebel@crazy-compilers.com>
-:Version:   Version 0.8.1
+:Version:   Version 0.8.dev0
 :Copyright: 2008-2022 by Hartmut Goebel
 :License:   GNU Public License v3 or later (GPL-3.0-or-later)
 :Homepage:  https://pdfposter.readthedocs.io/
@@ -32,14 +32,14 @@ Requirements and Installation
 
 ``Pdfposter`` requires
 
-* `Python`__  (3.6—3.10, but newer versions should work, too),
+* `Python`__  (3.7—3.13, but newer versions should work, too),
 * `setuptools`__ or `pip`__ for installation, and
-* `PyPDF2`__ (2.1.1 or newer).
+* `pypdf`__ (3.0—4.999, version 5.x is currently not working)
 
 __ https://www.python.org/download/
 __ https://pypi.org/project/setuptools
 __ https://pypi.org/project/pip
-__ http://mstamy2.github.io/PyPDF2/
+__ https://pypi.org/project/pypdf
 
 
 .. Emacs config:

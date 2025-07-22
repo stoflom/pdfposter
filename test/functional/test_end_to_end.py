@@ -12,20 +12,20 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
 import pytest
 import os, sys
 
-from pdftools.pdfposter import cmd
-import PyPDF2
+from pdfposter import cmd
+import pypdf
 
 CHESSBOARD = os.path.join(os.path.dirname(__file__), '..', 'chessboard.pdf')
 
 def get_num_pages(filename):
     with open(filename, 'rb') as fh:
-        reader = PyPDF2.PdfReader(fh)
+        reader = pypdf.PdfReader(fh)
         return len(reader.pages)
 
 def test_without_options(tmpdir):

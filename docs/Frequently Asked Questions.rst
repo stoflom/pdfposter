@@ -25,7 +25,7 @@ Frequently Asked Questions
   Basically you are right, if you say "hey, this ought to be the
   same!". It is a scaling or rounding issue caused by ISO page sizes
   not scaling exactly (even as they should, see `ISO 216
-  <http://en.wikipedia.org/wiki/ISO_216>`_). For example since A4 is
+  <https://en.wikipedia.org/wiki/ISO_216>`_). For example since A4 is
   297 mm high, A5 should be 148.5 mm wide, but is only 148 mm wide.
 
   So the solution is to specify on the command-line what you want:
@@ -37,6 +37,13 @@ Frequently Asked Questions
 * Are there other Python tools for manipulating PDF?
 
   Yes, there are:
+
+  * `pdfbook <https://pdfbook.readthedocs.io/>`_
+  * `pdfdecrypt <https://pdfdecrypt.readthedocs.io/>`_
+  * `pdfjoin <https://pdfjoin.readthedocs.io/>`_
+  * `flyer-composer <http://www.crazy-compilers.com/flyer-composer.html>`_
+     (including an optional Qt GUI)
+
   * `pdfnup <https://pypi.org/project/pdfnup/>`_
   * `pdfsplit <https://pypi.org/project/pdfsplit/>`_
   * `pdfgrid <https://pypi.org/project/pdfgrid/>`_

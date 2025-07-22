@@ -2,7 +2,7 @@ pip
 setuptools
 wheel
 
-PyPDF2
+pypdf
 
 # for testing
 reportlab

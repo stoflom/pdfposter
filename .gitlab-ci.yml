@@ -8,44 +8,17 @@
 
 
 before_script:
-  - python --version
-  - pip install -U pip setuptools wheel
-  - pip install -r dev-requirements.txt
-  # Generate test input-file (using Scons for this is overhead)
-  - python test/gen-chessboard.py test/chessboard.pdf
+  - pip install tox
 
-python3.6:
-  image: python:3.6
-  script:
-    - tox -e py36
-
-python3.7:
-  image: python:3.7
-  script:
-    - tox -e py37
-
-python3.9:
-  image: python:3.8
-  script:
-    - tox -e py38
-
-python3.9:
-  image: python:3.9
-  script:
-    - tox -e py39
-
-python3.10:
-  image: python:3.10
-  script:
-    - tox -e py310
-
-python3.11:
-  image: python:3.11
-  script:
-    - tox -e py311
+test:
+  image: python:${PYTHON_VERSION}-slim
+  script: tox -e "py${PYTHON_VERSION/./}"
+  parallel:
+    matrix:
+      - PYTHON_VERSION: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
 linters:
-  image: python:3.9
+  image: python:3.13-slim
   script:
     # For now only check the readme
     - tox -e readme

@@ -13,7 +13,7 @@
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
@@ -22,8 +22,8 @@ __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
 
 import pytest
 
-from pdftools.pdfposter import papersizes, decide_num_pages
-from pdftools.pdfposter.cmd import __parse_box as parse_box
+from pdfposter import papersizes, decide_num_pages
+from pdfposter.cmd import __parse_box as parse_box
 import math
 
 def Box(x, y, name):

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-pdftools.pdfposter - scale and tile PDF images/pages to print on multiple pages.
+pdfposter - scale and tile PDF images/pages to print on multiple pages.
 """
 #
 # Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers.com>
@@ -16,21 +16,23 @@ pdftools.pdfposter - scale and tile PDF images/pages to print on multiple pages.
 # General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program. If not, see <http://www.gnu.org/licenses/>.
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
 
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2022 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
-__version__ = "0.8.1"
+__version__ = "0.9"
 
-from PyPDF2 import PdfWriter, PdfReader, PageObject
-from PyPDF2.types import NameObject
-from PyPDF2.generic import ContentStream, RectangleObject, IndirectObject
+from pypdf import PdfWriter, PdfReader, PageObject
+from pypdf.types import NameObject
+from pypdf.generic import ContentStream, RectangleObject, IndirectObject
 
 import logging
 from logging import log
 import math
+
+from .i18n import _
 
 DEFAULT_MEDIASIZE = 'a4'
 
@@ -139,7 +141,7 @@ def rotate2portrait(box, which):
     if (  box['width' ]-box['offset_x']
         > box['height']-box['offset_y']):
         rotate_box(box)
-        log(18, 'Rotating %s specs to portrait format', which)
+        log(18, _("Rotating %s specs to portrait format"), which)
         return True
 
 def decide_num_pages(inbox, mediabox, posterbox, scale=None):
@@ -158,13 +160,13 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
 
     inbox_x = float(inbox['width' ])
     inbox_y = float(inbox['height'])
-    log(17, 'input  dimensions: %.2f %.2f (trimbox of input page)',
+    log(17, _("input  dimensions: %.2f %.2f (trimbox of input page)"),
             inbox_x, inbox_y)
 
     if not scale:
         # user did not specify scale factor, calculate from output size
         # todo: fix assuming posterbox offset = 0,0
-        log(17, 'output dimensions: %.2f %.2f (poster size)',
+        log(17, _("output dimensions: %.2f %.2f (poster size)"),
             posterbox['width'], posterbox['height'])
 
         # ensure poster spec are portrait
@@ -174,20 +176,20 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
         # if the input page has landscape format rotate the
         # poster spec to landscape, too
         if inbox_x > inbox_y:
-            log(18, 'Rotating poster specs since input page is landscape')
+            log(18, _("Rotating poster specs since input page is landscape"))
             rotate = rotate != True # xor
             rotate_box(posterbox)
-            log(18, 'rotated output dimensions: %.2f %.2f (poster size)',
+            log(18, _("rotated output dimensions: %.2f %.2f (poster size)"),
                 posterbox['width'], posterbox['height'])
 
         scale = min(posterbox['width' ] / inbox_x,
                     posterbox['height'] / inbox_y)
-        log(18, 'Calculated page scaling factor: %f', scale)
+        log(18, _("Calculated page scaling factor: %f"), scale)
 
     # use round() to avoid floating point roundup errors
     size_x = round(inbox_x*scale - whitemargin['x'], 4)
     size_y = round(inbox_y*scale - whitemargin['y'], 4)
-    log(17, 'output dimensions: %.2f %.2f (calculated)', size_x, size_y)
+    log(17, _("output dimensions: %.2f %.2f (calculated)"), size_x, size_y)
 
     # num pages without rotation
     nx0 = int(math.ceil(size_x / drawable_x))
@@ -196,15 +198,15 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
     nx1 = int(math.ceil(size_x / drawable_y))
     ny1 = int(math.ceil(size_y / drawable_x))
 
-    log(17, 'Pages w/o rotation %s x %s', nx0, ny0)
-    log(17, 'Pages w/  rotation %s x %s', nx1, ny1)
+    log(17, _("Pages w/o rotation %s x %s"), nx0, ny0)
+    log(17, _("Pages w/  rotation %s x %s"), nx1, ny1)
 
     # Decide for rotation to get the minimum page count.
     # (Rotation is considered as media versus input page, which is
     # totally independent of the portrait or landscape style of the
     # final poster.)
     rotate = (rotate and (nx0*ny0) == (nx1*ny1)) or (nx0*ny0) > (nx1*ny1)
-    log(17, 'Decided for rotation: %s', rotate and 'yes' or 'no')
+    log(17, _("Decided for rotation: %s"), rotate and _("yes") or _("no"))
 
     if rotate:
         ncols = nx1
@@ -233,12 +235,12 @@ def copyPage(page):
 def _clip_pdf_page(page, x, y, width, height):
     content = ContentStream(page["/Contents"].get_object(), None)
     content.operations[:0] = [
-        ([], 'q'), # save graphic state
-        (RectangleObject((x, y, width, height)), 're'), # rectangle path
-        ([], 'W*'), # clip
-        ([], 'n'), # cancel path w/ filling or stroking
+        ([], b'q'), # save graphic state
+        (RectangleObject((x, y, width, height)), b're'), # rectangle path
+        ([], b'W*'), # clip
+        ([], b'n'), # cancel path w/ filling or stroking
         ]
-    content.operations.append([[], "Q"]) # restore graphic state
+    content.operations.append([[], b'Q']) # restore graphic state
     page[NameObject('/Contents')] = content
 
 
@@ -255,7 +257,7 @@ def _scale_pdf_page(outpdf, page, factor):
         #print boxname, type(box), box
     # put transformation matrix in front of page content
     content = ContentStream(page["/Contents"].get_object(), None)
-    content.operations.insert(0, [[], '%f 0 0 %f 0 0 cm' %(factor,factor)] )
+    content.operations.insert(0, [[], b'%f 0 0 %f 0 0 cm' %(factor,factor)] )
     content = content.flate_encode()
     # Add changed content as an indirect object. So the content will
     # be referenced by the other pages and not copied. The content
@@ -297,7 +299,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     for col in range(ncols):
         v_pos = float(trimbox['offset_y']) + (nrows-1) * v_step
         for row in range(nrows):
-            log(17, 'Creating page with offset: %.2f %.2f' % (h_pos, v_pos))
+            log(17, _("Creating page with offset: %.2f %.2f") % (h_pos, v_pos))
             newpage = copyPage(page)
             # todo: if remaining area is smaller than mediabox, add a
             # transparent fill box behind, so the real content is in
@@ -323,11 +325,11 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
     inpdf = PdfReader(open(infilename, 'rb'), strict=False)
 
     if inpdf.is_encrypted:
-        log(16, 'File is encrypted')
+        log(16, _("File is encrypted"))
         # try empty password first
         if not inpdf.decrypt(''):
             if not inpdf.decrypt(password_hook()):
-                raise DecryptionError("Can't decrypt PDF. Wrong Password?")
+                raise DecryptionError(_("Can't decrypt PDF. Wrong Password?"))
 
     first_page = 1
     last_page = len(inpdf.pages)
@@ -336,17 +338,17 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
     if opts.last_page is not None:
         last_page = min(last_page, opts.last_page)
 
-    log(18, 'Mediasize : %(units_x)sx%(units_y)s %(unit)s' % opts.media_size)
-    log(17, '            %(width).2f %(height).2f dots' % opts.media_size)
+    log(18, _("Mediasize : %(units_x)sx%(units_y)s %(unit)s") % opts.media_size)
+    log(17, _("            %(width).2f %(height).2f dots") % opts.media_size)
     if opts.scale:
-        log(18, 'Scaling by: %f' % opts.scale)
+        log(18, _("Scaling by: %f") % opts.scale)
     else:
-        log(18, 'Postersize: %(units_x)sx%(units_y)s %(unit)s' % opts.poster_size)
-        log(17, '            %(width).2f %(height).2f dots' % opts.poster_size)
+        log(18, _("Postersize: %(units_x)sx%(units_y)s %(unit)s") % opts.poster_size)
+        log(17, _("            %(width).2f %(height).2f dots") % opts.poster_size)
 
     for i in range(first_page-1, last_page):
         page = inpdf.pages[i]
-        log(19, '---- processing page %i -----', i+1)
+        log(19, _("---- processing page %i -----"), i+1)
         posterize(outpdf, page, opts.media_size, opts.poster_size, opts.scale,
                   opts.use_ArtBox)
 
