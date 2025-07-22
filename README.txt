@@ -34,7 +34,7 @@ Requirements and Installation
 
 * `Python`__  (3.7—3.13, but newer versions should work, too),
 * `setuptools`__ or `pip`__ for installation, and
-* `pypdf`__ (3.0—4.999, version 5.x is currently not working)
+* `pypdf`__ (3.0 or newer, tested with 5.8.0)
 
 __ https://www.python.org/download/
 __ https://pypi.org/project/setuptools
