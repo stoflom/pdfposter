@@ -37,11 +37,12 @@ Frequently Asked Questions
 * Are there other Python tools for manipulating PDF?
 
   Yes, there are:
+
   * `pdfbook <https://pdfbook.readthedocs.io/>`_
   * `pdfdecrypt <https://pdfdecrypt.readthedocs.io/>`_
   * `pdfjoin <https://pdfjoin.readthedocs.io/>`_
   * `flyer-composer <http://www.crazy-compilers.com/flyer-composer.html>`_
-    (including an optional Qt GUI)
+     (including an optional Qt GUI)
 
   * `pdfnup <https://pypi.org/project/pdfnup/>`_
   * `pdfsplit <https://pypi.org/project/pdfsplit/>`_
