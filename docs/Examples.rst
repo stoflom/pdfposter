@@ -32,14 +32,14 @@ These are intentionally uncommon formats so the effects of running
 Scaling Down a Large Format PDF
 -------------------------------------
 
-  A large format PDFs can be scaled down as well.
-  This example creates an A3 poster on two A4 pages
-  from an original A1 file::
+A large format PDFs can be scaled down as well.
+This example creates an A3 poster on two A4 pages
+from an original A1 file::
 
     pdfposter -p a3 -m a4 placard-a1.pdf poster-on-two-a4.pdf
 
-  You can even scale down the file to a single page
-  by using the same size for both the poster and the medium::
+You can even scale down the file to a single page
+by using the same size for both the poster and the medium::
 
   pdfposter -p a4 -m a4 placard-a1.pdf single-a4-page.pdf
 
