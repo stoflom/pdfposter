@@ -66,7 +66,7 @@ def get_info():
 
 info = get_info()
 # General information about the project.
-project = 'pdfposter'
+project = f'pdfposter {info["release"]}'
 copyright = f'2008-{time.gmtime().tm_year}, Hartmut Goebel'
 author = 'Hartmut Goebel'
 
