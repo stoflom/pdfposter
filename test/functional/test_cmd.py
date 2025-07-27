@@ -64,6 +64,12 @@ def test_without_options(monkeypatch):
     cmd.run(['in.pdf', 'out.pdf'])
 
 
+def test_corrupt_pdf():
+    # passing this text file as input file shall fail
+    with pytest.raises(SystemExit, match="either corrupt or no PDF"):
+        cmd.run([__file__, 'out.pdf'])
+
+
 def test_can_parse_mediasize(monkeypatch):
 
     def mockmain(opts, infilename, outfilename, password_hook=None):
