@@ -5,13 +5,14 @@
 # Hartmut Goebel <h.goebel@crazy-compilers.com>, 2023.
 # LS-Localicows <LS-Localicows@users.noreply.translate.codeberg.org>, 2024.
 # milimarg <milimarg@noreply.codeberg.org>, 2025.
+# Hartmut Goebel <htgoebel@noreply.codeberg.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: pdfposter 0.9.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-15 13:52+0200\n"
-"PO-Revision-Date: 2025-05-31 13:58+0000\n"
-"Last-Translator: milimarg <milimarg@noreply.codeberg.org>\n"
+"POT-Creation-Date: 2025-07-28 00:10+0200\n"
+"PO-Revision-Date: 2025-07-27 22:30+0000\n"
+"Last-Translator: Hartmut Goebel <htgoebel@noreply.codeberg.org>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/pdftools/"
 "pdfposter/fr/>\n"
 "Language: fr\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.12.2\n"
 "Generated-By: Babel 2.12.1\n"
 
 #: pdfposter/__init__.py:144
@@ -81,40 +82,40 @@ msgstr "oui"
 msgid "no"
 msgstr "non"
 
-#: pdfposter/__init__.py:302
+#: pdfposter/__init__.py:281
 #, python-format
 msgid "Creating page with offset: %.2f %.2f"
 msgstr "Création d'une page avec décalage : %.2f %.2f"
 
-#: pdfposter/__init__.py:328
+#: pdfposter/__init__.py:307
 msgid "File is encrypted"
 msgstr "Le fichier est chiffré"
 
-#: pdfposter/__init__.py:332
+#: pdfposter/__init__.py:311
 msgid "Can't decrypt PDF. Wrong Password?"
 msgstr "Impossible de déchiffrer le PDF. Mauvais mot de passe ?"
 
-#: pdfposter/__init__.py:341
+#: pdfposter/__init__.py:320
 #, python-format
 msgid "Mediasize : %(units_x)sx%(units_y)s %(unit)s"
 msgstr "Taille moyenne : %(units_x)sx%(units_y)s %(unit)s"
 
-#: pdfposter/__init__.py:342 pdfposter/__init__.py:347
+#: pdfposter/__init__.py:321 pdfposter/__init__.py:326
 #, python-format
 msgid "            %(width).2f %(height).2f dots"
 msgstr "            %(width).2f %(height).2f points"
 
-#: pdfposter/__init__.py:344
+#: pdfposter/__init__.py:323
 #, python-format
 msgid "Scaling by: %f"
 msgstr "Mise à l'échelle par : %f"
 
-#: pdfposter/__init__.py:346
+#: pdfposter/__init__.py:325
 #, python-format
 msgid "Postersize: %(units_x)sx%(units_y)s %(unit)s"
 msgstr "Taille de l'affiche :%(units_x)sx%(units_y)s %(unit)s"
 
-#: pdfposter/__init__.py:351
+#: pdfposter/__init__.py:330
 #, python-format
 msgid "---- processing page %i -----"
 msgstr "---- traitement de la page %i -----"
@@ -235,7 +236,11 @@ msgstr ""
 "Afficher l'aide sur la spécification de BOX pour `--media-size` et `--poster-"
 "size` et quitter"
 
-#: pdfposter/cmd.py:151
+#: pdfposter/cmd.py:149
+msgid "show program's version number and exit"
+msgstr "affiche la version du programme avant de quitter"
+
+#: pdfposter/cmd.py:152
 msgid ""
 "Be verbose. Tell about scaling, rotation and number of pages. Can be used "
 "more than once to increase the verbosity"
@@ -243,23 +248,27 @@ msgstr ""
 "Soyez prolixe. Indique la mise à l'échelle, la rotation et le nombre de "
 "pages. Peut être utilisé plusieurs fois pour augmenter la verbosité"
 
-#: pdfposter/cmd.py:155
+#: pdfposter/cmd.py:156
 msgid "Show what would have been done, but do not generate files"
 msgstr "Affiche ce qui aurait été fait, sans créer de fichiers"
 
-#: pdfposter/cmd.py:160 pdfposter/cmd.py:163
+#: pdfposter/cmd.py:159
+msgid "Define Input"
+msgstr ""
+
+#: pdfposter/cmd.py:161 pdfposter/cmd.py:164
 msgid "INTEGER"
 msgstr "ENTIER"
 
-#: pdfposter/cmd.py:161
+#: pdfposter/cmd.py:162
 msgid "First page to convert (default: first page)"
 msgstr "Première page à convertir (par défaut : première page)"
 
-#: pdfposter/cmd.py:164
+#: pdfposter/cmd.py:165
 msgid "Last page to convert (default: last page)"
 msgstr "Dernière page à convertir (par défaut : dernière page)"
 
-#: pdfposter/cmd.py:167
+#: pdfposter/cmd.py:168
 msgid ""
 "Use the content area defined by the ArtBox (default: use the area defined by "
 "the TrimBox)"
@@ -267,24 +276,28 @@ msgstr ""
 "Utiliser la zone de contenu définie par l'ArtBox (par défaut : utiliser la "
 "zone définie par la TrimBox)"
 
-#: pdfposter/cmd.py:173 pdfposter/cmd.py:177
+#: pdfposter/cmd.py:171
+msgid "Define Output"
+msgstr ""
+
+#: pdfposter/cmd.py:174 pdfposter/cmd.py:178
 msgid "BOX"
 msgstr "BOX"
 
-#: pdfposter/cmd.py:174
+#: pdfposter/cmd.py:175
 #, python-format
 msgid "Specify the page size of the output media (default: %s)"
 msgstr "Spécifie la taille de page du support de sortie (par défaut : %s)"
 
-#: pdfposter/cmd.py:178
+#: pdfposter/cmd.py:179
 msgid "Specify the poster size (defaults to media size)"
 msgstr "Spécifier la taille de l'affiche (par défaut la taille du support)"
 
-#: pdfposter/cmd.py:179
+#: pdfposter/cmd.py:180
 msgid "SCALE"
 msgstr "ÉCHELLE"
 
-#: pdfposter/cmd.py:180
+#: pdfposter/cmd.py:181
 msgid ""
 "Specify a linear scaling factor to produce the poster. The scaling factor is "
 "applied to the width and height of the input image size. Thus, a scaling "
@@ -295,31 +308,31 @@ msgstr ""
 "Ainsi, un facteur d'échelle de 2 permet d'obtenir une affiche d'une surface "
 "quatre fois supérieure à celle de l'image originale"
 
-#: pdfposter/cmd.py:186
+#: pdfposter/cmd.py:187
 msgid "InputFile"
 msgstr "Fichier d’entrée"
 
-#: pdfposter/cmd.py:187
+#: pdfposter/cmd.py:188
 msgid "OutputFile"
 msgstr "Fichier de sortie"
 
-#: pdfposter/cmd.py:192
+#: pdfposter/cmd.py:193
 msgid "Only one of -p/--poster-size and -s/--scale may be given at a time."
 msgstr ""
 "Une seule des options -p/--poster-size et -s/--scale peut être donnée à la "
 "fois."
 
-#: pdfposter/cmd.py:199
+#: pdfposter/cmd.py:200
 #, python-format
 msgid "Scale value is much to small: %s"
 msgstr "La valeur de l'échelle est beaucoup trop faible : %s"
 
-#: pdfposter/cmd.py:201
+#: pdfposter/cmd.py:202
 #, python-format
 msgid "Scale value is much to big: %s"
 msgstr "La valeur de l'échelle est beaucoup trop grande : %s"
 
-#: pdfposter/cmd.py:208
+#: pdfposter/cmd.py:209
 #, python-format
 msgid "The input-file is either corrupt or no PDF at all: %s"
 msgstr "Le fichier d'entrée est soit corrompu, soit ne contient aucun PDF : %s"
@@ -375,7 +388,7 @@ msgstr "dest= est requis pour les options telles que %r"
 msgid "invalid conflict_resolution value: %r"
 msgstr "valeur invalide pour conflict_resolution : %r"
 
-#: ../../../../../../usr/lib64/python3.10/argparse.py:1604
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1602
 #, python-format
 msgid "conflicting option string: %s"
 msgid_plural "conflicting option strings: %s"
