@@ -2,23 +2,23 @@
 # Copyright (C) 2023 ORGANIZATION
 # This file is distributed under the same license as the pdfposter project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
-# Stefan2255 <stefan2255@users.noreply.translate.codeberg.org>, 2024.
+# Stefan2255 <stefan2255@users.noreply.translate.codeberg.org>, 2024, 2025.
+# Hartmut Goebel <htgoebel@noreply.codeberg.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: pdfposter 0.9.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-15 13:52+0200\n"
-"PO-Revision-Date: 2024-12-31 00:08+0000\n"
-"Last-Translator: Stefan2255 <stefan2255@users.noreply.translate.codeberg.org>"
-"\n"
+"POT-Creation-Date: 2025-07-28 00:10+0200\n"
+"PO-Revision-Date: 2025-07-27 22:30+0000\n"
+"Last-Translator: Hartmut Goebel <htgoebel@noreply.codeberg.org>\n"
 "Language-Team: Swedish <https://translate.codeberg.org/projects/pdftools/"
 "pdfposter/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.12.2\n"
 "Generated-By: Babel 2.13.0\n"
 
 #: pdfposter/__init__.py:144
@@ -68,7 +68,7 @@ msgstr "Sidor med rotation %s x %s"
 #: pdfposter/__init__.py:209
 #, python-format
 msgid "Decided for rotation: %s"
-msgstr ""
+msgstr "Beslutad för rotation: %s"
 
 #: pdfposter/__init__.py:209
 msgid "yes"
@@ -78,40 +78,40 @@ msgstr "Ja"
 msgid "no"
 msgstr "nej"
 
-#: pdfposter/__init__.py:302
+#: pdfposter/__init__.py:281
 #, python-format
 msgid "Creating page with offset: %.2f %.2f"
 msgstr "Skapar sida med offset: %.2f %.2f"
 
-#: pdfposter/__init__.py:328
+#: pdfposter/__init__.py:307
 msgid "File is encrypted"
 msgstr "Filen är krypterad"
 
-#: pdfposter/__init__.py:332
+#: pdfposter/__init__.py:311
 msgid "Can't decrypt PDF. Wrong Password?"
 msgstr "Kan inte dekryptera PDF:en. Fel lösenord?"
 
-#: pdfposter/__init__.py:341
+#: pdfposter/__init__.py:320
 #, python-format
 msgid "Mediasize : %(units_x)sx%(units_y)s %(unit)s"
 msgstr "Mediastorlek: %(units_x)sx%(units_y)s %(unit)s"
 
-#: pdfposter/__init__.py:342 pdfposter/__init__.py:347
+#: pdfposter/__init__.py:321 pdfposter/__init__.py:326
 #, python-format
 msgid "            %(width).2f %(height).2f dots"
-msgstr ""
+msgstr "            %(width).2f %(height).2f punkter"
 
-#: pdfposter/__init__.py:344
+#: pdfposter/__init__.py:323
 #, python-format
 msgid "Scaling by: %f"
 msgstr "Skalning med: %f"
 
-#: pdfposter/__init__.py:346
+#: pdfposter/__init__.py:325
 #, python-format
 msgid "Postersize: %(units_x)sx%(units_y)s %(unit)s"
 msgstr "Postersstorlek: %(units_x)sx%(units_y)s %(unit)s"
 
-#: pdfposter/__init__.py:351
+#: pdfposter/__init__.py:330
 #, python-format
 msgid "---- processing page %i -----"
 msgstr "---- bearbetar sida %i -----"
@@ -119,11 +119,11 @@ msgstr "---- bearbetar sida %i -----"
 #: pdfposter/cmd.py:49
 #, python-format
 msgid "I don't understand your box specification %r"
-msgstr ""
+msgstr "Jag förstår inte din boxspecifikation %r"
 
 #: pdfposter/cmd.py:53
 msgid "Offset not allowed in box definition"
-msgstr ""
+msgstr "Offset inte tillåtet i boxdefinitionen"
 
 #: pdfposter/cmd.py:64
 #, python-format
@@ -139,8 +139,7 @@ msgstr "Ditt pappersstorleksnamn %r är inte unikt, ge fler tecken."
 msgid ""
 "A `BOX` to be passed to `--media-size` and `--poster-size` is a "
 "specification\n"
-"of horizontal and vertical size. The syntax is as follows (with "
-"multiplier\n"
+"of horizontal and vertical size. The syntax is as follows (with multiplier\n"
 "being specified optionally):\n"
 "\n"
 "  *box* = [ *multiplier* ] *unit*\n"
@@ -169,8 +168,7 @@ msgid ""
 "        This are two a4 pages put together at the *small* side: One\n"
 "        portrait page wide and two portrait pages high.\n"
 "\n"
-":2x1a4: same as 420x297mm (landscape), which is rotated to portrait and "
-"is\n"
+":2x1a4: same as 420x297mm (landscape), which is rotated to portrait and is\n"
 "        the same as 297x420mm (29.7 cm x 42 cm)\n"
 "\n"
 "        This are two a4 pages put together at the *long* side: Two\n"
@@ -225,93 +223,106 @@ msgstr "Lista tillgängliga media och avståndsnamn"
 
 #: pdfposter/cmd.py:146
 msgid ""
-"Show help about specifying BOX for `--media-size` and `--poster-size` and"
-" exit"
+"Show help about specifying BOX for `--media-size` and `--poster-size` and "
+"exit"
 msgstr ""
 "Visa hjälp om att ange BOX för `--media-size` och `--poster-size` och avsluta"
 
-#: pdfposter/cmd.py:151
-msgid ""
-"Be verbose. Tell about scaling, rotation and number of pages. Can be used"
-" more than once to increase the verbosity"
-msgstr ""
+#: pdfposter/cmd.py:149
+msgid "show program's version number and exit"
+msgstr "visa programmets versionsnummer och avsluta"
 
-#: pdfposter/cmd.py:155
+#: pdfposter/cmd.py:152
+msgid ""
+"Be verbose. Tell about scaling, rotation and number of pages. Can be used "
+"more than once to increase the verbosity"
+msgstr ""
+"Var talrik. Berätta om skalning, rotation och antal sidor. Kan användas mer "
+"än en gång för att öka innehållet"
+
+#: pdfposter/cmd.py:156
 msgid "Show what would have been done, but do not generate files"
 msgstr "Visa vad som skulle ha skett, men skapa inga filer"
 
-#: pdfposter/cmd.py:160 pdfposter/cmd.py:163
+#: pdfposter/cmd.py:159
+msgid "Define Input"
+msgstr ""
+
+#: pdfposter/cmd.py:161 pdfposter/cmd.py:164
 msgid "INTEGER"
 msgstr "HELTAL"
 
-#: pdfposter/cmd.py:161
+#: pdfposter/cmd.py:162
 msgid "First page to convert (default: first page)"
 msgstr "Första sidan att konvertera (standard: första sidan)"
 
-#: pdfposter/cmd.py:164
+#: pdfposter/cmd.py:165
 msgid "Last page to convert (default: last page)"
 msgstr "Sista sidan att konvertera (standard: sista sidan)"
 
-#: pdfposter/cmd.py:167
+#: pdfposter/cmd.py:168
 msgid ""
-"Use the content area defined by the ArtBox (default: use the area defined"
-" by the TrimBox)"
+"Use the content area defined by the ArtBox (default: use the area defined by "
+"the TrimBox)"
 msgstr ""
 "Använd innehållsområdet som definieras av ArtBox (standard: använd området "
 "som definieras av TrimBox)"
 
-#: pdfposter/cmd.py:173 pdfposter/cmd.py:177
+#: pdfposter/cmd.py:171
+msgid "Define Output"
+msgstr ""
+
+#: pdfposter/cmd.py:174 pdfposter/cmd.py:178
 msgid "BOX"
 msgstr "LÅDA"
 
-#: pdfposter/cmd.py:174
+#: pdfposter/cmd.py:175
 #, python-format
 msgid "Specify the page size of the output media (default: %s)"
 msgstr "Ange sidstorleken för utmatningsmediet (standard: %s)"
 
-#: pdfposter/cmd.py:178
+#: pdfposter/cmd.py:179
 msgid "Specify the poster size (defaults to media size)"
 msgstr "Ange affischstorlek (standard till mediastorlek)"
 
-#: pdfposter/cmd.py:179
+#: pdfposter/cmd.py:180
 msgid "SCALE"
 msgstr "SKALA"
 
-#: pdfposter/cmd.py:180
+#: pdfposter/cmd.py:181
 msgid ""
-"Specify a linear scaling factor to produce the poster. The scaling factor"
-" is applied to the width and height of the input image size. Thus, a "
-"scaling factor of 2 results in a poster 4 times the area compared to the "
-"original"
+"Specify a linear scaling factor to produce the poster. The scaling factor is "
+"applied to the width and height of the input image size. Thus, a scaling "
+"factor of 2 results in a poster 4 times the area compared to the original"
 msgstr ""
 "Ange en linjär skalningsfaktor för att producera affischen. Skalningsfaktorn "
 "tillämpas på bredden och höjden på den inmatade bildstorleken. En "
 "skalningsfaktor på 2 resulterar alltså i en affisch som är 4 gånger så stor "
 "yta jämfört med originalet"
 
-#: pdfposter/cmd.py:186
+#: pdfposter/cmd.py:187
 msgid "InputFile"
 msgstr "InmatningsFil"
 
-#: pdfposter/cmd.py:187
+#: pdfposter/cmd.py:188
 msgid "OutputFile"
 msgstr "UtmatningsFil"
 
-#: pdfposter/cmd.py:192
+#: pdfposter/cmd.py:193
 msgid "Only one of -p/--poster-size and -s/--scale may be given at a time."
 msgstr "Endast en av -p/--affischstorlek och -s/--skala får ges åt gången."
 
-#: pdfposter/cmd.py:199
+#: pdfposter/cmd.py:200
 #, python-format
 msgid "Scale value is much to small: %s"
 msgstr "Skalvärdet är mycket för litet: %s"
 
-#: pdfposter/cmd.py:201
+#: pdfposter/cmd.py:202
 #, python-format
 msgid "Scale value is much to big: %s"
 msgstr "Skalvärdet är mycket för stort: %s"
 
-#: pdfposter/cmd.py:208
+#: pdfposter/cmd.py:209
 #, python-format
 msgid "The input-file is either corrupt or no PDF at all: %s"
 msgstr ""
@@ -319,35 +330,36 @@ msgstr ""
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:296
 msgid "usage: "
-msgstr ""
+msgstr "användning: "
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:868
 msgid ".__call__() not defined"
-msgstr ""
+msgstr ".__call__() är inte definierad"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1211
 #, python-format
 msgid "unknown parser %(parser_name)r (choices: %(choices)s)"
-msgstr ""
+msgstr "okänd parser %(parser_name)r (valmöjligheter: %(choices)s)"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1271
 #, python-format
 msgid "argument \"-\" with mode %r"
-msgstr ""
+msgstr "argument \"-\" med läge %r"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1280
 #, python-format
 msgid "can't open '%(filename)s': %(error)s"
-msgstr ""
+msgstr "kan inte öppna '%(filename)s': %(error)s"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1489
 #, python-format
 msgid "cannot merge actions - two groups are named %r"
-msgstr ""
+msgstr "kan inte sammanfoga ageranden(actions) - två grupper kallas %r"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1527
 msgid "'required' is an invalid argument for positionals"
 msgstr ""
+"'required' är en otillåten parameter för ordningsföljdsberoende parametrar"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1549
 #, python-format
@@ -355,31 +367,37 @@ msgid ""
 "invalid option string %(option)r: must start with a character "
 "%(prefix_chars)r"
 msgstr ""
+"felaktig parametersträng %(option)r: måste börja med ett av tecknen "
+"%(prefix_chars)r"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1567
 #, python-format
 msgid "dest= is required for options like %r"
-msgstr ""
+msgstr "dest= krävs för parametrar som %r"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1584
 #, python-format
 msgid "invalid conflict_resolution value: %r"
-msgstr ""
+msgstr "felaktigt värde för conflict_resolution: %r"
 
-#: ../../../../../../usr/lib64/python3.10/argparse.py:1604
-#, python-format
+#: ../../../../../../usr/lib64/python3.10/argparse.py:1602
+#, fuzzy, python-format
 msgid "conflicting option string: %s"
 msgid_plural "conflicting option strings: %s"
 msgstr[0] ""
+"sträng för parameternamn står i konflikt: %ssträngar för parameternamn står "
+"i konflikt: %s"
 msgstr[1] ""
+"sträng för parameternamn står i konflikt: %ssträngar för parameternamn står "
+"i konflikt: %s"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1668
 msgid "mutually exclusive arguments must be optional"
-msgstr ""
+msgstr "parametrar som inte tillåts tillsammans måste vara frivilliga"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1736
 msgid "positional arguments"
-msgstr ""
+msgstr "ordningsföljdsberoende parametrar"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1737
 msgid "options"
@@ -387,84 +405,84 @@ msgstr "alternativ"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1752
 msgid "show this help message and exit"
-msgstr ""
+msgstr "visa denna hjälp och avsluta"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1783
 msgid "cannot have multiple subparser arguments"
-msgstr ""
+msgstr "kan inte ha flera subparser-parametrar"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1835
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2350
 #, python-format
 msgid "unrecognized arguments: %s"
-msgstr ""
+msgstr "ej igenkända parametrar: %s"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1936
 #, python-format
 msgid "not allowed with argument %s"
-msgstr ""
+msgstr "tillåts ej med parametern/parametrarna %s"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:1986
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2000
 #, python-format
 msgid "ignored explicit argument %r"
-msgstr ""
+msgstr "ignorerade uttryckligt givet parametervärde %r"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2107
 #, python-format
 msgid "the following arguments are required: %s"
-msgstr ""
+msgstr "följande parametrar är obligatoriska: %s"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2122
 #, python-format
 msgid "one of the arguments %s is required"
-msgstr ""
+msgstr "en av parametrarna %s krävs"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2165
 msgid "expected one argument"
-msgstr ""
+msgstr "förväntade sig ett parametervärde"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2166
 msgid "expected at most one argument"
-msgstr ""
+msgstr "som mest ett parametervärde förväntades"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2167
 msgid "expected at least one argument"
-msgstr ""
+msgstr "minst ett parametervärde förväntades"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2171
 #, python-format
 msgid "expected %s argument"
 msgid_plural "expected %s arguments"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "förväntade sig %s parametervärde"
+msgstr[1] "förväntade sig %s parametervärden"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2229
 #, python-format
 msgid "ambiguous option: %(option)s could match %(matches)s"
-msgstr ""
+msgstr "tvetydigt parameternamn: %(option)s skulle kunna matcha %(matches)s"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2293
 #, python-format
 msgid "unexpected option string: %s"
-msgstr ""
+msgstr "oväntad parameternamnssträng: %s"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2490
 #, python-format
 msgid "%r is not callable"
-msgstr ""
+msgstr "%r är inte anropsbar"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2507
 #, python-format
 msgid "invalid %(type)s value: %(value)r"
-msgstr ""
+msgstr "felaktigt %(type)s-värde: %(value)r"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2518
 #, python-format
 msgid "invalid choice: %(value)r (choose from %(choices)s)"
-msgstr ""
+msgstr "felaktigt val: %(value)r (välj från %(choices)s)"
 
 #: ../../../../../../usr/lib64/python3.10/argparse.py:2594
 #, python-format
 msgid "%(prog)s: error: %(message)s\n"
-msgstr ""
+msgstr "%(prog)s: fel: %(message)s\n"

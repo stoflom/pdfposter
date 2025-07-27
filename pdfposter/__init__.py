@@ -22,7 +22,7 @@ pdfposter - scale and tile PDF images/pages to print on multiple pages.
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2025 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
-__version__ = "0.9.post1"
+__version__ = "0.9.post2"
 
 from pypdf import PdfWriter, PdfReader, PageObject
 from pypdf.types import NameObject
@@ -244,27 +244,6 @@ def _clip_pdf_page(page, x, y, width, height):
     page[NameObject('/Contents')] = content
 
 
-def _scale_pdf_page(outpdf, page, factor):
-    for boxname in PAGE_BOXES:
-        box = page.get(boxname)
-        # skip if real box does not exits (avoid fallback to other boxes)
-        if not box:
-            continue
-        if isinstance(box, IndirectObject):
-            box = page.pdf.get_object(box)
-        for i, v in enumerate(box):
-            box[i] = float(v) * factor
-        #print boxname, type(box), box
-    # put transformation matrix in front of page content
-    content = ContentStream(page["/Contents"].get_object(), None)
-    content.operations.insert(0, [[], b'%f 0 0 %f 0 0 cm' %(factor,factor)] )
-    content = content.flate_encode()
-    # Add changed content as an indirect object. So the content will
-    # be referenced by the other pages and not copied. The content
-    # will be in the output file only once.
-    page[NameObject('/Contents')] = outpdf._add_object(content)
-
-
 def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     """
     page: input page
@@ -281,7 +260,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     ncols, nrows, scale, rotate = decide_num_pages(inbox, mediabox,
                                                    posterbox, scale)
     mediabox = mediabox.copy()
-    _scale_pdf_page(outpdf, page, scale)
+    page.scale_by(scale)
     if rotate:
         page.rotate(90)
         rotate_box(inbox)
@@ -353,4 +332,5 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
                   opts.use_ArtBox)
 
     if not opts.dry_run:
+        outpdf.compress_identical_objects()
         outpdf.write(open(outfilename, 'wb'))

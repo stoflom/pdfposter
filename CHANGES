@@ -1,4 +1,22 @@
 
+0.9.post2 (2025-07-28)
+----------------------
+
+* Fix scaling the page. This was totally broken in version 0.9, leading to
+  empty pages.
+
+* Drop support for Python 3.7. The required version of the library pdfposter
+  is based on doesn't support that version any longer.
+
+* Translate more strings. Update translations.
+
+
+0.9.post1 (2025-07-22)
+----------------------
+
+* Fix packaging and upload to PyPI.
+
+
 0.9 (2025-07-22)
 ----------------
 
