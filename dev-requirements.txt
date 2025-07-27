@@ -6,7 +6,7 @@ pypdf
 
 # for testing
 reportlab
-tox
+tox > 4
 
 # for building the documentation
 sphinx
