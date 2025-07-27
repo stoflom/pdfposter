@@ -168,7 +168,7 @@ def run(args=None):
                        help=_("Use the content area defined by the ArtBox "
                               "(default: use the area defined by the TrimBox)"))
 
-    group = parser.add_argument_group(_("Define Target"))
+    group = parser.add_argument_group(_("Define Output"))
     group.add_argument('-m', '--media-size',
                        default=__parse_box(DEFAULT_MEDIASIZE),
                        type=__parse_box, metavar=_("BOX"),
