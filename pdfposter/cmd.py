@@ -146,6 +146,7 @@ def run(args=None):
                         help=_("Show help about specifying BOX for "
                                "`--media-size` and `--poster-size` and exit"))
     parser.add_argument('--version', action='version',
+                        help=_("show program's version number and exit"),
                         version="%(prog)s " + __version__)
     parser.add_argument('-v', '--verbose', action='count', default=0,
                         help=_("Be verbose. Tell about scaling, rotation "
@@ -155,7 +156,7 @@ def run(args=None):
                         help=_("Show what would have been done, "
                                "but do not generate files"))
 
-    group = parser.add_argument_group('Define Input')
+    group = parser.add_argument_group(_("Define Input"))
     group.add_argument('-f', '--first', type=int, dest='first_page',
                        metavar=_("INTEGER"),
                        help=_("First page to convert (default: first page)"))
@@ -167,7 +168,7 @@ def run(args=None):
                        help=_("Use the content area defined by the ArtBox "
                               "(default: use the area defined by the TrimBox)"))
 
-    group = parser.add_argument_group('Define Target')
+    group = parser.add_argument_group(_("Define Target"))
     group.add_argument('-m', '--media-size',
                        default=__parse_box(DEFAULT_MEDIASIZE),
                        type=__parse_box, metavar=_("BOX"),
