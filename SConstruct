@@ -43,9 +43,10 @@ env.Export(['env'])
 env.SConscript(dirs='test')
 env.SConscript(dirs='examples')
 
-env.Command(['docs/pdfposter.1', 'docs/pdfposter.html'],
-            'pdfposter.rst',
-            'python setup.py build_docs')
+env.Command('docs/pdfposter.html', 'pdfposter.rst',
+            'build-aux/gen-man-page.py $SOURCE html $TARGET')
+env.Command('docs/pdfposter.1', 'pdfposter.rst',
+            'build-aux/gen-man-page.py $SOURCE manpage $TARGET')
 
 # create PNG projectlogo for project homepage
 env.Command('projectlogo.png', 'projectlogo.svg',
