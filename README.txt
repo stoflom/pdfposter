@@ -33,11 +33,10 @@ Requirements and Installation
 ``Pdfposter`` requires
 
 * `Python`__  (3.8—3.13, but newer versions should work, too),
-* `setuptools`__ or `pip`__ for installation, and
+* `pip`__ for installation, and
 * `pypdf`__ (5.5 or newer, tested with 5.8.0)
 
 __ https://www.python.org/download/
-__ https://pypi.org/project/setuptools
 __ https://pypi.org/project/pip
 __ https://pypi.org/project/pypdf
 
