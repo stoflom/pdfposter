@@ -14,7 +14,6 @@
 
 import sys, os
 from importlib import metadata
-import time
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -67,7 +66,7 @@ def get_info():
 info = get_info()
 # General information about the project.
 project = f'pdfposter {info["release"]}'
-copyright = f'2008-{time.gmtime().tm_year}, Hartmut Goebel'
+copyright = '2008-%Y, Hartmut Goebel'
 author = 'Hartmut Goebel'
 
 # The version info for the project you're documenting, acts as replacement for
