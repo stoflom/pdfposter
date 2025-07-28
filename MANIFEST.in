@@ -6,6 +6,7 @@ include INSTALL
 include README.txt
 include pdfposter.rst
 exclude projectlogo.*
+include */locale/*.pot
 exclude .gitignore .gitattributes
 global-exclude SConstruct SConscript
 global-exclude *~ .\#* \#*\#
