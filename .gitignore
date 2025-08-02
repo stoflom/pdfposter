@@ -1,3 +1,7 @@
+# -*- mode: gitignore; -*-
+# SPDX-FileCopyrightText: NONE
+# SPDX-License-Identifier: CC0-1.0
+
 # crazy-compiler standard excludes
 /projectlogo.png
 /projectlogo.ico

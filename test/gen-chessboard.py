@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
+# SPDX-License-Identifier: GPL-3.0-or-later
 """
 Generate a test PDF document for pdfposter with a chessboard drawn on.
 
@@ -27,7 +28,7 @@ from __future__ import unicode_literals
 
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2025 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
+__license__ = "GPL-3.0-or-later"
 
 from reportlab.lib.units import mm, cm
 from reportlab.lib.colors import black, white, pink, lightblue, blue

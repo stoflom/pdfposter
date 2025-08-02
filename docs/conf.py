@@ -11,6 +11,10 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
+#
+# This file is part of pdfposter.
+# Copyright (C) 2008-2025 Hartmut Goebel
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 import sys, os
 from importlib import metadata

@@ -1,3 +1,5 @@
+# Copyright (C) 2008-2025 Hartmut Goebel <h.goebel@crazy-compilers.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 .PHONY: all
 

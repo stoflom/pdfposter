@@ -1,7 +1,6 @@
 # Translations template for pdfposter.
-# Copyright (C) 2023 ORGANIZATION
+# Copyright (C) 2008-2025 Hartmut Goebel
 # This file is distributed under the same license as the pdfposter project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 # Hartmut Goebel <h.goebel@crazy-compilers.com>, 2023.
 # LS-Localicows <LS-Localicows@users.noreply.translate.codeberg.org>, 2024.
 # milimarg <milimarg@noreply.codeberg.org>, 2025.
@@ -11,7 +10,7 @@ msgstr ""
 "Project-Id-Version: pdfposter 0.9.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-07-28 00:10+0200\n"
-"PO-Revision-Date: 2025-07-27 22:30+0000\n"
+"PO-Revision-Date: 2025-08-03 19:42+0200\n"
 "Last-Translator: Hartmut Goebel <htgoebel@noreply.codeberg.org>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/pdftools/"
 "pdfposter/fr/>\n"
