@@ -44,3 +44,6 @@ _ = translate.gettext
 
 # required to make our translations work in argparse
 install_in_argparse(translate)
+
+# Additional string for Python < 3.10:
+_('optional arguments')
