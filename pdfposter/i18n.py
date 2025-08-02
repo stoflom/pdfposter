@@ -23,6 +23,16 @@ import gettext
 import os
 import sys
 
+
+def install_in_argparse(translate):
+    import argparse
+    argparse.__dict__['_'] = translate.gettext
+    for name in {'gettext', 'lgettext', 'lngettext',
+                 'ngettext', 'npgettext', 'pgettext'}:
+        if name in argparse.__dict__:
+            argparse.__dict__[name] = getattr(translate, name)
+
+
 _domain = 'pdfposter'
 if getattr(sys, 'frozen', None):
     localedir = os.path.join(sys._MEIPASS, 'locale')
@@ -32,6 +42,5 @@ translate = gettext.translation(_domain,
                                 localedir, fallback=True)
 _ = translate.gettext
 
-# required to make translations work in argparse
-gettext.textdomain(_domain)
-gettext.bindtextdomain(_domain, localedir)
+# required to make our translations work in argparse
+install_in_argparse(translate)
