@@ -18,7 +18,7 @@ PACKAGE_DIR=pdfposter
 DOMAIN=pdfposter
 WEBLATE_BRANCH=develop
 
-# For every update
+# For every update: extract/update message template
 i18n-extract:
 	mkdir -p ${PACKAGE_DIR}/locale
 	python setup.py extract_messages \
@@ -27,15 +27,17 @@ i18n-extract:
 	git commit -m "i18n: Update translation template file (.pot)." \
 	  ${PACKAGE_DIR}/locale/${DOMAIN}.pot
 
-# once per language
+# Once per language: Create a new translation from the template
 i18n-init:
 	python setup.py init_catalog --locale "${language}"
 
+# Update existing translations (from the template)
 i18n-update: i18n-extract
 	python setup.py update_catalog
 	echo "Now edit the messages and run 'make i18n-compile' for testing"
 
-# Catalog are automatically compiled by setup.py when running sdist.
+# Compile the message catalogs
+# Catalogs are automatically compiled by zest.release when running 'release'.
 i18n-compile:
 	python setup.py compile_catalog
 
