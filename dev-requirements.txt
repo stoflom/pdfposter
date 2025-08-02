@@ -1,12 +1,20 @@
-pip
-setuptools
-wheel
-
+# Package dependencies
 pypdf
 
-# for testing
-reportlab
+# For testing, building docs locally, etc.
 tox > 4
+
+# For localization/i18n
+babel
+# required for properly integrating babel commands via entry-points
+# (not required for building sdist or wheel)
+setuptools >= 60.2
+
+# for testing without tox
+pytest
+
+# for generating examples and test-pages
+reportlab
 
 # for building the documentation
 sphinx
