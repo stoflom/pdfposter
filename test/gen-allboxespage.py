@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
+# SPDX-License-Identifier: GPL-3.0-or-later
 """
 Generate test PDF documents for pdfposter with all boxes drawn and set.
 
@@ -30,14 +31,14 @@ from __future__ import unicode_literals
 
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2025 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
+__license__ = "GPL-3.0-or-later"
 
 from reportlab.lib.units import mm, cm
 from reportlab.lib.colors import black, white, pink, lightblue, blue
 from reportlab.lib.pagesizes import A4, legal, landscape
 from reportlab.pdfgen.canvas import Canvas
 
-from pypdf import PdfFileWriter, PdfFileReader
+from pypdf import PdfWriter, PdfReader
 from pypdf.generic import RectangleObject
 
 def draw_box(canvas, color, x,y, width,height, text=None):
@@ -89,11 +90,11 @@ def genTestFile(filename1, filename2):
     artRect = (offset-1*cm, offset-2.5*cm, 2*cm+5*stepSize, 3.5*cm+6*stepSize)
     draw_box(canv, (1,0,1), *artRect, text="art box")
     # draw trimbox
-    draw_box(canv, (0,1,0), 
+    draw_box(canv, (0,1,0),
              trimmargin, trimmargin, size[0]-2*trimmargin, size[1]-2*trimmargin,
              text="trim box")
     # draw bleedbox
-    draw_box(canv, (0,0,1), 
+    draw_box(canv, (0,0,1),
              cutmargin, cutmargin, size[0]-2*cutmargin, size[1]-2*cutmargin)
 
     # draw horizonal cut marks
@@ -109,30 +110,29 @@ def genTestFile(filename1, filename2):
 
     # save the pdf file
     canv.showPage()
-    canv.save() 
+    canv.save()
 
     #----------- generate the second PDF w/ trimbox, bleedbox, artbox set
-    reader = PdfFileReader(open(filename1, "rb"))
-    writer = PdfFileWriter()
-    page = reader.getPage(0)
+    reader = PdfReader(open(filename1, "rb"))
+    writer = PdfWriter()
+    page = reader.get_page(0)
 
-    x0, y0, x1, y1 = map(float, page.mediaBox)
+    x0, y0, x1, y1 = map(float, page.mediabox)
     assert x0 == 0
     assert y0 == 0
     assert round(x1, 2) == round(size[0], 2)
     assert round(y1, 2) == round(size[1], 2)
-    page.bleedBox = RectangleObject((x0+cutmargin, y0+cutmargin,
+    page.bleedbox = RectangleObject((x0+cutmargin, y0+cutmargin,
                                      x1-cutmargin, y1-cutmargin))
-    page.trimBox = RectangleObject((x0+trimmargin, y0+trimmargin,
+    page.trimbox = RectangleObject((x0+trimmargin, y0+trimmargin,
                                     x1-trimmargin, y1-trimmargin))
     page.artBox = RectangleObject((artRect[0], artRect[1],
                                    artRect[0]+artRect[2],
                                    artRect[1]+artRect[3]))
-    writer.addPage(page)
+    writer.add_page(page)
 
-    outputStream = open(filename2, "wb")
-    writer.write(outputStream)
-    outputStream.close()
+    with open(filename2, "wb") as outputStream:
+        writer.write(outputStream)
 
 
 if __name__ == '__main__':

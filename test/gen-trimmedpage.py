@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
+# SPDX-License-Identifier: GPL-3.0-or-later
 """
 Generate a test PDF documents for pdfposter with more complex trimmed
 
@@ -24,23 +25,18 @@ trim-boxes and content drawn outside the trim-box. The pages are
 useful for checking if clipping works as expected.
 """
 
-from __future__ import print_funtion, unicode_literals
-
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2025 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
+__license__ = "GPL-3.0-or-later"
 
-try:
-    import io as StringIO
-except ImportError:
-    import io
+import io
 
 from reportlab.lib.units import mm, cm
 from reportlab.lib.colors import black, white, pink, lightblue, blue
 from reportlab.lib.pagesizes import A4, legal, landscape
 from reportlab.pdfgen.canvas import Canvas
 
-from pypdf import PdfFileWriter, PdfFileReader
+from pypdf import PdfWriter, PdfReader
 from pypdf.generic import RectangleObject
 
 def draw_box(canvas, color, x,y, width,height, text=None):
@@ -49,7 +45,7 @@ def draw_box(canvas, color, x,y, width,height, text=None):
     if text:
         canvas.setFillColorRGB(*color)
         canvas.setFont("Helvetica", 3*mm)
-        canvas.drawString(x+1*mm, y+1*mm, text)  
+        canvas.drawString(x+1*mm, y+1*mm, text)
 
 def genTestFile(filename):
     stepSize = 2*cm
@@ -83,7 +79,7 @@ def genTestFile(filename):
                 t = '%s: not set' % n
             canv.drawString(6*cm, offset, t)
             offset += 5*mm
-            
+
         # main content
         canv.setFont("Helvetica", 7*mm)
         offset = 6*cm
@@ -107,12 +103,12 @@ def genTestFile(filename):
         draw_box(canv, (1,0,1), *artRect, text="art box")
         # draw trimbox
         if draw_trimbox:
-            draw_box(canv, (0,1,0), 
+            draw_box(canv, (0,1,0),
                  trimmargin, trimmargin, size[0]-2*trimmargin, size[1]-2*trimmargin,
                  text="trim box")
         # draw bleedbox
         if draw_bleedbox:
-            draw_box(canv, (0,0,1), 
+            draw_box(canv, (0,0,1),
                      cutmargin, cutmargin, size[0]-2*cutmargin, size[1]-2*cutmargin)
 
         # save the pdf file
@@ -123,22 +119,22 @@ def genTestFile(filename):
                 draw_trimbox, draw_bleedbox,
                 set_trimbox, set_bleedbox, set_artbox,
                 title, artRect):
-        page = reader.getPage(pageNum)
+        page = reader.get_page(pageNum)
         print(('Page', i, size))
         if set_bleedbox:
-            page.bleedBox = RectangleObject(
+            page.bleedbox = RectangleObject(
                 (cutmargin, cutmargin,
                  size[0]-cutmargin, size[1]-cutmargin))
-            print((' bleed:', page.bleedBox))
+            print((' bleed:', page.bleedbox))
         if set_trimbox:
-            page.trimBox = RectangleObject(
+            page.trimbox = RectangleObject(
                 (trimmargin, trimmargin,
                  size[0]-trimmargin, size[1]-trimmargin))
-            print((' trim:', page.trimBox))
+            print((' trim:', page.trimbox))
         if set_artbox:
-            page.artBox = RectangleObject(artRect)
-            print((' art:', page.artBox))
-        writer.addPage(page)
+            page.artbox = RectangleObject(artRect)
+            print((' art:', page.artbox))
+        writer.add_page(page)
 
     #----------- generate the first PDF w/o boxes defined -----------
     canv = Canvas(None, pagesize=A4)
@@ -154,18 +150,18 @@ def genTestFile(filename):
     #--- draw the content
     for args in CASES:
         args.append(genpage(canv, *args))
-    #canv.save() 
+    #canv.save()
     pdfdata = canv.getpdfdata()
-    
+
     #----------- generate the second PDF w/ trimbox, bleedbox, artbox set
-    infile = io.StringIO(pdfdata)
-    reader = PdfFileReader(infile)
-    writer = PdfFileWriter()
+    infile = io.BytesIO(pdfdata)
+    reader = PdfReader(infile)
+    writer = PdfWriter()
     for i, args in enumerate(CASES):
         set_boxes(i, *args)
-    outputStream = open(filename, "wb")
-    writer.write(outputStream)
-    outputStream.close()
+    with open(filename, "wb") as outputStream:
+        writer.write(outputStream)
+
 
 if __name__ == '__main__':
     import argparse

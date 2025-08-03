@@ -17,6 +17,8 @@
 # convert, which uses ghostscript, since poppler is much more
 # tolerant.
 #
+# Copyright (C) 2014-2025 Hartmut Goebel
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 SCALE=200
 BGCOLOR=bisque2

@@ -1,3 +1,6 @@
+# Copyright (C) 2008-2025 Hartmut Goebel <h.goebel@crazy-compilers.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 #pdf:
 #  script:
 #    - make pdf
@@ -12,7 +15,7 @@ before_script:
 
 test:
   image: python:${PYTHON_VERSION}-slim
-  script: tox -e "py${PYTHON_VERSION/./}"
+  script: tox -e "py"
   parallel:
     matrix:
       - PYTHON_VERSION: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]

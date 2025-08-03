@@ -1,12 +1,23 @@
-pip
-setuptools
-wheel
+# SPDX-FileCopyrightText: NONE
+# SPDX-License-Identifier: CC0-1.0
 
+# Package dependencies
 pypdf
 
-# for testing
+# For testing, building docs locally, etc.
+tox > 4
+
+# For localization/i18n
+babel
+# required for properly integrating babel commands via entry-points
+# (not required for building sdist or wheel)
+setuptools >= 60.2
+
+# for testing without tox
+pytest
+
+# for generating examples and test-pages
 reportlab
-tox
 
 # for building the documentation
 sphinx

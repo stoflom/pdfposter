@@ -1,8 +1,7 @@
 # German translations for pdftools.pdfposter.
-# Copyright (C) 2022 ORGANIZATION
+# Copyright (C) 2008-2025 Hartmut Goebel
 # This file is distributed under the same license as the pdftools.pdfposter
 # project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 # Hartmut Goebel <h.goebel@crazy-compilers.com>, 2023.
 # Hartmut Goebel <htgoebel@noreply.codeberg.org>, 2025.
 msgid ""
@@ -10,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pdftools.pdfposter 0.9.dev0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-07-28 00:10+0200\n"
-"PO-Revision-Date: 2025-07-27 22:30+0000\n"
+"PO-Revision-Date: 2025-08-03 19:43+0200\n"
 "Last-Translator: Hartmut Goebel <htgoebel@noreply.codeberg.org>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/pdftools/"
 "pdfposter/de/>\n"

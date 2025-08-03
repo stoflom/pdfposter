@@ -18,11 +18,12 @@ pdfposter - scale and tile PDF images/pages to print on multiple pages.
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <https://www.gnu.org/licenses/>.
 #
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2025 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
-__license__ = "SPDX-License-Identifier: GPL-3.0-or-later"
-__version__ = "0.9.post2"
+__license__ = "GPL-3.0-or-later"
+__version__ = "0.9.1"
 
 from pypdf import PdfWriter, PdfReader, PageObject
 from pypdf.types import NameObject

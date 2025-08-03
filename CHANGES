@@ -1,4 +1,19 @@
 
+0.9.1 (2025-08-03)
+------------------
+
+* Fix missing localization files in distribution.
+  Actually all translations have been missing.
+
+* Fix missing translation for Python < 3.10 argparse.
+
+* Update translations.
+
+* Add missing copyright texts, license identifiers and license files.
+
+* Lots of cleanup to the test, build and packaging process.
+
+
 0.9.post2 (2025-07-28)
 ----------------------
 
@@ -129,8 +144,12 @@
 * Fixes to the SConscript file.
 
 
-...
-  Local Variables:
-  mode: rst
-  ispell-local-dictionary: "american"
-  End:
+.. This file is part of pdfposter.
+   Copyright (C) 2008-2025 Hartmut Goebel
+   Licensed under the GNU Free Documentation License v1.3 or any later version.
+   SPDX-License-Identifier: GFDL-1.3-or-later
+
+.. Local Variables:
+   mode: rst
+   ispell-local-dictionary: "american"
+   End:

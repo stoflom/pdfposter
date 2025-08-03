@@ -1,5 +1,6 @@
 # Minimal makefile for Sphinx documentation
-#
+# SPDX-FileCopyrightText: NONE
+# SPDX-License-Identifier: CC0-1.0
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
