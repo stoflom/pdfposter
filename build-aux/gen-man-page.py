@@ -41,9 +41,10 @@ def _get_version():
     return version
 
 
-def run(writer, rstfile, outfile):
-    substitutions = (
-        '.. |VERSION| replace:: ' + _get_version())
+def run(writer, rstfile, outfile, version=None):
+    if not version:
+        version = _get_version()
+    substitutions = f'.. |VERSION| replace:: {version}'
     rsttext = rstfile.read_text()
     rsttext = '\n'.join((substitutions, '', rsttext))
     # docutils.core does not offer easy reading from a
@@ -61,6 +62,8 @@ def run(writer, rstfile, outfile):
 def main():
     parser = argparse.ArgumentParser(
         description=_("build documentation from rst-files"))
+    parser.add_argument('--version', nargs='?',
+                        help=_("default: ask setuptools"))
     parser.add_argument('rstfile', metavar=_("rstfile"), type=Path)
     parser.add_argument('writer', metavar=_("writer"),
                         help="name of docutils writer to use")

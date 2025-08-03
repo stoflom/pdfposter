@@ -27,6 +27,18 @@ For more information please refer to the manpage or visit
 the `project homepage <https://pdfposter.readthedocs.io/>`_.
 
 
+Translating Weblate
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``Pdfposter`` and its siblings are continually being translated
+using `Codeberg Translate`__.
+Feel free to take your part in the effort of making ``pdfposter`` available
+in as many human languages as possible.
+It brings ``pdfposter`` closer to its users!
+
+__ https://translate.codeberg.org/projects/pdftools/
+
+
 Requirements and Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -48,13 +48,12 @@ env.Command('docs/pdfposter.html', 'pdfposter.rst',
             'build-aux/gen-man-page.py $SOURCE html $TARGET')
 env.Command('docs/pdfposter.1', 'pdfposter.rst',
             'build-aux/gen-man-page.py $SOURCE manpage $TARGET')
-
 # create PNG projectlogo for project homepage
 env.Command('projectlogo.png', 'projectlogo.svg',
-            'inkscape -z -f $SOURCE -e $TARGET --export-height=100')
+            'inkscape --export-filename=$TARGET --export-height=100 $SOURCE')
 
 hires_logo = env.Command('build/icons/projectlogo-hires.png', 'projectlogo.svg',
-                         'inkscape -z -f $SOURCE -e $TARGET')
+                         'inkscape --export-filename=$TARGET $SOURCE')
 
 icon_parts = [
     env.Command('build/icons/project-${WIDTH}x${HEIGHT}.pnm', hires_logo,

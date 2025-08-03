@@ -8,4 +8,5 @@ include INSTALL
 include README.txt
 include pdfposter.rst
 include */locale/*.pot
+include */locale/*/*/*.po
 global-exclude SConstruct SConscript
