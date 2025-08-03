@@ -23,7 +23,7 @@ pdfposter - scale and tile PDF images/pages to print on multiple pages.
 __author__ = "Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __copyright__ = "Copyright 2008-2025 by Hartmut Goebel <h.goebel@crazy-compilers.com>"
 __license__ = "GPL-3.0-or-later"
-__version__ = "0.10.dev0"
+__version__ = "0.9.1"
 
 from pypdf import PdfWriter, PdfReader, PageObject
 from pypdf.types import NameObject
