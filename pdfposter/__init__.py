@@ -334,4 +334,5 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
 
     if not opts.dry_run:
         outpdf.compress_identical_objects()
-        outpdf.write(open(outfilename, 'wb'))
+        with open(outfilename, 'wb') as fh:
+            outpdf.write(fh)
