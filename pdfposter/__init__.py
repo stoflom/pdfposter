@@ -154,8 +154,8 @@ def decide_num_pages(inbox, mediabox, posterbox, scale=None):
     whitemargin = {'x': 0, 'y': 0} # todo
     # media and image sizes (inbox) are fixed already
     # available drawing area per sheet
-    drawable_x = mediabox['width' ] - 2*cutmargin['x']
-    drawable_y = mediabox['height'] - 2*cutmargin['y']
+    drawable_x = round(mediabox['width' ] - 2*cutmargin['x'], 4)
+    drawable_y = round(mediabox['height'] - 2*cutmargin['y'],4)
 
     rotate = False
 
