@@ -35,7 +35,7 @@ def install_in_argparse(translate):
 
 _domain = 'pdfposter'
 if getattr(sys, 'frozen', None):
-    localedir = os.path.join(sys._MEIPASS, 'locale')
+    localedir = os.path.join(sys._MEIPASS, 'locale')  # pragma nocover
 else:
     localedir = os.path.join(os.path.dirname(__file__), 'locale')
 translate = gettext.translation(_domain,

@@ -295,7 +295,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
             v_pos -= v_step
         h_pos += h_step
 
-def password_hook():
+def password_hook():  # pragma nocover
     import getpass
     return getpass.getpass()
 
@@ -304,7 +304,7 @@ def main(opts, infilename, outfilename, password_hook=password_hook):
     outpdf = PdfWriter()
     inpdf = PdfReader(open(infilename, 'rb'), strict=False)
 
-    if inpdf.is_encrypted:
+    if inpdf.is_encrypted:   # pragma nocover
         log(16, _("File is encrypted"))
         # try empty password first
         if not inpdf.decrypt(''):

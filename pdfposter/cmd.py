@@ -205,7 +205,7 @@ def run(args=None):
     try:
         main(args, infilename=args.infilename, outfilename=args.outfilename)
     except DecryptionError as e:
-        raise SystemExit(str(e))
+        raise SystemExit(str(e))  # pragma nocover
     except pypdf.errors.PdfReadError as e:
          raise SystemExit(
              _('The input-file is either corrupt or no PDF at all: %s') % e)

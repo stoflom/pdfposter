@@ -46,6 +46,16 @@ def test_help_media_names(capsys):
     assert "media and distance names" in out
     assert "a2 a3 a4" in out
 
+
+def test_help_box_definitions(capsys):
+    with pytest.raises(SystemExit) as excinfo:
+        cmd.run(['foobar', '--help-box-definitions'])
+    assert excinfo.value.code == 0
+    out, err = capsys.readouterr()
+    assert "A `BOX` to be passed to" in out
+    assert ":10x20cm: obvious: 10" in out
+
+
 def test_version(capsys):
     with pytest.raises(SystemExit) as excinfo:
         cmd.run(['foobar', '--version'])
