@@ -1,3 +1,6 @@
+# Copyright 2020-2025 by Hartmut Goebel <h.goebel@crazy-compilers.com>
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 import subprocess
 import sys
 import os
