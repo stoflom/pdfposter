@@ -11,7 +11,7 @@ Frequently Asked Questions
   *Short Answer:* Specify the desired output size using the same
   page-name as the medium-size::
 
-     pdfposter -mA5 -p2xA5 in.pdf out.pdf
+     pdfposter -mA5 -p2x1A5 in.pdf out.pdf
 
   *Long Answer*: If you are running::
 
@@ -36,7 +36,7 @@ Frequently Asked Questions
   So the solution is to specify on the command-line what you want:
   "should fit on two A5 pages"::
 
-         pdfposter -mA5 -p2xA5 in.pdf out.pdf
+         pdfposter -mA5 -p2x1A5 in.pdf out.pdf
 
 
 * Are there other Python tools for manipulating PDF?
