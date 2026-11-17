@@ -138,7 +138,7 @@ class HelpBoxDefinitions(argparse.Action):
 
 def run(args=None):
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(prog='pdfposter')
     parser.add_argument('--help-media-names', action=HelpMediaNames,
                         nargs=0,
                         help=_("List available media and distance names"))

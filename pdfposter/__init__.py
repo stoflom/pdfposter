@@ -253,7 +253,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     scale: scale factor (to be used instead of posterbox)
     """
     if use_ArtBox:
-        inbox = rectangle2box(page.artBox)
+        inbox = rectangle2box(page.artbox)
     else:
         inbox = rectangle2box(page.trimbox)
     _clip_pdf_page(page, inbox['offset_x'], inbox['offset_y'],
@@ -261,6 +261,11 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
     ncols, nrows, scale, rotate = decide_num_pages(inbox, mediabox,
                                                    posterbox, scale)
     mediabox = mediabox.copy()
+    # pypdf >= 7 only allows modifying the page content of pages
+    # attached to a writer, so attach the page first and remove it
+    # again after all poster tiles have been created
+    orig_idx = len(outpdf.pages)
+    page = outpdf.add_page(page)
     page.scale_by(scale)
     if rotate:
         page.rotate(90)
@@ -294,6 +299,7 @@ def posterize(outpdf, page, mediabox, posterbox, scale, use_ArtBox=False):
             outpdf.add_page(newpage)
             v_pos -= v_step
         h_pos += h_step
+    outpdf.remove_page(orig_idx)
 
 def password_hook():  # pragma nocover
     import getpass

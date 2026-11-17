@@ -2,7 +2,11 @@
 0.10 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Support pypdf 7 (as shipped in Fedora 45): attach pages to the
+  writer before modifying their content, as required by pypdf 7.
+
+- Set the program name explicitly for argparse since Python 3.15
+  derives it differently from ``sys.argv[0]``.
 
 
 0.9.1 (2025-08-03)

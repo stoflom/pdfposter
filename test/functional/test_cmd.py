@@ -21,7 +21,7 @@ __copyright__ = "Copyright 2012-2025 by Hartmut Goebel <h.goebel@crazy-compilers
 __license__ = "GPL-3.0-or-later"
 
 import pytest
-import os, sys
+import sys
 
 import argparse
 
@@ -65,8 +65,9 @@ def test_version(capsys):
         # for Python 2.7 message are written to stderr
         out = err
     assert len(out.splitlines()) == 1
-    progname = os.path.basename(sys.argv[0])
-    assert out.strip() == ('%s %s' % (progname, __version__))
+    # since Python 3.15 argparse uses the full invocation as prog
+    # for "python -m ...", so the parser explicitly sets prog
+    assert out.strip() == ('pdfposter %s' % __version__)
 
 def test_without_options(monkeypatch):
 
